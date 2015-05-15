@@ -9,7 +9,6 @@
     <file url="file://$PROJECT_DIR$/src/main/cz/fel/ds/database/model/Patient.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/cz/fel/ds/gui/mainPage/MainPageController.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/cz/fel/ds/util/HibernateUtil.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/resources/cz.fel.ds.gui/mainPage/MainPageController.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/test/java/DAO/testDAO.java" charset="UTF-8" />
   </component>
 </project>
