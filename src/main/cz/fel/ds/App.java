@@ -79,7 +79,7 @@ public class App {
 
         MealToFoodDAO mealToFoodDAO = new MealToFoodDAO();
         mealToFoodDAO.create(mealtf);
-        ahoj
+        ahojj
 
 */
  //hhohohohoohvinofddfdsfsd
