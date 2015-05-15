@@ -14,18 +14,18 @@
     <property name="hibernate.generate_statistics">false</property>
     <property name="hibernate.use_sql_comments">false</property>
 
-    <mapping class="database.model.MedicalRecord"></mapping>
-    <mapping class="database.model.Patient"></mapping>
-    <mapping class="database.model.Excercise"></mapping>
-    <mapping class="database.model.ExcerciseToTrainingProgram"></mapping>
-    <mapping class="database.model.TrainingProgramToPatient"></mapping>
-    <mapping class="database.model.TrainingProgram"></mapping>
-    <mapping class="database.model.Meal"></mapping>
-    <mapping class="database.model.Food"></mapping>
-    <mapping class="database.model.MealToFood"></mapping>
-    <mapping class="database.model.MealType"></mapping>
-    <mapping class="database.model.MealSchedule"></mapping>
-    <mapping class="database.model.Diet"></mapping>
+    <mapping class="cz.fel.ds.database.model.MedicalRecord"></mapping>
+    <mapping class="cz.fel.ds.database.model.Patient"></mapping>
+    <mapping class="cz.fel.ds.database.model.Excercise"></mapping>
+    <mapping class="cz.fel.ds.database.model.ExcerciseToTrainingProgram"></mapping>
+    <mapping class="cz.fel.ds.database.model.TrainingProgramToPatient"></mapping>
+    <mapping class="cz.fel.ds.database.model.TrainingProgram"></mapping>
+    <mapping class="cz.fel.ds.database.model.Meal"></mapping>
+    <mapping class="cz.fel.ds.database.model.Food"></mapping>
+    <mapping class="cz.fel.ds.database.model.MealToFood"></mapping>
+    <mapping class="cz.fel.ds.database.model.MealType"></mapping>
+    <mapping class="cz.fel.ds.database.model.MealSchedule"></mapping>
+    <mapping class="cz.fel.ds.database.model.Diet"></mapping>
 
 </session-factory>
 </hibernate-configuration>

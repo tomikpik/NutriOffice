@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
-    <file url="file://$PROJECT_DIR$/src/main/java/App.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/database/dao/MedicalRecordDAO.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/database/dao/PatientDAO.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/database/model/Diet.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/database/model/MedicalRecord.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/database/model/Patient.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/gui/layout/mainPage/MainPageController.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/util/HibernateUtil.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/cz/fel/ds/App.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/cz/fel/ds/database/dao/MedicalRecordDAO.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/cz/fel/ds/database/dao/PatientDAO.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/cz/fel/ds/database/model/Diet.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/cz/fel/ds/database/model/MedicalRecord.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/cz/fel/ds/database/model/Patient.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/cz/fel/ds/gui/mainPage/MainPageController.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/cz/fel/ds/util/HibernateUtil.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/cz.fel.ds.gui/mainPage/MainPageController.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/test/java/DAO/testDAO.java" charset="UTF-8" />
   </component>
 </project>

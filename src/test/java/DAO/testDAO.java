@@ -2,14 +2,8 @@ package DAO; /**
  * Created by Tom on 15. 5. 2015.
  */
 
-import database.dao.ExcerciseDAO;
-import database.dao.ExcerciseToTrainingProgramDAO;
-import database.dao.PatientDAO;
-import database.dao.TrainingProgramDAO;
-import database.model.Excercise;
-import database.model.ExcerciseToTrainingProgram;
-import database.model.Patient;
-import database.model.TrainingProgram;
+import cz.fel.ds.database.dao.PatientDAO;
+import cz.fel.ds.database.model.Patient;
 import junit.framework.TestCase;
 
 public class testDAO extends TestCase{
