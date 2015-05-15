@@ -216,5 +216,11 @@ pip-log.txt
 .mr.developer.cfg
 
 #Project
+.idea/workspace.xml
+.idea\workspace.xml
 workspace.xml
 tasks.xml
+.idea/workspace.xml
+.idea/workspace.xml
+.idea/workspace.xml
+.idea/workspace.xml
