@@ -9,6 +9,6 @@
     <file url="file://$PROJECT_DIR$/src/main/java/database/model/Patient.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/gui/layout/mainPage/MainPageController.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/util/HibernateUtil.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/test/java/DAO/testPersonDAO.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/test/java/DAO/testDAO.java" charset="UTF-8" />
   </component>
 </project>

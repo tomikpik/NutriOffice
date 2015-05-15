@@ -12,9 +12,9 @@ import database.model.Patient;
 import database.model.TrainingProgram;
 import junit.framework.TestCase;
 
-public class testPersonDAO extends TestCase{
+public class testDAO extends TestCase{
 
-    public void test1() throws Exception {
+    public void testPerson() throws Exception {
         PatientDAO pDAO = new PatientDAO();
 
         Patient patient = new Patient();
@@ -24,21 +24,6 @@ public class testPersonDAO extends TestCase{
 
         int result = pDAO.create(patient);
 
-        Excercise excercise = new Excercise();
-        excercise.setKjkgmin(100);
-        excercise.setName("ahoj");
-        new ExcerciseDAO().create(excercise);
-
-        TrainingProgram tp = new TrainingProgram();
-        tp.setName("los rotopedos");
-        tp.setType(0);
-        new TrainingProgramDAO().create(tp);
-
-        ExcerciseToTrainingProgram ettp = new ExcerciseToTrainingProgram();
-        ettp.setDuration(100);
-        ettp.setExcercise(excercise);
-        ettp.setTrainingProgram(tp);
-        new ExcerciseToTrainingProgramDAO().create(ettp);
 
     }
 
