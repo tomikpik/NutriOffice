@@ -1,3 +1,7 @@
+.idea/workspace.xml
+.idea\workspace.xml
+workspace.xml
+
 #################
 ## Eclipse
 #################
@@ -216,6 +220,7 @@ pip-log.txt
 .mr.developer.cfg
 
 #Project
+.idea/workspace.xml
 .idea/workspace.xml
 .idea/workspace.xml
 .idea/workspace.xml
