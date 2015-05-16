@@ -2,7 +2,6 @@
 
 import cz.fel.ds.database.dao.PatientDAO;
 import cz.fel.ds.database.model.Patient;
-import cz.fel.ds.gui.mainPage.MainPage;
 import cz.fel.ds.gui.GuiTool;
 import java.util.ArrayList;
 import java.util.Date;
