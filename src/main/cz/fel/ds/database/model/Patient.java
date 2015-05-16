@@ -13,8 +13,8 @@ import java.util.Date;
 
 @Entity
 @Table(name = "Patients")
-public class Patient implements Serializable {
-
+public class Patient implements Serializable
+{
     private int patientId;
     private SimpleStringProperty firstName = new SimpleStringProperty();
     private SimpleStringProperty lastName = new SimpleStringProperty();
@@ -27,87 +27,117 @@ public class Patient implements Serializable {
     private Diet diet;
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "patient_id", unique = true, precision = 5, scale = 0)
-    public int getPatientId() {
+    public int getPatientId()
+    {
         return patientId;
     }
-    public void setPatientId(int patientId) {
-        this.patientId=patientId;
+
+    public void setPatientId(int patientId)
+    {
+        this.patientId = patientId;
     }
 
     @Column(name = "first_name", length = 100)
-    public String getFirstName() {
+    public String getFirstName()
+    {
         return firstName.get();
     }
-    public void setFirstName(String firstName) {
+
+    public void setFirstName(String firstName)
+    {
         this.firstName.set(firstName);
     }
 
     @Column(name = "last_name", length = 100)
-    public String getLastName() {
+    public String getLastName()
+    {
         return lastName.get();
     }
-    public void setLastName(String lastName) {
+
+    public void setLastName(String lastName)
+    {
         this.lastName.set(lastName);
     }
 
     @Column(name = "gender", length = 1)
-    public String getGender() {
+    public String getGender()
+    {
         return gender.get();
     }
-    public void setGender(String gender) {
+
+    public void setGender(String gender)
+    {
         this.gender.set(gender);
     }
 
     @Temporal(TemporalType.DATE)
     @Column(name = "birthdate", length = 50)
-    public Date getBirthdate() {
+    public Date getBirthdate()
+    {
         return birthdate;
     }
-    public void setBirthdate(Date birthdate) {
+
+    public void setBirthdate(Date birthdate)
+    {
         this.birthdate = birthdate;
     }
 
     @Column(name = "national_id", length = 100)
-    public int getNationalId() {
+    public int getNationalId()
+    {
         return nationalId.get();
     }
-    public void setNationalId(int nationalId) {
+
+    public void setNationalId(int nationalId)
+    {
         this.nationalId.set(nationalId);
     }
 
     @Column(name = "email", length = 100)
-    public String getEmail() {
+    public String getEmail()
+    {
         return email.get();
     }
-    public void setEmail(String email) {
+
+    public void setEmail(String email)
+    {
         this.email.set(email);
     }
 
     @Column(name = "phone", length = 100)
-    public String getPhone() {
+    public String getPhone()
+    {
         return phone.get();
     }
-    public void setPhone(String phone) {
+
+    public void setPhone(String phone)
+    {
         this.phone.set(phone);
     }
 
     @Temporal(TemporalType.DATE)
     @Column(name = "diet_started_date", length = 50)
-    public Date getDietStarted() {
+    public Date getDietStarted()
+    {
         return dietStarted;
     }
-    public void setDietStarted(Date dietStarted) {
+
+    public void setDietStarted(Date dietStarted)
+    {
         this.dietStarted = dietStarted;
     }
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="diet_id")
-    public Diet getDiet() {
+    @JoinColumn(name = "diet_id")
+    public Diet getDiet()
+    {
         return diet;
     }
-    public void setDiet(Diet diet) {
+
+    public void setDiet(Diet diet)
+    {
         this.diet = diet;
     }
 }

@@ -11,34 +11,44 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name = "TrainingProgram")
-public class TrainingProgram implements Serializable {
+public class TrainingProgram implements Serializable
+{
     private int trainingProgramId;
     private SimpleStringProperty name = new SimpleStringProperty();
     private SimpleIntegerProperty type = new SimpleIntegerProperty();
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "training_program_id", unique = true, precision = 5, scale = 0)
-    public int getTrainingProgramId() {
+    public int getTrainingProgramId()
+    {
         return trainingProgramId;
     }
-    public void setTrainingProgramId(int trainingProgramId) {
-        this.trainingProgramId=trainingProgramId;
+
+    public void setTrainingProgramId(int trainingProgramId)
+    {
+        this.trainingProgramId = trainingProgramId;
     }
 
     @Column(name = "type", length = 100)
-    public int getType() {
+    public int getType()
+    {
         return type.get();
     }
-    public void setType(int type) {
+
+    public void setType(int type)
+    {
         this.type.set(type);
     }
 
     @Column(name = "name", length = 100)
-    public String getName() {
+    public String getName()
+    {
         return name.get();
     }
-    public void setName(String name) {
+
+    public void setName(String name)
+    {
         this.name.set(name);
     }
 }

@@ -24,6 +24,7 @@
                             </columnResizePolicy>
                         </TableView>
                   <Text layoutX="103.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search options" wrappingWidth="394.521484375" />
+                  <RadioButton fx:id="sortByNamesRadioButt" layoutX="231.0" layoutY="53.0" mnemonicParsing="false" text="Podle jmena" />
                     </children></AnchorPane>
             </content>
         </Tab>

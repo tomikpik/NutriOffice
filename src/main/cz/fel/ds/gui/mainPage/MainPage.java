@@ -16,10 +16,9 @@ public class MainPage extends Application{
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
-        //Parent root = FXMLLoader.load(getClass().getResource("../../../layout/main_page.fxml"));
+    public void start(Stage primaryStage) throws Exception
+    {
         Parent root = FXMLLoader.load(getClass().getResource("main_page.fxml"));
-
         primaryStage.setTitle("NutriOffice");
         primaryStage.setResizable(false);
         primaryStage.setScene(new Scene(root,800,600));

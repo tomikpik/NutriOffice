@@ -8,7 +8,7 @@
     <property name="hibernate.connection.url">jdbc:postgresql://krizik.felk.cvut.cz:5434/student_db15_16</property>
     <property name="hibernate.connection.username">student_db15_16</property>
     <property name="hibernate.connection.password">nutri</property>
-    <property name="hibernate.hbm2ddl.auto">create</property>
+    <property name="hibernate.hbm2ddl.auto">create</property> <!--validate update create-drop-->
     <property name="show_sql">true</property>
     <property name="hibernate.format_sql">false</property>
     <property name="hibernate.generate_statistics">false</property>
@@ -16,8 +16,8 @@
 
     <mapping class="cz.fel.ds.database.model.MedicalRecord"></mapping>
     <mapping class="cz.fel.ds.database.model.Patient"></mapping>
-    <mapping class="cz.fel.ds.database.model.Excercise"></mapping>
-    <mapping class="cz.fel.ds.database.model.ExcerciseToTrainingProgram"></mapping>
+    <mapping class="cz.fel.ds.database.model.Exercise"></mapping>
+    <mapping class="cz.fel.ds.database.model.ExerciseToTrainingProgram"></mapping>
     <mapping class="cz.fel.ds.database.model.TrainingProgramToPatient"></mapping>
     <mapping class="cz.fel.ds.database.model.TrainingProgram"></mapping>
     <mapping class="cz.fel.ds.database.model.Meal"></mapping>
@@ -25,6 +25,7 @@
     <mapping class="cz.fel.ds.database.model.MealToFood"></mapping>
     <mapping class="cz.fel.ds.database.model.MealType"></mapping>
     <mapping class="cz.fel.ds.database.model.MealSchedule"></mapping>
+    <mapping class="cz.fel.ds.database.model.MealScheduleChange"></mapping>
     <mapping class="cz.fel.ds.database.model.Diet"></mapping>
 
 </session-factory>

@@ -10,36 +10,46 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name = "TrainingToPatientProgram")
-public class TrainingProgramToPatient implements Serializable{
+public class TrainingProgramToPatient implements Serializable
+{
     private SimpleIntegerProperty day = new SimpleIntegerProperty();
     private TrainingProgram trainingProgram;
     private Patient patient;
 
     @Column(name = "day", length = 100)
-    public int getDay() {
+    public int getDay()
+    {
         return day.get();
     }
-    public void setDay(int day) {
+
+    public void setDay(int day)
+    {
         this.day.set(day);
     }
 
     @Id
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="patient_id")
-    public Patient getPatient() {
+    @JoinColumn(name = "patient_id")
+    public Patient getPatient()
+    {
         return patient;
     }
-    public void setPatient(Patient patient) {
+
+    public void setPatient(Patient patient)
+    {
         this.patient = patient;
     }
 
     @Id
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="training_program_id")
-    public TrainingProgram getTrainingProgram() {
+    @JoinColumn(name = "training_program_id")
+    public TrainingProgram getTrainingProgram()
+    {
         return trainingProgram;
     }
-    public void setTrainingProgram(TrainingProgram trainingProgram) {
+
+    public void setTrainingProgram(TrainingProgram trainingProgram)
+    {
         this.trainingProgram = trainingProgram;
     }
 }

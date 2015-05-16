@@ -9,37 +9,47 @@ import java.io.Serializable;
  * Created by Tom on 15. 5. 2015.
  */
 @Entity
-@Table(name = "ExcerciseToTrainingProgram")
-public class ExcerciseToTrainingProgram implements Serializable{
+@Table(name = "ExerciseToTrainingProgram")
+public class ExerciseToTrainingProgram implements Serializable
+{
     private SimpleFloatProperty duration = new SimpleFloatProperty();
-    private Excercise excercise;
+    private Exercise exercise;
     private TrainingProgram trainingProgram;
 
     @Column(name = "duration", length = 100)
-    public float getDuration() {
+    public float getDuration()
+    {
         return duration.get();
     }
-    public void setDuration(float duration) {
+
+    public void setDuration(float duration)
+    {
         this.duration.set(duration);
     }
 
     @Id
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="excercise_id")
-    public Excercise getExcercise() {
-        return excercise;
+    @JoinColumn(name = "excercise_id")
+    public Exercise getExercise()
+    {
+        return exercise;
     }
-    public void setExcercise(Excercise excercise) {
-        this.excercise = excercise;
+
+    public void setExercise(Exercise exercise)
+    {
+        this.exercise = exercise;
     }
 
     @Id
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="training_program_id")
-    public TrainingProgram getTrainingProgram() {
+    @JoinColumn(name = "training_program_id")
+    public TrainingProgram getTrainingProgram()
+    {
         return trainingProgram;
     }
-    public void setTrainingProgram(TrainingProgram trainingProgram) {
+
+    public void setTrainingProgram(TrainingProgram trainingProgram)
+    {
         this.trainingProgram = trainingProgram;
     }
 

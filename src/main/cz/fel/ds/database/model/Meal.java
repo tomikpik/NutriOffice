@@ -10,25 +10,32 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name = "Meal")
-public class Meal implements Serializable{
+public class Meal implements Serializable
+{
     private int mealId;
     private SimpleStringProperty mealName = new SimpleStringProperty();
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "meal_id", unique = true, precision = 5, scale = 0)
-    public int getMealId() {
+    public int getMealId()
+    {
         return mealId;
     }
-    public void setMealId(int mealId) {
-        this.mealId=mealId;
+
+    public void setMealId(int mealId)
+    {
+        this.mealId = mealId;
     }
 
     @Column(name = "food_name", length = 100)
-    public String getMealName() {
+    public String getMealName()
+    {
         return mealName.get();
     }
-    public void setMealName(String name) {
+
+    public void setMealName(String name)
+    {
         this.mealName.set(name);
     }
 }

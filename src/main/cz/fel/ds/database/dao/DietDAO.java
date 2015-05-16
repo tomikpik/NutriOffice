@@ -1,39 +1,38 @@
 package cz.fel.ds.database.dao;
 
-import cz.fel.ds.database.model.Meal;
+import cz.fel.ds.database.model.Diet;
 import cz.fel.ds.util.HibernateUtil;
 import javafx.collections.ObservableList;
 import org.hibernate.Query;
 
 /**
- * Created by Tom on 15. 5. 2015.
+ * Created by Barush on 15. 5. 2015.
  */
-public class MealDAO
+public class DietDAO
 {
-    public int create(Meal meal)
+    public int create(Diet diet)
     {
         HibernateUtil.getSession().beginTransaction();
-        HibernateUtil.getSession().save(meal);
+        HibernateUtil.getSession().save(diet);
         HibernateUtil.getSession().getTransaction().commit();
-        return meal.getMealId();
+        return diet.getDietId();
     }
 
-    public Meal read(int id)
+    public Diet read(int id)
     {
         HibernateUtil.getSession().beginTransaction();
-        Meal meal;
-        meal = (Meal) HibernateUtil.getSession().get(Meal.class, id);
+        Diet diet;
+        diet = (Diet) HibernateUtil.getSession().get(Diet.class, id);
         HibernateUtil.getSession().getTransaction().commit();
-        return meal;
+        return diet;
     }
 
-
-    public boolean update(Meal meal)
+    public boolean update(Diet diet)
     {
         HibernateUtil.getSession().beginTransaction();
         try
         {
-            HibernateUtil.getSession().update(meal);
+            HibernateUtil.getSession().update(diet);
             HibernateUtil.getSession().getTransaction().commit();
         }
         catch (Exception ex)
@@ -43,12 +42,12 @@ public class MealDAO
         return true;
     }
 
-    public boolean delete(Meal meal)
+    public boolean delete(Diet diet)
     {
         HibernateUtil.getSession().beginTransaction();
         try
         {
-            HibernateUtil.getSession().delete(meal);
+            HibernateUtil.getSession().delete(diet);
             HibernateUtil.getSession().getTransaction().commit();
         }
         catch (Exception ex)
@@ -58,28 +57,29 @@ public class MealDAO
         return true;
     }
 
-    public ObservableList<Meal> selectObjectsTo(String type, Object value)
+    public ObservableList<Diet> selectObjectsTo(String type, Object value)
     {
         HibernateUtil.getSession().beginTransaction();
         Query q = null;
         switch(type)
         {
-            case "mealId":
-                q =  HibernateUtil.getSession().createQuery("SELECT c from Meal c where c.mealId=:mealId");
+            case "dietId":
+                q =  HibernateUtil.getSession().createQuery("SELECT c from Diet c where c.dietId=:dietId");
                 break;
 
-            case "mealName":
-                q =  HibernateUtil.getSession().createQuery("SELECT c from Meal c where c.mealName=:mealName");
+            case "name":
+                q =  HibernateUtil.getSession().createQuery("SELECT c from Diet c where c.name=:name");
                 break;
+
             default:
-                q =  HibernateUtil.getSession().createQuery("SELECT c from Meal c");
-                ObservableList<Meal> listOfMeals = (ObservableList<Meal>) q.list();
+                q =  HibernateUtil.getSession().createQuery("SELECT c from Diet c");
+                ObservableList<Diet> listOfDiets = (ObservableList<Diet>) q.list();
                 HibernateUtil.getSession().getTransaction().commit();
-                return listOfMeals;
+                return listOfDiets;
         }
         q.setParameter(type, value);
-        ObservableList<Meal> listOfMeals = (ObservableList<Meal>) q.list();
+        ObservableList<Diet> listOfDiets = (ObservableList<Diet>) q.list();
         HibernateUtil.getSession().getTransaction().commit();
-        return listOfMeals;
+        return listOfDiets;
     }
 }

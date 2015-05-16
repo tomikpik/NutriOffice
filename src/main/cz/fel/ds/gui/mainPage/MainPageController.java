@@ -5,6 +5,7 @@ import cz.fel.ds.gui.foodDialog.FoodDialog;
 import cz.fel.ds.gui.patientDialog.PatientDialog;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -18,6 +19,8 @@ import java.io.IOException;
 public class MainPageController {
     @FXML
     private TextField pacientSearch;
+    @FXML
+    private RadioButton sortByNamesRadioButt;
     @FXML
     private TextField dietSearch;
     @FXML
