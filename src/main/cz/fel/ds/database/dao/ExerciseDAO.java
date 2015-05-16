@@ -15,7 +15,7 @@ public class ExerciseDAO
         HibernateUtil.getSession().beginTransaction();
         HibernateUtil.getSession().save(exercise);
         HibernateUtil.getSession().getTransaction().commit();
-        return exercise.getExcerciseId();
+        return exercise.getExerciseId();
     }
 
     public Exercise read(int id)

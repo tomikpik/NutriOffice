@@ -13,7 +13,7 @@ import java.io.Serializable;
 public class ExerciseToTrainingProgram implements Serializable 
 {
     private SimpleDoubleProperty duration = new SimpleDoubleProperty();
-    private Exercise excercise;
+    private Exercise exercise;
     private TrainingProgram trainingProgram;
 
     @Column(name = "duration", length = 100)

@@ -25,6 +25,7 @@
     <mapping class="cz.fel.ds.database.model.MealToFood"></mapping>
     <mapping class="cz.fel.ds.database.model.MealType"></mapping>
     <mapping class="cz.fel.ds.database.model.MealSchedule"></mapping>
+    <mapping class="cz.fel.ds.database.model.MealScheduleChange"></mapping>
     <mapping class="cz.fel.ds.database.model.Diet"></mapping>
 
 </session-factory>
