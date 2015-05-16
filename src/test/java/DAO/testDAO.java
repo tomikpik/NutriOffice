@@ -35,7 +35,6 @@ public class testDAO extends TestCase{
 
         TrainingProgram tp = new TrainingProgram();
         tp.setName("cyklistění");
-        tp.setType(0);
         new TrainingProgramDAO().create(tp);
         System.out.println(tp);
 
@@ -50,7 +49,6 @@ public class testDAO extends TestCase{
 
         tp = new TrainingProgram();
         tp.setName("cycling");
-        tp.setType(1);
         new TrainingProgramDAO().create(tp);
         System.out.println(tp);
 

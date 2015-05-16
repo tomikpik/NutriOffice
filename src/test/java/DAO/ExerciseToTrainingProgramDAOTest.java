@@ -41,9 +41,7 @@ public class ExerciseToTrainingProgramDAOTest
         tp = new TrainingProgram();
         tp1 = new TrainingProgram();
         tp.setName("Cardio");
-        tp.setType(0);
         tp1.setName("Muscle-building");
-        tp1.setType(1);
         //CREATE EXERCISES
         tpDAO.create(tp);
         tpDAO.create(tp1);
