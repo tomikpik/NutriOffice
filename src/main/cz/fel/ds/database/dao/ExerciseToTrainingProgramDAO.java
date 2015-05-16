@@ -4,6 +4,7 @@ import cz.fel.ds.database.model.Exercise;
 import cz.fel.ds.database.model.ExerciseToTrainingProgram;
 import cz.fel.ds.database.model.TrainingProgram;
 import cz.fel.ds.util.HibernateUtil;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.hibernate.Query;
 
@@ -62,7 +63,7 @@ public class ExerciseToTrainingProgramDAO
         return true;
     }
 
-    public ObservableList<Exercise> selectObjectsTo(String type, Object value)
+    public ObservableList<ExerciseToTrainingProgram> selectObjectsTo(String type, Object value)
     {
         HibernateUtil.getSession().beginTransaction();
         Query q = null;
@@ -80,12 +81,12 @@ public class ExerciseToTrainingProgramDAO
                 break;
             default:
                 q =  HibernateUtil.getSession().createQuery("SELECT c from ExerciseToTrainingProgram c");
-                ObservableList<Exercise> listOfExercises = (ObservableList<Exercise>) q.list();
+                ObservableList<ExerciseToTrainingProgram> listOfExercises = FXCollections.observableList(q.list());
                 HibernateUtil.getSession().getTransaction().commit();
                 return listOfExercises;
         }
         q.setParameter(type, value);
-        ObservableList<Exercise> listOfExercises = (ObservableList<Exercise>) q.list();
+        ObservableList<ExerciseToTrainingProgram> listOfExercises = FXCollections.observableList(q.list());
         HibernateUtil.getSession().getTransaction().commit();
         return listOfExercises;
     }

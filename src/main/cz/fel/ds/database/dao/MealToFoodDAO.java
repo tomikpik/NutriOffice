@@ -4,6 +4,7 @@ import cz.fel.ds.database.model.Food;
 import cz.fel.ds.database.model.Meal;
 import cz.fel.ds.database.model.MealToFood;
 import cz.fel.ds.util.HibernateUtil;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.hibernate.Query;
 
@@ -79,12 +80,12 @@ public class MealToFoodDAO
                 break;
             default:
                 q =  HibernateUtil.getSession().createQuery("SELECT c from MealToFood c");
-                ObservableList<MealToFood> listOfMealToFoods = (ObservableList<MealToFood>) q.list();
+                ObservableList<MealToFood> listOfMealToFoods = FXCollections.observableList(q.list());
                 HibernateUtil.getSession().getTransaction().commit();
                 return listOfMealToFoods;
         }
         q.setParameter(type, value);
-        ObservableList<MealToFood> listOfMealToFoods = (ObservableList<MealToFood>) q.list();
+        ObservableList<MealToFood> listOfMealToFoods = FXCollections.observableList(q.list());
         HibernateUtil.getSession().getTransaction().commit();
         return listOfMealToFoods;
     }
