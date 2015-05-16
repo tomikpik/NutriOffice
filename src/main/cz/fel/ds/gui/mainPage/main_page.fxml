@@ -111,7 +111,7 @@
                             <TableColumn prefWidth="294.0" text="Name" />
                           </columns>
                         </TableView>
-                        <TableView fx:id="excerciseTable" prefHeight="197.0" prefWidth="253.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                        <TableView fx:id="exerciseTable" prefHeight="197.0" prefWidth="253.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                           <columns>
                             <TableColumn prefWidth="252.0" text="Name" />
                           </columns>

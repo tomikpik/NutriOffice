@@ -1,4 +1,4 @@
-﻿package cz.fel.ds;
+package cz.fel.ds;
 
 import cz.fel.ds.database.dao.PatientDAO;
 import cz.fel.ds.database.model.Patient;
@@ -30,7 +30,7 @@ public class App {
             p.setLastName(lastNames[i]);
             //p.setBirthdate(date);
             p.setEmail(lastNames[i] + "@seznam.cz");
-            p.setGender(Math.random() > 0.5 ? "M" : "Ž");
+            p.setGender(Math.random() > 0.5 ? "M" : "Z");
             patientDAO.create(p);
         }
     }
