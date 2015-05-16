@@ -49,9 +49,14 @@ public class SearchService
         return foodDAO.selectObjectsTo("nameStartsWith",input);
     }
 
-    public ObservableList<ExerciseToTrainingProgram> exerciseToTrainingProgramSearch(String input)
+    public ObservableList<ExerciseToTrainingProgram> exerciseToTrainingProgramSearchAll(String input)
     {
         return exerciseToTrainingProgramDAO.selectObjectsTo("all","");
+    }
+
+    public ObservableList<ExerciseToTrainingProgram> exerciseToTrainingSearchByTraining(String input)
+    {
+        return exerciseToTrainingProgramDAO.selectObjectsTo("trainingProgram",input);
     }
 
     public ObservableList<MealToFood> mealToFoodSearch(String input)

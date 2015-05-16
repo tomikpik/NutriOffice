@@ -73,6 +73,7 @@ public class ExerciseToTrainingProgramDAO
                 q =  HibernateUtil.getSession().createQuery("SELECT c from ExerciseToTrainingProgram c where c.exercise=:exercise");
                 break;
 
+//else if(typeTO.equals("teams_id"))q =  HibernateUtil.getSession().createQuery("select c from Competition as c, Team as team where team in elements(c.teams) and team.id=:teams_id");
             case "trainingProgram":
                 q =  HibernateUtil.getSession().createQuery("SELECT c from ExerciseToTrainingProgram c where c.trainingProgram=:trainingProgram");
                 break;
