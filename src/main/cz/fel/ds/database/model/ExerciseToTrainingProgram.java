@@ -1,6 +1,6 @@
 package cz.fel.ds.database.model;
 
-import javafx.beans.property.SimpleFloatProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -10,26 +10,25 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name = "ExerciseToTrainingProgram")
-public class ExerciseToTrainingProgram implements Serializable
+public class ExerciseToTrainingProgram implements Serializable 
 {
-    private SimpleFloatProperty duration = new SimpleFloatProperty();
-    private Exercise exercise;
+    private SimpleDoubleProperty duration = new SimpleDoubleProperty();
+    private Exercise excercise;
     private TrainingProgram trainingProgram;
 
     @Column(name = "duration", length = 100)
-    public float getDuration()
-    {
+    public double getDuration() {
         return duration.get();
     }
 
-    public void setDuration(float duration)
-    {
+    public void setDuration(double duration) 
+   {
         this.duration.set(duration);
     }
 
     @Id
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "excercise_id")
+    @JoinColumn(name = "exercise_id")
     public Exercise getExercise()
     {
         return exercise;

@@ -18,6 +18,10 @@ public class MealType implements Serializable
     private SimpleIntegerProperty mealType = new SimpleIntegerProperty();
     private SimpleStringProperty mealTypeName = new SimpleStringProperty();
 
+    public MealType(){
+        setMealTypeId(-1);
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "meal_type_id", unique = true, precision = 5, scale = 0)

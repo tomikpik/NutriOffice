@@ -17,6 +17,10 @@ public class Diet implements Serializable
     private SimpleIntegerProperty dietId = new SimpleIntegerProperty();
     private SimpleStringProperty name = new SimpleStringProperty();
 
+    public Diet(){
+        setDietId(-1);
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "diet_id", unique = true, precision = 5, scale = 0)

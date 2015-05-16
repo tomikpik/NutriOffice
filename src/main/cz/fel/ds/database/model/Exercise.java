@@ -1,6 +1,6 @@
 package cz.fel.ds.database.model;
 
-import javafx.beans.property.SimpleFloatProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 import javax.persistence.*;
@@ -15,17 +15,28 @@ public class Exercise implements Serializable
 {
     private int exerciseId;
     private SimpleStringProperty name = new SimpleStringProperty();
-    private SimpleFloatProperty kjkgmin = new SimpleFloatProperty();
+    private SimpleDoubleProperty kjkgmin = new SimpleDoubleProperty();
+
+    public Exercise() {
+        excerciseId = -1;
+    }
+
+    public Exercise(String name, Double kjkgmin) {
+        excerciseId = -1;
+        this.setName(name);
+        this.setKjkgmin(kjkgmin);
+    }
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "exercise_id", unique = true, precision = 5, scale = 0)
-    public int getExcerciseId()
+    public int getExerciseId()
     {
         return exerciseId;
     }
 
-    public void setExcerciseId(int exerciseId)
+    public void setExerciseId(int exerciseId)
     {
         this.exerciseId = exerciseId;
     }
@@ -42,13 +53,22 @@ public class Exercise implements Serializable
     }
 
     @Column(name = "kjkgmin", length = 100)
-    public float getKjkgmin()
+    public double getKjkgmin() 
     {
         return kjkgmin.get();
     }
 
-    public void setKjkgmin(float kjkgmin)
-    {
+    public void setKjkgmin(double kjkgmin) 
+   {
         this.kjkgmin.set(kjkgmin);
+    }
+
+    @Override
+    public String toString() {
+        return "Excercise{" +
+                "excerciseId=" + excerciseId +
+                ", name=" + name +
+                ", kjkgmin=" + kjkgmin +
+                '}';
     }
 }

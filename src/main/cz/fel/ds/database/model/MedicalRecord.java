@@ -1,6 +1,6 @@
 package cz.fel.ds.database.model;
 
-import javafx.beans.property.SimpleFloatProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -12,81 +12,81 @@ import java.util.Date;
 
 @Entity
 @Table(name = "MedicalRecords")
-public class MedicalRecord implements Serializable
+public class MedicalRecord implements Serializable 
 {
-    private SimpleFloatProperty height = new SimpleFloatProperty();
-    private SimpleFloatProperty weight = new SimpleFloatProperty();
-    private SimpleFloatProperty fat = new SimpleFloatProperty();
-    private SimpleFloatProperty waist = new SimpleFloatProperty();
-    private SimpleFloatProperty hip = new SimpleFloatProperty();
-    private SimpleFloatProperty chest = new SimpleFloatProperty();
+    private SimpleDoubleProperty height = new SimpleDoubleProperty();
+    private SimpleDoubleProperty weight = new SimpleDoubleProperty();
+    private SimpleDoubleProperty fat = new SimpleDoubleProperty();
+    private SimpleDoubleProperty waist = new SimpleDoubleProperty();
+    private SimpleDoubleProperty hip = new SimpleDoubleProperty();
+    private SimpleDoubleProperty chest = new SimpleDoubleProperty();
     private Date date;
     private Patient patient;
 
 
     @Column(name = "height", length = 100)
-    public float getHeight()
-    {
+
+    public double getHeight() {
         return height.get();
     }
 
-    public void setHeight(float height)
-    {
+    public void setHeight(double height) {
+
         this.height.set(height);
     }
 
     @Column(name = "weight", length = 100)
-    public float getWeight()
-    {
+
+    public double getWeight() {
         return weight.get();
     }
 
-    public void setWeight(float weight)
-    {
+    public void setWeight(double weight) {
+
         this.weight.set(weight);
     }
 
     @Column(name = "fat", length = 100)
-    public float getFat()
-    {
+
+    public double getFat() {
         return fat.get();
     }
 
-    public void setFat(float fat)
-    {
+    public void setFat(double fat) {
+
         this.fat.set(fat);
     }
 
     @Column(name = "waist", length = 100)
-    public float getWaist()
-    {
+
+    public double getWaist() {
         return waist.get();
     }
 
-    public void setWaist(float waist)
-    {
+    public void setWaist(double waist) {
+
         this.waist.set(waist);
     }
 
     @Column(name = "hip", length = 100)
-    public float getHip()
-    {
+
+    public double getHip() {
         return hip.get();
     }
 
-    public void setHip(float hip)
-    {
+    public void setHip(double hip) {
+
         this.hip.set(hip);
     }
 
     @Column(name = "chest", length = 100)
-    public float getChest()
-    {
+
+    public double getChest() {
         return chest.get();
     }
 
-    public void setChest(float chest)
-    {
+    public void setChest(double chest) {
+
         this.chest.set(chest);
     }
 

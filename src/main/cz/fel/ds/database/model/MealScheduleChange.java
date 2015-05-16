@@ -15,6 +15,10 @@ public class MealScheduleChange implements Serializable
     private MealSchedule mealSchedule;
     private Integer mealScheduleChangeId;
 
+    public MealScheduleChange(){
+        mealScheduleChangeId=-1;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "meal_schedule_change_id", unique = true, precision = 5, scale = 0)

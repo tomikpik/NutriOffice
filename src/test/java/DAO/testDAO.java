@@ -1,4 +1,6 @@
-package DAO; /**
+package DAO;
+
+/**
  * Created by Tom on 15. 5. 2015.
  */
 

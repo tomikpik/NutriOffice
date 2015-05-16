@@ -10,10 +10,13 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name = "Meal")
-public class Meal implements Serializable
-{
+public class Meal implements Serializable {
     private int mealId;
     private SimpleStringProperty mealName = new SimpleStringProperty();
+
+    public Meal(){
+        mealId=-1;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -34,7 +37,7 @@ public class Meal implements Serializable
         return mealName.get();
     }
 
-    public void setMealName(String name)
+    public void setMealName(String name) 
     {
         this.mealName.set(name);
     }

@@ -82,7 +82,6 @@ public class App {
         ahojj
 
 */
- //hhohohohoohvinofddfdsfsd
         new MainPage().start();
     }
 

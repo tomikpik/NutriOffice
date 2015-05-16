@@ -1,7 +1,6 @@
 package cz.fel.ds.database.model;
 
 import javafx.beans.property.SimpleIntegerProperty;
-
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -17,6 +16,10 @@ public class MealSchedule implements Serializable
     private MealType mealType;
     private Meal meal;
     private Diet diet;
+
+    public MealSchedule(){
+        mealScheduleId.set(-1);
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
