@@ -51,4 +51,13 @@ public class TrainingProgram implements Serializable
     {
         this.name.set(name);
     }
+
+    @Override
+    public String toString() {
+        return "TrainingProgram{" +
+                "trainingProgramId=" + trainingProgramId +
+                ", name=" + name +
+                ", type=" + type +
+                '}';
+    }
 }

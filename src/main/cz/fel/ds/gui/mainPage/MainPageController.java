@@ -2,7 +2,7 @@ package cz.fel.ds.gui.mainPage;
 
 import cz.fel.ds.database.model.Food;
 import cz.fel.ds.database.model.Patient;
-import cz.fel.ds.gui.excerciseDialog.ExcerciseDialog;
+import cz.fel.ds.gui.exerciseDialog.ExerciseDialog;
 import cz.fel.ds.gui.foodDialog.FoodDialog;
 import cz.fel.ds.gui.patientDialog.PatientDialog;
 import javafx.event.ActionEvent;
@@ -19,7 +19,7 @@ import java.io.IOException;
  * Created by Tom on 14. 5. 2015.
  */
 public class MainPageController {
-    private ExcerciseDialog excerciseDialog = new ExcerciseDialog();
+    private ExerciseDialog exerciseDialog = new ExerciseDialog();
     private FoodDialog foodDialog = new FoodDialog();
 
     @FXML
@@ -47,7 +47,7 @@ public class MainPageController {
     @FXML
     private TableView<Patient> trainingProgramTable;
     @FXML
-    private TableView<Patient> excerciseTable;
+    private TableView<Patient> exerciseTable;
 
 /*
     private ObservableList<Patient> data = FXCollections.observableArrayList(
@@ -120,7 +120,7 @@ public class MainPageController {
     @FXML
     public void excerciseAdd(ActionEvent event) {
         //open new excercise dialog
-        excerciseDialog.showExcerciseDialog(null);
+        exerciseDialog.showExerciseDialog(null);
     }
 
     @FXML

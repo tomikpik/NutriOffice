@@ -1,21 +1,19 @@
-package cz.fel.ds.gui.excerciseDialog;
+package cz.fel.ds.gui.exerciseDialog;
 
-import cz.fel.ds.database.model.Excercise;
-import cz.fel.ds.database.model.Food;
+import cz.fel.ds.database.model.Exercise;
 import cz.fel.ds.gui.GuiTool;
-import cz.fel.ds.service.Service;
+import cz.fel.ds.database.services.BasicService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 
 /**
  * Created by Tom on 14. 5. 2015.
  */
-public class ExcerciseDialogController {
-    private Excercise excercise;
-    private Service service=new Service();
+public class ExerciseDialogController {
+    private Exercise exercise;
+    private BasicService basicService =new BasicService();
 
     @FXML
     private TextField name;
@@ -24,11 +22,11 @@ public class ExcerciseDialogController {
     @FXML
     private Button delete;
 
-    public void setExcercise(Excercise excercise){
-        this.excercise=excercise;
-        if(excercise!=null){
-            name.setText(excercise.getName());
-            energy.setText(String.valueOf(excercise.getKjkgmin()));
+    public void setExcercise(Exercise exercise){
+        this.exercise=exercise;
+        if(exercise!=null){
+            name.setText(exercise.getName());
+            energy.setText(String.valueOf(exercise.getKjkgmin()));
         } else {
             delete.setDisable(true);
         }
@@ -38,11 +36,11 @@ public class ExcerciseDialogController {
     @FXML
     public void saveExcercise(ActionEvent event){
         try {
-            Excercise f = (excercise==null)?new Excercise():excercise;
+            Exercise f = (exercise==null)?new Exercise():exercise;
             f.setName(name.getText());
             Float ev = Float.parseFloat(energy.getText());
             f.setKjkgmin(ev);
-            if(service.saveExcercise(f)){
+            if(basicService.saveExcercise(f)){
                 GuiTool.closeDialog(delete);
             }else{
                 System.out.println("excercise save failed - service");
@@ -54,8 +52,8 @@ public class ExcerciseDialogController {
 
     @FXML
     public void deleteExcercise(ActionEvent event){
-        if(excercise!=null){
-            service.deleteExcercise(excercise);
+        if(exercise!=null){
+            basicService.deleteExcercise(exercise);
             GuiTool.closeDialog(delete);
         }
     }

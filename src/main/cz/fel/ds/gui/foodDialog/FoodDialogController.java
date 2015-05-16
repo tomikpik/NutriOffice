@@ -2,19 +2,18 @@ package cz.fel.ds.gui.foodDialog;
 
 import cz.fel.ds.database.model.Food;
 import cz.fel.ds.gui.GuiTool;
-import cz.fel.ds.service.Service;
+import cz.fel.ds.database.services.BasicService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 
 /**
  * Created by Tom on 14. 5. 2015.
  */
 public class FoodDialogController {
     private Food food;
-    private Service service=new Service();
+    private BasicService basicService =new BasicService();
 
     @FXML
     private TextField name;
@@ -40,7 +39,7 @@ public class FoodDialogController {
             f.setFoodName(name.getText());
             Float ev = Float.parseFloat(energy.getText());
             f.setEnergyValue(ev);
-            if(service.saveFood(f)){
+            if(basicService.saveFood(f)){
                 GuiTool.closeDialog(delete);
             }else{
                 System.out.println("food save failed - service");
@@ -54,7 +53,7 @@ public class FoodDialogController {
     @FXML
     public void deleteFood(ActionEvent event){
         if(food!=null){
-            service.deleteFood(food);
+            basicService.deleteFood(food);
             GuiTool.closeDialog(delete);
         }
     }

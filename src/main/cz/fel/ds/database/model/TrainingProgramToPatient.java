@@ -28,7 +28,7 @@ public class TrainingProgramToPatient implements Serializable
     }
 
     @Id
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "patient_id")
     public Patient getPatient()
     {
@@ -41,7 +41,7 @@ public class TrainingProgramToPatient implements Serializable
     }
 
     @Id
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "training_program_id")
     public TrainingProgram getTrainingProgram()
     {

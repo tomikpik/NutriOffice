@@ -27,7 +27,7 @@ public class ExerciseToTrainingProgram implements Serializable
     }
 
     @Id
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "exercise_id")
     public Exercise getExercise()
     {
@@ -40,7 +40,7 @@ public class ExerciseToTrainingProgram implements Serializable
     }
 
     @Id
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "training_program_id")
     public TrainingProgram getTrainingProgram()
     {

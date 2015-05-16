@@ -64,7 +64,7 @@ public class ExerciseDAO
         switch(type)
         {
             case "excerciseId":
-                q =  HibernateUtil.getSession().createQuery("SELECT c from Exercise c where c.excerciseId=:excerciseId");
+                q =  HibernateUtil.getSession().createQuery("SELECT c from Exercise c where c.exerciseId=:excerciseId");
                 break;
 
             case "name":

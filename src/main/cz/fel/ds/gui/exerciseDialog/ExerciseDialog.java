@@ -1,8 +1,6 @@
-package cz.fel.ds.gui.excerciseDialog;
+package cz.fel.ds.gui.exerciseDialog;
 
-import cz.fel.ds.database.model.Excercise;
-import cz.fel.ds.database.model.Food;
-import cz.fel.ds.gui.foodDialog.FoodDialogController;
+import cz.fel.ds.database.model.Exercise;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -13,10 +11,10 @@ import java.io.IOException;
 /**
  * Created by Tom on 16. 5. 2015.
  */
-public class ExcerciseDialog {
-    public void showExcerciseDialog(Excercise excercise){
+public class ExerciseDialog {
+    public void showExerciseDialog(Exercise exercise){
         try{
-            String title = (excercise==null)?"New excercise":"Excercise";
+            String title = (exercise==null)?"New excercise":"Excercise";
             Stage stage = new Stage();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("excercise_dialog.fxml"));
             Parent root=loader.load();
@@ -24,8 +22,8 @@ public class ExcerciseDialog {
             stage.setResizable(false);
             stage.setScene(new Scene(root,300,150));
             stage.show();
-            ExcerciseDialogController c = loader.getController();
-            c.setExcercise(excercise);
+            ExerciseDialogController c = loader.getController();
+            c.setExcercise(exercise);
         }catch(IOException e){
             e.printStackTrace();
         }
