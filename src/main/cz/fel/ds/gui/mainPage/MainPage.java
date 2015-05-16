@@ -1,5 +1,6 @@
 package cz.fel.ds.gui.mainPage;
 
+import cz.fel.ds.gui.exerciseDialog.ExerciseDialogController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -18,10 +19,13 @@ public class MainPage extends Application{
     @Override
     public void start(Stage primaryStage) throws Exception
     {
-        Parent root = FXMLLoader.load(getClass().getResource("main_page.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("main_page.fxml"));
+        Parent root=loader.load();
         primaryStage.setTitle("NutriOffice");
         primaryStage.setResizable(false);
         primaryStage.setScene(new Scene(root,800,600));
         primaryStage.show();
+        MainPageController c = loader.getController();
+        c.init();
     }
 }

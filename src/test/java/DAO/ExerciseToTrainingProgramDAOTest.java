@@ -29,12 +29,13 @@ public class ExerciseToTrainingProgramDAOTest
         ex = new Exercise();
         ex.setName("Spinning");
         ex.setKjkgmin(15);
+
         ex1 = new Exercise();
         ex1.setName("Posilovna");
         ex1.setKjkgmin(8);
         //CREATE EXERCISES
-        exDAO.create(ex);
-        exDAO.create(ex1);
+        System.out.println(ex);
+        System.out.println(ex1);
 
         TrainingProgramDAO tpDAO = new TrainingProgramDAO();
         tp = new TrainingProgram();
@@ -57,6 +58,8 @@ public class ExerciseToTrainingProgramDAOTest
         et1.setDuration(60);
         et1.setExercise(ex);
         et1.setTrainingProgram(tp);
+
+
         //CREATE ExerciseToTrainingProgram
         etDAO.create(et);
         etDAO.create(et1);

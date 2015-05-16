@@ -1,7 +1,7 @@
 package cz.fel.ds.gui.patientDialog;
 
 import cz.fel.ds.database.model.Patient;
-import cz.fel.ds.gui.medicalRecord.MedicalRecord;
+import cz.fel.ds.gui.DialogFactory;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
@@ -49,7 +49,7 @@ public class PatientDialogController {
     @FXML
     public void showMedicalRecords(ActionEvent event){
         System.out.println("show mr");
-        new MedicalRecord().show(p);
+        new DialogFactory().showMedicalRecordDialog(p);
     }
 
 }

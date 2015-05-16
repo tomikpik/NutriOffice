@@ -1,10 +1,9 @@
 package cz.fel.ds.gui.mainPage;
 
-import cz.fel.ds.database.model.Food;
 import cz.fel.ds.database.model.Patient;
-import cz.fel.ds.gui.exerciseDialog.ExerciseDialog;
-import cz.fel.ds.gui.foodDialog.FoodDialog;
-import cz.fel.ds.gui.patientDialog.PatientDialog;
+import cz.fel.ds.gui.DialogFactory;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.RadioButton;
@@ -19,8 +18,8 @@ import java.io.IOException;
  * Created by Tom on 14. 5. 2015.
  */
 public class MainPageController {
-    private ExerciseDialog exerciseDialog = new ExerciseDialog();
-    private FoodDialog foodDialog = new FoodDialog();
+    private DialogFactory dialogFactory = new DialogFactory();
+
 
     @FXML
     private TextField pacientSearch;
@@ -56,28 +55,16 @@ public class MainPageController {
             new Patient(3, "Barush", "Plagiatorka :D")
     );
 */
+
+    private ObservableList<Patient> data;
+
     @FXML
     public void patientsSearch(ActionEvent event1) {
         System.out.println(pacientSearch.getText());
-        patientsTable.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("PatientID"));
-        patientsTable.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("FirstName"));
-        patientsTable.getColumns().get(2).setCellValueFactory(new PropertyValueFactory<>("SecondName"));
-
-        //patientsTable.setItems(data);
-        patientsTable.setRowFactory(tv -> {
-            TableRow<Patient> row = new TableRow<>();
-            row.setOnMouseClicked(event -> {
-                if (event.getClickCount() == 2 && (!row.isEmpty())) {
-                    PatientDialog pd = new PatientDialog(row.getItem(), false);
-                    try {
-                        pd.start();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            });
-            return row;
-        });
+        Patient p = new Patient();
+        p.setFirstName("Tomáš");
+        p.setLastName("Pikous");
+        data.add(p);
     }
 
 
@@ -120,21 +107,13 @@ public class MainPageController {
     @FXML
     public void excerciseAdd(ActionEvent event) {
         //open new excercise dialog
-        exerciseDialog.showExerciseDialog(null);
+        dialogFactory.showExerciseDialog(null);
     }
 
     @FXML
     public void foodAdd(ActionEvent event) {
         //open new food dialog
-        //foodDialog.showFoodFialog(null);
-
-        Food banana = new Food("banán",100.0);
-        banana.setFoodId(10);
-
-        foodDialog.showFoodFialog(banana);
-
-
-
+        dialogFactory.showFoodFialog(null);
     }
 
     @FXML
@@ -147,5 +126,29 @@ public class MainPageController {
     public void dietAdd(ActionEvent event) {
         //open new diet dialog
         System.out.println("add diet");
+    }
+
+    public void init(){
+        patientsTable.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("patientID"));
+        patientsTable.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        patientsTable.getColumns().get(2).setCellValueFactory(new PropertyValueFactory<>("lastName"));
+
+        //patientsTable.setItems(data);
+        patientsTable.setRowFactory(tv -> {
+            TableRow<Patient> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2 && (!row.isEmpty())) {
+                    dialogFactory.showPatientDialog(row.getItem(),false);
+                }
+            });
+            return row;
+        });
+
+        data = FXCollections.observableArrayList();
+
+        patientsTable.setItems(data);
+
+
+
     }
 }

@@ -24,7 +24,6 @@
                             </columnResizePolicy>
                         </TableView>
                   <Text layoutX="103.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search options" wrappingWidth="394.521484375" />
-                  <RadioButton fx:id="sortByNamesRadioButt" layoutX="231.0" layoutY="53.0" mnemonicParsing="false" text="Podle jmena" />
                     </children></AnchorPane>
             </content>
         </Tab>
@@ -45,17 +44,17 @@
                       <RowConstraints maxHeight="445.0" minHeight="10.0" prefHeight="445.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <TableView prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3">
+                        <TableView fx:id="dietTable" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3">
                           <columns>
                             <TableColumn prefWidth="254.0" text="Name" />
                           </columns>
                         </TableView>
-                        <TableView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                        <TableView fx:id="mealTable" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                           <columns>
                             <TableColumn prefWidth="253.0" text="Name" />
                           </columns>
                         </TableView>
-                        <TableView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                        <TableView fx:id="foodTable" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
                           <columns>
                             <TableColumn prefWidth="253.0" text="Name" />
                           </columns>
@@ -89,7 +88,7 @@
                </children></AnchorPane>
             </content>
         </Tab>
-        <Tab text="Excercises &amp; Training programs">
+        <Tab text="Exercises &amp; Training programs">
             <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
@@ -106,13 +105,13 @@
                     </rowConstraints>
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Training program" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Excercise" GridPane.columnIndex="1" />
-                        <TableView prefHeight="192.0" prefWidth="295.0" GridPane.rowIndex="3">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Exercise" GridPane.columnIndex="1" />
+                        <TableView fx:id="trainingProgramTable" prefHeight="192.0" prefWidth="295.0" GridPane.rowIndex="3">
                           <columns>
                             <TableColumn prefWidth="294.0" text="Name" />
                           </columns>
                         </TableView>
-                        <TableView prefHeight="197.0" prefWidth="253.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                        <TableView fx:id="excerciseTable" prefHeight="197.0" prefWidth="253.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                           <columns>
                             <TableColumn prefWidth="252.0" text="Name" />
                           </columns>
