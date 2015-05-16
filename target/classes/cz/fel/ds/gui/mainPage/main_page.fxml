@@ -11,8 +11,7 @@
             <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                     <children>
-                        <TextField fx:id="pacientSearch" layoutX="14.0" layoutY="14.0" prefHeight="25.0" prefWidth="771.0" promptText="Type in name or ID number" />
-                        <Button layoutX="708.0" layoutY="49.0" mnemonicParsing="false" onAction="#patientsSearch" prefHeight="25.0" prefWidth="77.0" text="Search" />
+                        <TextField fx:id="pacientSearch" layoutX="14.0" layoutY="14.0" onKeyReleased="#patientsSearch" prefHeight="25.0" prefWidth="771.0" promptText="Type in name or ID number" />
                         <TableView fx:id="patientsTable" cacheShape="false" centerShape="false" depthTest="DISABLE" focusTraversable="false" layoutX="14.0" layoutY="83.0" pickOnBounds="false" prefHeight="473.0" prefWidth="772.0" scaleShape="false">
                             <columns>
                                 <TableColumn editable="false" minWidth="0.0" prefWidth="91.0" resizable="false" sortable="false" text="ID" />
@@ -63,8 +62,8 @@
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Meal" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Food" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                         <TextField fx:id="dietSearch" promptText="Type in diet name" GridPane.rowIndex="1" />
-                        <TextField fx:id="mealSearch" promptText="Type in meal name" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <TextField fx:id="foodSearch" promptText="Type in food name" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                        <TextField fx:id="mealSearch" onKeyPressed="#mealSearch" promptText="Type in meal name" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField fx:id="foodSearch" onKeyPressed="#foodSearch" promptText="Type in food name" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                         <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                            <children>
                               <Button mnemonicParsing="false" onAction="#mealAdd" text="Add" />
@@ -116,8 +115,8 @@
                             <TableColumn prefWidth="252.0" text="Name" />
                           </columns>
                         </TableView>
-                        <TextField fx:id="trainingSearch" GridPane.rowIndex="1" />
-                        <TextField fx:id="exerciseSearch" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField fx:id="trainingSearch" onKeyPressed="#trainingSearch" GridPane.rowIndex="1" />
+                        <TextField fx:id="exerciseSearch" onKeyPressed="#exerciseSearch" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="2">
                            <children>
                               <Button mnemonicParsing="false" onAction="#trainingAdd" text="Add" />

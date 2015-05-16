@@ -1,10 +1,13 @@
 package cz.fel.ds.database.dao;
 
 import cz.fel.ds.database.model.Exercise;
+import cz.fel.ds.database.model.Meal;
 import cz.fel.ds.util.HibernateUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import org.hibernate.Criteria;
 import org.hibernate.Query;
+import org.hibernate.criterion.Restrictions;
 
 /**
  * Created by Tom on 15. 5. 2015.
@@ -66,6 +69,7 @@ public class ExerciseDAO
     {//"from Entity e where e.name like 'e%'");
         HibernateUtil.getSession().beginTransaction();
         Query q = null;
+        ObservableList<Exercise> listOfExercises;
         System.out.println(type+" "+value);
         switch(type)
         {
@@ -78,20 +82,25 @@ public class ExerciseDAO
                 break;
 
             case "nameStartsWith":
-                q =  HibernateUtil.getSession().createQuery("SELECT c from Exercise c where c.name like concat(:nameStartsWith, '%') ");
-                break;
+                Criteria crit = HibernateUtil.getSession().createCriteria(Exercise.class);
+                crit.add(Restrictions.ilike("name", "%" + value + "%"));
+                listOfExercises = FXCollections.observableList(crit.list());
+                HibernateUtil.getSession().getTransaction().commit();
+                return listOfExercises;
+                //q =  HibernateUtil.getSession().createQuery("SELECT c from Exercise c where c.name like concat(:nameStartsWith, '%') ");
+                //break;
 
             case "kjkgmin":
                 q =  HibernateUtil.getSession().createQuery("SELECT c from Exercise c where c.kjkgmin=:kjkgmin");
                 break;
             default:
                 q =  HibernateUtil.getSession().createQuery("SELECT c from Exercise c");
-                ObservableList<Exercise> listOfExercises = FXCollections.observableList(q.list());
+                listOfExercises = FXCollections.observableList(q.list());
                 HibernateUtil.getSession().getTransaction().commit();
                 return listOfExercises;
         }
         q.setParameter(type, value);
-        ObservableList<Exercise> listOfExercises = FXCollections.observableList(q.list());
+        listOfExercises = FXCollections.observableList(q.list());
         HibernateUtil.getSession().getTransaction().commit();
         return listOfExercises;
     }

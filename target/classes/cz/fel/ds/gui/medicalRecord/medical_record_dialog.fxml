@@ -1,18 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.chart.*?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.cz.cvut.fel.ds.gui.layout.medicalRecord.MedicalRecordController">
+
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.fel.ds.gui.medicalRecord.MedicalRecordController">
   <tabs>
     <Tab text="Medical records">
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="572.0" prefWidth="700.0">
                <children>
-                  <TableView layoutX="14.0" layoutY="14.0" prefHeight="388.0" prefWidth="666.0">
+                  <TableView fx:id="medicalRecordTable" layoutX="14.0" layoutY="14.0" prefHeight="388.0" prefWidth="666.0">
                     <columns>
                       <TableColumn prefWidth="117.0" text="Date" />
                         <TableColumn prefWidth="63.0" text="Height" />
@@ -23,7 +26,7 @@
                         <TableColumn prefWidth="94.0" text="Chest perim." />
                     </columns>
                   </TableView>
-                  <Button layoutX="581.0" layoutY="402.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="99.0" text="Delete" />
+                  <Button fx:id="delete" layoutX="581.0" layoutY="402.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="99.0" text="Delete" />
                   <GridPane layoutX="19.0" layoutY="435.0" prefHeight="92.0" prefWidth="662.0">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

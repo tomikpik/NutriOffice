@@ -1,10 +1,13 @@
 package cz.fel.ds.database.dao;
 
 import cz.fel.ds.database.model.Food;
+import cz.fel.ds.database.model.Meal;
 import cz.fel.ds.util.HibernateUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import org.hibernate.Criteria;
 import org.hibernate.Query;
+import org.hibernate.criterion.Restrictions;
 
 /**
  * Created by Tom on 15. 5. 2015.
@@ -62,6 +65,7 @@ public class FoodDAO
     {
         HibernateUtil.getSession().beginTransaction();
         Query q = null;
+        ObservableList<Food> listOfFoods;
         switch(type)
         {
             case "foodId":
@@ -72,20 +76,25 @@ public class FoodDAO
                 break;
 
             case "nameStartsWith":
-                q =  HibernateUtil.getSession().createQuery("SELECT c from Food c where c.foodName like concat(:nameStartsWith, '%') ");
-                break;
+                Criteria crit = HibernateUtil.getSession().createCriteria(Food.class);
+                crit.add(Restrictions.ilike("foodName", "%" + value + "%"));
+                listOfFoods = FXCollections.observableList(crit.list());
+                HibernateUtil.getSession().getTransaction().commit();
+                return listOfFoods;
+                //q =  HibernateUtil.getSession().createQuery("SELECT c from Food c where c.foodName like concat(:nameStartsWith, '%') ");
+               // break;
 
             case "energyValue":
                 q =  HibernateUtil.getSession().createQuery("SELECT c from Food c where c.energyValue=:energyValue");
                 break;
             default:
                 q =  HibernateUtil.getSession().createQuery("SELECT c from Food c");
-                ObservableList<Food> listOfFoods = FXCollections.observableList(q.list());
+                listOfFoods = FXCollections.observableList(q.list());
                 HibernateUtil.getSession().getTransaction().commit();
                 return listOfFoods;
         }
         q.setParameter(type, value);
-        ObservableList<Food> listOfFoods = FXCollections.observableList(q.list());
+        listOfFoods = FXCollections.observableList(q.list());
         HibernateUtil.getSession().getTransaction().commit();
         System.out.println(listOfFoods.size());
         return listOfFoods;

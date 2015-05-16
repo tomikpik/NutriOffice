@@ -6,12 +6,14 @@ import cz.fel.ds.gui.DialogFactory;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 
 /**
  * Created by Tom on 14. 5. 2015.
@@ -56,7 +58,7 @@ public class MainPageController {
     private ObservableList<Food> dataFood;
 
     @FXML
-    public void patientsSearch(ActionEvent event1)
+    public void patientsSearch(Event e)
     {
         dataPacients.clear();
         dataPacients.addAll(searchService.patientsSearch(pacientSearch.getText()));
@@ -64,31 +66,31 @@ public class MainPageController {
 
 
     @FXML
-    public void dietSearch(ActionEvent event) {
+    public void dietSearch(Event event) {
         dataDiets.clear();
-        dataDiets.addAll(searchService.dietSearch(dietSearch.getText().toLowerCase()));
+        dataDiets.addAll(searchService.dietSearch(dietSearch.getText()));
     }
 
     @FXML
-    public void mealSearch(ActionEvent event) {
+    public void mealSearch(Event event) {
         dataMeals.clear();
-        dataMeals.addAll(searchService.mealSearch(mealSearch.getText().toLowerCase()));
+        dataMeals.addAll(searchService.mealSearch(mealSearch.getText()));
     }
 
     @FXML
-    public void trainingSearch(ActionEvent event) {
+    public void trainingSearch(Event event) {
         dataTrainingPrograms.clear();
-        dataTrainingPrograms.addAll(searchService.trainingSearch(trainingSearch.getText().toLowerCase()));
+        dataTrainingPrograms.addAll(searchService.trainingSearch(trainingSearch.getText()));
     }
 
     @FXML
-    public void exerciseSearch(ActionEvent event) {
+    public void exerciseSearch(Event event) {
         dataExercises.clear();
         dataExercises.addAll(searchService.exerciseSearch(exerciseSearch.getText()));
     }
 
     @FXML
-    public void foodSearch(ActionEvent event) {
+    public void foodSearch(Event event) {
         dataFood.clear();
         dataFood.addAll(searchService.foodSearch(foodSearch.getText()));
     }

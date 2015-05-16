@@ -1,10 +1,13 @@
 package cz.fel.ds.database.dao;
 
+import cz.fel.ds.database.model.Meal;
 import cz.fel.ds.database.model.Patient;
 import cz.fel.ds.util.HibernateUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import org.hibernate.Criteria;
 import org.hibernate.Query;
+import org.hibernate.criterion.Restrictions;
 
 /**
  * Created by Tom on 15. 5. 2015.
@@ -62,6 +65,7 @@ public class PatientDAO
     {
         HibernateUtil.getSession().beginTransaction();
         Query q = null;
+        ObservableList<Patient> listOfPatients;
         switch(type)
         {
             case "patientId":
@@ -75,8 +79,26 @@ public class PatientDAO
                 break;
 
             case "nameStartsWith":
-                q =  HibernateUtil.getSession().createQuery("SELECT c from Patient c where c.lastName like concat(:nameStartsWith, '%') ");
-                break;
+                Criteria crit;
+                try{
+                    int i = Integer.parseInt((String)value);
+                    crit = HibernateUtil.getSession().createCriteria(Patient.class);
+                    crit.add(Restrictions.or(Restrictions.or(Restrictions.ilike("lastName", value + "%"), Restrictions.ilike("firstName", value + "%")), Restrictions.eq("patientId", i)));
+                    System.out.println(i);
+                } catch(Exception e){
+                    e.printStackTrace();
+                    crit = HibernateUtil.getSession().createCriteria(Patient.class);
+                    crit.add(Restrictions.or(Restrictions.ilike("lastName", value + "%"), Restrictions.ilike("firstName", value + "%")));
+                }
+
+
+
+
+                listOfPatients = FXCollections.observableList(crit.list());
+                HibernateUtil.getSession().getTransaction().commit();
+                return listOfPatients;
+                //q =  HibernateUtil.getSession().createQuery("SELECT c from Patient c where c.lastName like concat(:nameStartsWith, '%') ");
+                //break;
 
             case "gender":
                 q =  HibernateUtil.getSession().createQuery("SELECT c from Patient c where c.gender=:gender");
@@ -101,12 +123,12 @@ public class PatientDAO
                 break;
             default:
                 q =  HibernateUtil.getSession().createQuery("SELECT c from Patient c");
-                ObservableList<Patient> listOfPatients = FXCollections.observableList(q.list());
+                listOfPatients = FXCollections.observableList(q.list());
                 HibernateUtil.getSession().getTransaction().commit();
                 return listOfPatients;
         }
         q.setParameter(type, value);
-        ObservableList<Patient> listOfPatients = FXCollections.observableList(q.list());
+        listOfPatients = FXCollections.observableList(q.list());
         HibernateUtil.getSession().getTransaction().commit();
         return listOfPatients;
     }

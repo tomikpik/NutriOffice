@@ -4,7 +4,9 @@ import cz.fel.ds.database.model.Meal;
 import cz.fel.ds.util.HibernateUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import org.hibernate.Criteria;
 import org.hibernate.Query;
+import org.hibernate.criterion.Restrictions;
 
 /**
  * Created by Tom on 15. 5. 2015.
@@ -63,6 +65,7 @@ public class MealDAO
     {
         HibernateUtil.getSession().beginTransaction();
         Query q = null;
+        ObservableList<Meal> listOfMeals;
         switch(type)
         {
             case "mealId":
@@ -74,17 +77,22 @@ public class MealDAO
                 break;
 
             case "nameStartsWith":
-                q =  HibernateUtil.getSession().createQuery("SELECT c from Meal c where c.mealName like concat(:nameStartsWith, '%') ");
-                break;
+                Criteria crit = HibernateUtil.getSession().createCriteria(Meal.class);
+                crit.add(Restrictions.ilike("mealName","%"+value+"%"));
+                listOfMeals = FXCollections.observableList(crit.list());
+                HibernateUtil.getSession().getTransaction().commit();
+                return listOfMeals;
+                //q =  HibernateUtil.getSession().createQuery("SELECT c from Meal c where c.mealName like concat(:nameStartsWith, '%') ");
+                //break;
 
             default:
                 q =  HibernateUtil.getSession().createQuery("SELECT c from Meal c");
-                ObservableList<Meal> listOfMeals = FXCollections.observableList(q.list());
+                listOfMeals = FXCollections.observableList(q.list());
                 HibernateUtil.getSession().getTransaction().commit();
                 return listOfMeals;
         }
         q.setParameter(type, value);
-        ObservableList<Meal> listOfMeals = FXCollections.observableList(q.list());
+        listOfMeals = FXCollections.observableList(q.list());
         HibernateUtil.getSession().getTransaction().commit();
         return listOfMeals;
     }

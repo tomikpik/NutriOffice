@@ -1,10 +1,13 @@
 package cz.fel.ds.database.dao;
 
+import cz.fel.ds.database.model.Meal;
 import cz.fel.ds.database.model.TrainingProgram;
 import cz.fel.ds.util.HibernateUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import org.hibernate.Criteria;
 import org.hibernate.Query;
+import org.hibernate.criterion.Restrictions;
 
 /**
  * Created by Tom on 15. 5. 2015.
@@ -67,6 +70,7 @@ public class TrainingProgramDAO
     {
         HibernateUtil.getSession().beginTransaction();
         Query q = null;
+        ObservableList<TrainingProgram> listOfTrainingPrograms;
         switch(type)
         {
             case "trainingProgramId":
@@ -77,16 +81,21 @@ public class TrainingProgramDAO
                 break;
 
             case "nameStartsWith":
-                q =  HibernateUtil.getSession().createQuery("SELECT c from TrainingProgram c where c.name like concat(:nameStartsWith, '%') ");
-                break;
+                Criteria crit = HibernateUtil.getSession().createCriteria(TrainingProgram.class);
+                crit.add(Restrictions.ilike("name", "%" + value + "%"));
+                listOfTrainingPrograms = FXCollections.observableList(crit.list());
+                HibernateUtil.getSession().getTransaction().commit();
+                return listOfTrainingPrograms;
+                //q =  HibernateUtil.getSession().createQuery("SELECT c from TrainingProgram c where c.name like concat(:nameStartsWith, '%') ");
+                //break;
 
             default:
                 q =  HibernateUtil.getSession().createQuery("SELECT c from TrainingProgram c");
-                ObservableList<TrainingProgram> listOfTrainingPrograms = FXCollections.observableList(q.list());
+                listOfTrainingPrograms = FXCollections.observableList(q.list());
                 return listOfTrainingPrograms;
         }
         q.setParameter(type, value);
-        ObservableList<TrainingProgram> listOfTrainingPrograms = FXCollections.observableList(q.list());
+        listOfTrainingPrograms = FXCollections.observableList(q.list());
         HibernateUtil.getSession().getTransaction().commit();
         return listOfTrainingPrograms;
     }
