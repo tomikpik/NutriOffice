@@ -1,6 +1,7 @@
 package cz.fel.ds.database.dao;
 
 import cz.fel.ds.database.model.Food;
+import cz.fel.ds.database.model.Meal;
 import cz.fel.ds.database.model.MealToFood;
 import cz.fel.ds.util.HibernateUtil;
 import javafx.collections.ObservableList;
@@ -19,22 +20,24 @@ public class MealToFoodDAO
         return 1;
     }
 
-    public MealToFood read(int id)
+    public MealToFood read(Meal meal, Food food)
     {
         HibernateUtil.getSession().beginTransaction();
-        MealToFood mealToFood;
-        mealToFood = (MealToFood) HibernateUtil.getSession().get(MealToFood.class, id);
+        MealToFood mealToFood = new MealToFood();
+        mealToFood.setMeal(meal);
+        mealToFood.setFood(food);
+
+        mealToFood = (MealToFood) HibernateUtil.getSession().get(MealToFood.class, mealToFood);
         HibernateUtil.getSession().getTransaction().commit();
         return mealToFood;
     }
 
-
-    public boolean update(Food food)
+    public boolean update(MealToFood mealToFood)
     {
         HibernateUtil.getSession().beginTransaction();
         try
         {
-            HibernateUtil.getSession().update(food);
+            HibernateUtil.getSession().update(mealToFood);
             HibernateUtil.getSession().getTransaction().commit();
         }
         catch (Exception ex)
@@ -44,12 +47,12 @@ public class MealToFoodDAO
         return true;
     }
 
-    public boolean delete(MealToFood food)
+    public boolean delete(MealToFood mealToFood)
     {
         HibernateUtil.getSession().beginTransaction();
         try
         {
-            HibernateUtil.getSession().delete(food);
+            HibernateUtil.getSession().delete(mealToFood);
             HibernateUtil.getSession().getTransaction().commit();
         }
         catch (Exception ex)

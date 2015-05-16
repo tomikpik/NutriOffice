@@ -18,8 +18,17 @@ import java.io.IOException;
  * Created by Tom on 14. 5. 2015.
  */
 public class MainPageController {
+<<<<<<< HEAD
     private DialogFactory dialogFactory = new DialogFactory();
 
+=======
+
+
+
+
+    private ExerciseDialog exerciseDialog = new ExerciseDialog();
+    private FoodDialog foodDialog = new FoodDialog();
+>>>>>>> origin/master
 
     @FXML
     private TextField pacientSearch;
