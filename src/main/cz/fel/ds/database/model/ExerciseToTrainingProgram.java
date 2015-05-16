@@ -1,8 +1,12 @@
 package cz.fel.ds.database.model;
 
 import javafx.beans.property.SimpleDoubleProperty;
+import org.hibernate.annotations.*;
 
 import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.io.Serializable;
 
 /**
@@ -27,7 +31,7 @@ public class ExerciseToTrainingProgram implements Serializable
     }
 
     @Id
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "exercise_id")
     public Exercise getExercise()
     {
@@ -40,7 +44,7 @@ public class ExerciseToTrainingProgram implements Serializable
     }
 
     @Id
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.REMOVE})
     @JoinColumn(name = "training_program_id")
     public TrainingProgram getTrainingProgram()
     {
@@ -52,4 +56,25 @@ public class ExerciseToTrainingProgram implements Serializable
         this.trainingProgram = trainingProgram;
     }
 
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ExerciseToTrainingProgram)) return false;
+
+        ExerciseToTrainingProgram that = (ExerciseToTrainingProgram) o;
+
+        if (!duration.equals(that.duration)) return false;
+        if (!exercise.equals(that.exercise)) return false;
+        return trainingProgram.equals(that.trainingProgram);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = duration.hashCode();
+        result = 31 * result + exercise.hashCode();
+        result = 31 * result + trainingProgram.hashCode();
+        return result;
+    }
 }

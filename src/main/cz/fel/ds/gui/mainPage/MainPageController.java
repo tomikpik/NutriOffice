@@ -70,7 +70,11 @@ public class MainPageController {
 
     @FXML
     public void mealSearch(ActionEvent event) {
-        dataMeals.addAll(searchService.mealSearch(mealSearch.getText().toLowerCase()));
+        try {
+            dataMeals.addAll(searchService.mealSearch(mealSearch.getText().toLowerCase()));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -87,6 +91,7 @@ public class MainPageController {
 
     @FXML
     public void foodSearch(ActionEvent event) {
+        dataFood.clear();
         dataFood.addAll(searchService.foodSearch(foodSearch.getText().toLowerCase()));
     }
 
@@ -167,6 +172,36 @@ public class MainPageController {
 
         dataTrainingPrograms = FXCollections.observableArrayList();
         trainingProgramTable.setItems(dataTrainingPrograms);
+
+        //food
+        foodTable.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("foodName"));
+        foodTable.setRowFactory(tv -> {
+            TableRow<Food> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2 && (!row.isEmpty())) {
+                    dialogFactory.showFoodFialog(row.getItem());
+                }
+            });
+            return row;
+        });
+
+        dataFood = FXCollections.observableArrayList();
+        foodTable.setItems(dataFood);
+
+        //meals
+        mealTable.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("mealName"));
+        mealTable.setRowFactory(tv -> {
+            TableRow<Meal> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2 && (!row.isEmpty())) {
+                    dialogFactory.showMealDialog(row.getItem());
+                }
+            });
+            return row;
+        });
+
+        dataMeals = FXCollections.observableArrayList();
+        mealTable.setItems(dataMeals);
 
     }
 }

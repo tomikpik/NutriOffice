@@ -54,10 +54,16 @@ public class SearchService
         return exerciseToTrainingProgramDAO.selectObjectsTo("all","");
     }
 
-    public ObservableList<ExerciseToTrainingProgram> exerciseToTrainingSearchByTraining(String input)
+    public ObservableList<ExerciseToTrainingProgram> exerciseToTrainingSearchByTraining(TrainingProgram trainingProgram)
     {
-        return exerciseToTrainingProgramDAO.selectObjectsTo("trainingProgram",input);
+        return exerciseToTrainingProgramDAO.selectObjectsTo("trainingProgram",trainingProgram);
     }
+
+    public ObservableList<MealToFood> mealToFoodSearchByMeal(Meal meal)
+    {
+        return mealToFoodDAO.selectObjectsTo("meal",meal);
+    }
+
 
     public ObservableList<MealToFood> mealToFoodSearch(String input)
     {

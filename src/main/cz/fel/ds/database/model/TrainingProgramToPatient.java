@@ -52,4 +52,25 @@ public class TrainingProgramToPatient implements Serializable
     {
         this.trainingProgram = trainingProgram;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof TrainingProgramToPatient)) return false;
+
+        TrainingProgramToPatient that = (TrainingProgramToPatient) o;
+
+        if (!day.equals(that.day)) return false;
+        if (!trainingProgram.equals(that.trainingProgram)) return false;
+        return patient.equals(that.patient);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = day.hashCode();
+        result = 31 * result + trainingProgram.hashCode();
+        result = 31 * result + patient.hashCode();
+        return result;
+    }
 }

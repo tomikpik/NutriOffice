@@ -12,6 +12,7 @@ public class BasicService {
     ExerciseDAO exerciseDAO = new ExerciseDAO();
     TrainingProgramDAO trainingProgramDAO = new TrainingProgramDAO();
     ExerciseToTrainingProgramDAO exerciseToTrainingProgramDAO = new ExerciseToTrainingProgramDAO();
+    MealToFoodDAO mealToFoodDAO = new MealToFoodDAO();
     DietDAO dietDAO = new DietDAO();
     MealDAO mealDAO = new MealDAO();
 
@@ -50,7 +51,6 @@ public class BasicService {
 
     public boolean deleteTrainingProgram(TrainingProgram trainingProgram){
         trainingProgramDAO.delete(trainingProgram);
-        System.out.println(trainingProgram);
         return true;
     }
 
@@ -66,12 +66,19 @@ public class BasicService {
         return true;
     }
 
-    public boolean mealAdd(Meal meal)
+    public boolean saveMeal(Meal meal)
     {
         mealDAO.create(meal);
         System.out.println(meal);
         return true;
     }
+
+    public boolean deleteMeal(Meal meal){
+        mealDAO.delete(meal);
+        return true;
+    }
+
+
 
     public boolean dietAdd(Diet diet)
     {
@@ -79,5 +86,16 @@ public class BasicService {
         System.out.println(diet);
         return true;
     }
+
+    public boolean saveMealToFood(MealToFood mtf) {
+        mealToFoodDAO.create(mtf);
+        return true;
+    }
+
+
+    public void deleteMealToFood(MealToFood mtf) {
+        mealToFoodDAO.delete(mtf);
+    }
+
 
 }

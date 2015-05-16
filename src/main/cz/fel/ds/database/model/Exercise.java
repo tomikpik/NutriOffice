@@ -13,9 +13,9 @@ import java.io.Serializable;
 @Table(name = "Exercise")
 public class Exercise implements Serializable
 {
-    private int exerciseId;
-    private SimpleStringProperty name = new SimpleStringProperty();
-    private SimpleDoubleProperty kjkgmin = new SimpleDoubleProperty();
+    public int exerciseId;
+    public SimpleStringProperty name = new SimpleStringProperty();
+    public SimpleDoubleProperty kjkgmin = new SimpleDoubleProperty();
 
     public Exercise() {
         exerciseId = -1;

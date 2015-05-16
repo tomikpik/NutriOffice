@@ -115,4 +115,36 @@ public class MedicalRecord implements Serializable
     {
         this.patient = patient;
     }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof MedicalRecord)) return false;
+
+        MedicalRecord that = (MedicalRecord) o;
+
+        if (!height.equals(that.height)) return false;
+        if (!weight.equals(that.weight)) return false;
+        if (!fat.equals(that.fat)) return false;
+        if (!waist.equals(that.waist)) return false;
+        if (!hip.equals(that.hip)) return false;
+        if (!chest.equals(that.chest)) return false;
+        if (!date.equals(that.date)) return false;
+        return patient.equals(that.patient);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = height.hashCode();
+        result = 31 * result + weight.hashCode();
+        result = 31 * result + fat.hashCode();
+        result = 31 * result + waist.hashCode();
+        result = 31 * result + hip.hashCode();
+        result = 31 * result + chest.hashCode();
+        result = 31 * result + date.hashCode();
+        result = 31 * result + patient.hashCode();
+        return result;
+    }
 }

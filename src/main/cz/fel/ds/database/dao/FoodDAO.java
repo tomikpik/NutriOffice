@@ -87,6 +87,7 @@ public class FoodDAO
         q.setParameter(type, value);
         ObservableList<Food> listOfFoods = FXCollections.observableList(q.list());
         HibernateUtil.getSession().getTransaction().commit();
+        System.out.println(listOfFoods.size());
         return listOfFoods;
     }
 }

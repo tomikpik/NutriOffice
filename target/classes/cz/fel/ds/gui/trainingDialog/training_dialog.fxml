@@ -64,14 +64,14 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button mnemonicParsing="false" onAction="#deleteTrainingProgram" text="Delete" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                  <Button fx:id="delete" mnemonicParsing="false" onAction="#deleteTrainingProgram" text="Delete" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                   <Button mnemonicParsing="false" onAction="#saveTrainingProgram" text="Save" GridPane.halignment="RIGHT" />
                </children>
             </GridPane>
             <TableView fx:id="trainingProgramExercisesTable" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="4">
               <columns>
-                <TableColumn prefWidth="127.0" text="Name" />
-                <TableColumn prefWidth="121.0" text="Duration" />
+                <TableColumn fx:id="ettpTableName" prefWidth="127.0" text="Name" />
+                <TableColumn fx:id="ettpTableDuration" prefWidth="121.0" text="Duration" />
               </columns>
             </TableView>
             <TableView fx:id="exerciseTable" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="4">

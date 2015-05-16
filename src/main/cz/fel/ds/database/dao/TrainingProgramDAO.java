@@ -45,14 +45,19 @@ public class TrainingProgramDAO
 
     public boolean delete(TrainingProgram trainingProgram)
     {
-        HibernateUtil.getSession().beginTransaction();
         try
         {
+            HibernateUtil.getSession().beginTransaction();
+            Query q = null;
+            q =  HibernateUtil.getSession().createQuery("DELETE from ExerciseToTrainingProgram ettp where ettp.trainingProgram.trainingProgramId=:tpid");
+            q.setParameter("tpid",trainingProgram.getTrainingProgramId());
+            q.executeUpdate();
             HibernateUtil.getSession().delete(trainingProgram);
             HibernateUtil.getSession().getTransaction().commit();
         }
         catch (Exception ex)
         {
+            ex.printStackTrace();
             return false;
         }
         return true;

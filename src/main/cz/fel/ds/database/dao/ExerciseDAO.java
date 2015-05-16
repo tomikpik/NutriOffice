@@ -48,6 +48,10 @@ public class ExerciseDAO
         HibernateUtil.getSession().beginTransaction();
         try
         {
+            Query q = null;
+            q =  HibernateUtil.getSession().createQuery("DELETE from ExerciseToTrainingProgram ettp where ettp.exercise.exerciseId=:tpid");
+            q.setParameter("tpid",exercise.exerciseId);
+            q.executeUpdate();
             HibernateUtil.getSession().delete(exercise);
             HibernateUtil.getSession().getTransaction().commit();
         }

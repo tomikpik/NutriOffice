@@ -3,6 +3,7 @@ package cz.fel.ds.gui;
 import cz.fel.ds.database.model.*;
 import cz.fel.ds.gui.exerciseDialog.ExerciseDialogController;
 import cz.fel.ds.gui.foodDialog.FoodDialogController;
+import cz.fel.ds.gui.mealDialog.MealDialogController;
 import cz.fel.ds.gui.medicalRecord.MedicalRecordController;
 import cz.fel.ds.gui.patientDialog.PatientDialogController;
 import cz.fel.ds.gui.trainingDialog.TrainingDialogController;
@@ -114,7 +115,8 @@ public class DialogFactory {
             stage.setResizable(false);
             stage.setScene(new Scene(root,600,600));
             stage.show();
-            //PatientDialogController controller = loader.getController();
+            MealDialogController controller = loader.getController();
+            controller.init(meal);
 
         }catch (IOException e){
             System.out.println("oops");

@@ -27,14 +27,14 @@
             <HBox GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
             <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
                <children>
-                  <TextField fx:id="searchExercise" prefHeight="25.0" prefWidth="213.0" />
-                  <Button mnemonicParsing="false" onAction="#exerciseSearch" prefHeight="25.0" prefWidth="54.0" text="Search" />
+                  <TextField fx:id="searchFood" prefHeight="25.0" prefWidth="213.0" />
+                  <Button mnemonicParsing="false" onAction="#foodSearch" prefHeight="25.0" prefWidth="54.0" text="Search" />
                </children>
             </HBox>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Meal ingredients" GridPane.rowIndex="2" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Available ingredients" GridPane.columnIndex="2" GridPane.rowIndex="2" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Meal name" />
-            <TextField fx:id="trainingProgramName" GridPane.rowIndex="1" />
+            <TextField fx:id="mealName" GridPane.rowIndex="1" />
             <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                <children>
                   <GridPane prefHeight="357.0" prefWidth="51.0">
@@ -46,14 +46,14 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Button mnemonicParsing="false" onAction="#addExercise" text="&lt;&lt;" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
-                        <Button mnemonicParsing="false" onAction="#removeExercise" text="&gt;&gt;" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+                        <Button mnemonicParsing="false" onAction="#addFood" text="&lt;&lt;" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
+                        <Button mnemonicParsing="false" onAction="#removeFood" text="&gt;&gt;" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP" />
                      </children>
                   </GridPane>
                </children>
             </VBox>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Quantity" GridPane.rowIndex="5" />
-            <TextField fx:id="duration" GridPane.rowIndex="6" />
+            <TextField fx:id="quantity" GridPane.rowIndex="6" />
             <GridPane GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="6">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="203.0" minWidth="10.0" prefWidth="201.0" />
@@ -63,13 +63,13 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button mnemonicParsing="false" onAction="#deleteTrainingProgram" text="Delete" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                  <Button mnemonicParsing="false" onAction="#saveTrainingProgram" text="Save" GridPane.halignment="RIGHT" />
+                  <Button fx:id="delete" mnemonicParsing="false" onAction="#deleteMeal" text="Delete" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                  <Button mnemonicParsing="false" onAction="#saveMeal" text="Save" GridPane.halignment="RIGHT" />
                </children>
             </GridPane>
             <TableView fx:id="mealFoodsTable" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="4">
               <columns>
-                <TableColumn prefWidth="75.0" text="C1" />
+                <TableColumn fx:id="mtfTableName" prefWidth="75.0" text="C1" />
                 <TableColumn prefWidth="75.0" text="C2" />
               </columns>
             </TableView>
