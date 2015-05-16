@@ -1,6 +1,8 @@
 package cz.fel.ds.gui.mainPage;
 
+import cz.fel.ds.database.model.Food;
 import cz.fel.ds.database.model.Patient;
+import cz.fel.ds.gui.excerciseDialog.ExcerciseDialog;
 import cz.fel.ds.gui.foodDialog.FoodDialog;
 import cz.fel.ds.gui.patientDialog.PatientDialog;
 import javafx.event.ActionEvent;
@@ -16,6 +18,9 @@ import java.io.IOException;
  * Created by Tom on 14. 5. 2015.
  */
 public class MainPageController {
+    private ExcerciseDialog excerciseDialog = new ExcerciseDialog();
+    private FoodDialog foodDialog = new FoodDialog();
+
     @FXML
     private TextField pacientSearch;
     @FXML
@@ -30,6 +35,16 @@ public class MainPageController {
     private TextField excerciseSearch;
     @FXML
     private TableView<Patient> patientsTable;
+    @FXML
+    private TableView<Patient> dietTable;
+    @FXML
+    private TableView<Patient> mealTable;
+    @FXML
+    private TableView<Patient> foodTable;
+    @FXML
+    private TableView<Patient> trainingProgramTable;
+    @FXML
+    private TableView<Patient> excerciseTable;
 
 /*
     private ObservableList<Patient> data = FXCollections.observableArrayList(
@@ -102,14 +117,21 @@ public class MainPageController {
     @FXML
     public void excerciseAdd(ActionEvent event) {
         //open new excercise dialog
-        System.out.println("add excercise");
+        excerciseDialog.showExcerciseDialog(null);
     }
 
     @FXML
     public void foodAdd(ActionEvent event) {
         //open new food dialog
-        System.out.println("add food");
-        new FoodDialog().showFoodFialog(null);
+        //foodDialog.showFoodFialog(null);
+
+        Food banana = new Food("banán",100.0);
+        banana.setFoodId(10);
+
+        foodDialog.showFoodFialog(banana);
+
+
+
     }
 
     @FXML

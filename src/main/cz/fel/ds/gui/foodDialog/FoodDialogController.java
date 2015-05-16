@@ -1,16 +1,20 @@
 package cz.fel.ds.gui.foodDialog;
 
 import cz.fel.ds.database.model.Food;
+import cz.fel.ds.gui.GuiTool;
+import cz.fel.ds.service.Service;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 /**
  * Created by Tom on 14. 5. 2015.
  */
 public class FoodDialogController {
     private Food food;
+    private Service service=new Service();
 
     @FXML
     private TextField name;
@@ -24,21 +28,25 @@ public class FoodDialogController {
         if(food!=null){
             name.setText(food.getFoodName());
             energy.setText(String.valueOf(food.getEnergyValue()));
+        }else{
+            delete.setDisable(true);
         }
     }
 
     @FXML
     public void saveFood(ActionEvent event){
-
         try {
-            Food f=new Food();
+            Food f = (food==null)?new Food():food;
             f.setFoodName(name.getText());
             Float ev = Float.parseFloat(energy.getText());
             f.setEnergyValue(ev);
-            System.out.println("save "+f);
-
+            if(service.saveFood(f)){
+                GuiTool.closeDialog(delete);
+            }else{
+                System.out.println("food save failed - service");
+            }
         } catch(Exception e){
-            System.out.println("ooops chybas");
+            System.out.println("food saving failed - exception");
         }
 
     }
@@ -46,10 +54,9 @@ public class FoodDialogController {
     @FXML
     public void deleteFood(ActionEvent event){
         if(food!=null){
-            System.out.println("somehow delete current food");
-        } else {
-            System.out.println("cannot delete non existing food");
+            service.deleteFood(food);
+            GuiTool.closeDialog(delete);
         }
-
     }
+
 }

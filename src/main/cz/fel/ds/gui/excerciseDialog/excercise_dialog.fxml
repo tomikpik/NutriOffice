@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Text?>
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.fel.ds.gui.excerciseDialog.ExcerciseDialogController">
    <children>
       <GridPane layoutX="12.0" layoutY="8.0" prefHeight="84.0" prefWidth="277.0">
         <columnConstraints>
@@ -18,9 +21,11 @@
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Name" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="kJ/Kg/minute" GridPane.rowIndex="1" />
-            <TextField GridPane.columnIndex="1" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="name" GridPane.columnIndex="1" />
+            <TextField fx:id="energy" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
+      <Button layoutX="130.0" layoutY="99.0" mnemonicParsing="false" onAction="#saveExcercise" text="Save" />
+      <Button fx:id="delete" layoutX="177.0" layoutY="99.0" mnemonicParsing="false" onAction="#deleteExcercise" text="Delete" />
    </children>
 </AnchorPane>

@@ -16,12 +16,17 @@ public class MealType {
     private SimpleIntegerProperty mealType = new SimpleIntegerProperty();
     private SimpleStringProperty mealTypeName = new SimpleStringProperty();
 
+    public MealType(){
+        setMealTypeId(-1);
+    }
+
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "meal_type_id", unique = true, precision = 5, scale = 0)
     public int getMealTypeId() {
         return mealTypeId.get();
     }
+
     public void setMealTypeId(int mealTypeId) {
         this.mealTypeId.set(mealTypeId);
     }
@@ -30,6 +35,7 @@ public class MealType {
     public String getMealTypeName() {
         return mealTypeName.get();
     }
+
     public void setMealTypeName(String mealTypeName) {
         this.mealTypeName.set(mealTypeName);
     }
@@ -38,6 +44,7 @@ public class MealType {
     public int getMealType() {
         return mealType.get();
     }
+
     public void setMealType(int mealType) {
         this.mealType.set(mealType);
     }
