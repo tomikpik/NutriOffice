@@ -65,16 +65,14 @@ public class MainPageController {
 
     @FXML
     public void dietSearch(ActionEvent event) {
+        dataDiets.clear();
         dataDiets.addAll(searchService.dietSearch(dietSearch.getText().toLowerCase()));
     }
 
     @FXML
     public void mealSearch(ActionEvent event) {
-        try {
-            dataMeals.addAll(searchService.mealSearch(mealSearch.getText().toLowerCase()));
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+        dataMeals.clear();
+        dataMeals.addAll(searchService.mealSearch(mealSearch.getText().toLowerCase()));
     }
 
     @FXML
@@ -202,6 +200,22 @@ public class MainPageController {
 
         dataMeals = FXCollections.observableArrayList();
         mealTable.setItems(dataMeals);
+
+        dataPacients.clear();
+        dataPacients.addAll(searchService.patientsSearch(pacientSearch.getText()));
+
+        dataMeals.clear();
+        dataMeals.addAll(searchService.mealSearch(mealSearch.getText().toLowerCase()));
+
+        dataTrainingPrograms.clear();
+        dataTrainingPrograms.addAll(searchService.trainingSearch(trainingSearch.getText().toLowerCase()));
+
+        dataExercises.clear();
+        dataExercises.addAll(searchService.exerciseSearch(exerciseSearch.getText().toLowerCase()));
+
+        dataFood.clear();
+        dataFood.addAll(searchService.foodSearch(foodSearch.getText().toLowerCase()));
+
 
     }
 }

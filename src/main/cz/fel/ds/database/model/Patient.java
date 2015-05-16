@@ -140,4 +140,20 @@ public class Patient implements Serializable
     {
         this.diet = diet;
     }
+
+    @Override
+    public String toString() {
+        return "Patient{" +
+                "patientId=" + patientId +
+                ", firstName=" + firstName +
+                ", lastName=" + lastName +
+                ", gender=" + gender +
+                ", birthdate=" + birthdate +
+                ", nationalId=" + nationalId +
+                ", email=" + email +
+                ", phone=" + phone +
+                ", dietStarted=" + dietStarted +
+                ", diet=" + diet +
+                '}';
+    }
 }

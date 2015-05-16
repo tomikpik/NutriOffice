@@ -7,7 +7,6 @@ import cz.fel.ds.gui.mealDialog.MealDialogController;
 import cz.fel.ds.gui.medicalRecord.MedicalRecordController;
 import cz.fel.ds.gui.patientDialog.PatientDialogController;
 import cz.fel.ds.gui.trainingDialog.TrainingDialogController;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -82,7 +81,7 @@ public class DialogFactory {
             stage.setScene(new Scene(root,433,433));
             stage.show();
             PatientDialogController controller = loader.getController();
-            controller.loadData(patient);
+            controller.init(patient);
         }catch (IOException e){
             e.printStackTrace();
             System.out.println("oops");

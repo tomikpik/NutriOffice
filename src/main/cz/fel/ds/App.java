@@ -30,6 +30,9 @@ public class App {
             //p.setBirthdate(date);n
             p.setEmail(lastNames[i] + "@seznam.cz");
             p.setGender(Math.random() > 0.5 ? "M" : "Z");
+            p.setPhone("604238885");
+            p.setDietStarted(new Date());
+            p.setBirthdate(new Date());
             patientDAO.create(p);
         }
 
