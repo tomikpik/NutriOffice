@@ -123,7 +123,7 @@ public class MainPageController {
     }
 
     public void init(){
-        patientsTable.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("patientID"));
+        patientsTable.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("patientId"));
         patientsTable.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("firstName"));
         patientsTable.getColumns().get(2).setCellValueFactory(new PropertyValueFactory<>("lastName"));
 
