@@ -28,7 +28,7 @@ public class PatientDAO
     }
 
 
-    public boolean updiet(Patient patient)
+    public boolean update(Patient patient)
     {
         HibernateUtil.getSession().beginTransaction();
         try

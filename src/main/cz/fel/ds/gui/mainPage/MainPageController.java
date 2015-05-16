@@ -38,15 +38,15 @@ public class MainPageController {
     @FXML
     private TableView<Patient> patientsTable;
     @FXML
-    private TableView<Patient> dietTable;
+    private TableView<Diet> dietTable;
     @FXML
-    private TableView<Patient> mealTable;
+    private TableView<Meal> mealTable;
     @FXML
-    private TableView<Patient> foodTable;
+    private TableView<Food> foodTable;
     @FXML
-    private TableView<Patient> trainingProgramTable;
+    private TableView<TrainingProgram> trainingProgramTable;
     @FXML
-    private TableView<Patient> exerciseTable;
+    private TableView<Exercise> exerciseTable;
 
     private ObservableList<Patient> dataPacients;
     private ObservableList<Diet> dataDiets;
@@ -80,6 +80,7 @@ public class MainPageController {
 
     @FXML
     public void exerciseSearch(ActionEvent event) {
+        dataExercises.clear();
         dataExercises.addAll(searchService.exerciseSearch(exerciseSearch.getText().toLowerCase()));
     }
 
@@ -133,9 +134,25 @@ public class MainPageController {
         });
 
         dataPacients = FXCollections.observableArrayList();
-
         patientsTable.setItems(dataPacients);
 
+
+        //exercise
+
+        exerciseTable.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("name"));
+
+        exerciseTable.setRowFactory(tv -> {
+            TableRow<Exercise> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2 && (!row.isEmpty())) {
+                    dialogFactory.showExerciseDialog(row.getItem());
+                }
+            });
+            return row;
+        });
+
+        dataExercises = FXCollections.observableArrayList();
+        exerciseTable.setItems(dataExercises);
 
 
     }

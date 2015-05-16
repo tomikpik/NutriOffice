@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Text?>
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.fel.ds.gui.trainingDialog.TrainingDialogController">
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.fel.ds.gui.mealDialog.MealDialogController">
    <children>
       <GridPane layoutX="14.0" layoutY="14.0" prefHeight="549.0" prefWidth="570.0">
         <columnConstraints>
@@ -28,9 +31,9 @@
                   <Button mnemonicParsing="false" onAction="#exerciseSearch" prefHeight="25.0" prefWidth="54.0" text="Search" />
                </children>
             </HBox>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Training program exercises" GridPane.rowIndex="2" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Available exercises" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Training program name" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Meal ingredients" GridPane.rowIndex="2" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Available ingredients" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Meal name" />
             <TextField fx:id="trainingProgramName" GridPane.rowIndex="1" />
             <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                <children>
@@ -49,7 +52,7 @@
                   </GridPane>
                </children>
             </VBox>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Duration" GridPane.rowIndex="5" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Quantity" GridPane.rowIndex="5" />
             <TextField fx:id="duration" GridPane.rowIndex="6" />
             <GridPane GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="6">
               <columnConstraints>
@@ -64,13 +67,13 @@
                   <Button mnemonicParsing="false" onAction="#saveTrainingProgram" text="Save" GridPane.halignment="RIGHT" />
                </children>
             </GridPane>
-            <TableView fx:id="trainingProgramExercisesTable" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="4">
+            <TableView fx:id="mealFoodsTable" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="4">
               <columns>
                 <TableColumn prefWidth="75.0" text="C1" />
                 <TableColumn prefWidth="75.0" text="C2" />
               </columns>
             </TableView>
-            <TableView fx:id="exerciseTable" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
+            <TableView fx:id="foodTable" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
               <columns>
                 <TableColumn prefWidth="75.0" text="C1" />
                 <TableColumn prefWidth="75.0" text="C2" />

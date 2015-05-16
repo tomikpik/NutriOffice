@@ -62,6 +62,7 @@ public class ExerciseDAO
     {//"from Entity e where e.name like 'e%'");
         HibernateUtil.getSession().beginTransaction();
         Query q = null;
+        System.out.println(type+" "+value);
         switch(type)
         {
             case "excerciseId":
