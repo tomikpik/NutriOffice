@@ -15,7 +15,6 @@ public class TrainingProgram implements Serializable
 {
     private int trainingProgramId;
     private SimpleStringProperty name = new SimpleStringProperty();
-    private SimpleIntegerProperty type = new SimpleIntegerProperty();
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -28,17 +27,6 @@ public class TrainingProgram implements Serializable
     public void setTrainingProgramId(int trainingProgramId)
     {
         this.trainingProgramId = trainingProgramId;
-    }
-
-    @Column(name = "type", length = 100)
-    public int getType()
-    {
-        return type.get();
-    }
-
-    public void setType(int type)
-    {
-        this.type.set(type);
     }
 
     @Column(name = "name", length = 100)
@@ -57,7 +45,6 @@ public class TrainingProgram implements Serializable
         return "TrainingProgram{" +
                 "trainingProgramId=" + trainingProgramId +
                 ", name=" + name +
-                ", type=" + type +
                 '}';
     }
 }
