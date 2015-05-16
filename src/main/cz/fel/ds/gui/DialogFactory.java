@@ -1,9 +1,6 @@
 package cz.fel.ds.gui;
 
-import cz.fel.ds.database.model.Exercise;
-import cz.fel.ds.database.model.Food;
-import cz.fel.ds.database.model.Patient;
-import cz.fel.ds.database.model.TrainingProgram;
+import cz.fel.ds.database.model.*;
 import cz.fel.ds.gui.exerciseDialog.ExerciseDialogController;
 import cz.fel.ds.gui.foodDialog.FoodDialogController;
 import cz.fel.ds.gui.medicalRecord.MedicalRecordController;
@@ -72,27 +69,51 @@ public class DialogFactory {
         }
     }
 
-    public void showPatientDialog(Patient model, boolean newPacient) {
+    public void showPatientDialog(Patient patient) {
         try {
             Stage stage = new Stage();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("patientDialog/patient_dialog.fxml"));
 
             Parent root=loader.load();
-            stage.setTitle((newPacient)?"New Patient":"Patient detail");
+            stage.setTitle((patient==null)?"New Patient":"Patient detail");
             stage.setResizable(false);
             stage.setScene(new Scene(root,433,433));
             stage.show();
             PatientDialogController controller = loader.getController();
-            controller.loadData(model);
+            controller.loadData(patient);
         }catch (IOException e){
+            e.printStackTrace();
             System.out.println("oops");
         }
     }
 
     public void showTrainingProgramDialog(TrainingProgram trainingProgram){
         try {
+            Stage stage = new Stage();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("trainingDialog/training_dialog.fxml"));
+            Parent root=loader.load();
+            stage.setTitle((trainingProgram==null)?"New training program":"Training program");
+            stage.setResizable(false);
+            stage.setScene(new Scene(root,600,600));
+            stage.show();
+            //PatientDialogController controller = loader.getController();
 
-            throw new IOException();
+        }catch (IOException e){
+            System.out.println("oops");
+        }
+    }
+
+    public void showMealDialog(Meal meal){
+        try {
+            Stage stage = new Stage();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("mealDialog/meal_dialog.fxml"));
+            Parent root=loader.load();
+            stage.setTitle((meal==null)?"New meal":"Meal");
+            stage.setResizable(false);
+            stage.setScene(new Scene(root,600,600));
+            stage.show();
+            //PatientDialogController controller = loader.getController();
+
         }catch (IOException e){
             System.out.println("oops");
         }

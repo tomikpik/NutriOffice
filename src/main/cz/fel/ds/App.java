@@ -1,9 +1,9 @@
-package cz.fel.ds;
+﻿package cz.fel.ds;
 
 import cz.fel.ds.database.dao.PatientDAO;
 import cz.fel.ds.database.model.Patient;
 import cz.fel.ds.gui.mainPage.MainPage;
-
+import cz.fel.ds.gui.GuiTool;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -13,9 +13,8 @@ import java.util.List;
  */
 public class App {
     public static void main(String[] args) {
-
         //fillDatabase();
-        new MainPage().start();
+	new GuiTool().start();
     }
 
     private static void fillDatabase()

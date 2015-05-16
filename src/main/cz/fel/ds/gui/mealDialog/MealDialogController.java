@@ -1,23 +1,20 @@
-package cz.fel.ds.gui.trainingDialog;
+package cz.fel.ds.gui.mealDialog;
 
 import cz.fel.ds.database.model.Exercise;
 import cz.fel.ds.database.model.ExerciseToTrainingProgram;
-import cz.fel.ds.database.model.Patient;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.text.Text;
 
 /**
  * Created by Tom on 14. 5. 2015.
  */
-public class TrainingDialogController {
+public class MealDialogController {
     @FXML
-    private TableView<ExerciseToTrainingProgram> trainingProgramExercisesTable;
+    private TableView<ExerciseToTrainingProgram> mealFoodsTable;
     @FXML
-    private TableView<Exercise> exerciseTable;
+    private TableView<Exercise> foodTable;
     @FXML
     private TextField trainingProgramName;
     @FXML

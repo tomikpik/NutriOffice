@@ -90,7 +90,7 @@ public class MainPageController {
 
     @FXML
     public void trainingAdd(ActionEvent event) {
-        dialogFactory.showTrainingProgramDialog(null);
+	dialogFactory.showTrainingProgramDialog(null);
     }
 
     @FXML
@@ -108,7 +108,7 @@ public class MainPageController {
     @FXML
     public void mealAdd(ActionEvent event) {
         //open new meal dialog
-        System.out.println("add meal");
+        dialogFactory.showMealDialog(null);
     }
 
     @FXML
@@ -126,7 +126,7 @@ public class MainPageController {
             TableRow<Patient> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 2 && (!row.isEmpty())) {
-                    dialogFactory.showPatientDialog(row.getItem(),false);
+                    dialogFactory.showPatientDialog(row.getItem());
                 }
             });
             return row;
