@@ -117,7 +117,7 @@
                           </columns>
                         </TableView>
                         <TextField fx:id="trainingSearch" GridPane.rowIndex="1" />
-                        <TextField fx:id="excerciseSearch" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField fx:id="exerciseSearch" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="2">
                            <children>
                               <Button mnemonicParsing="false" onAction="#trainingAdd" text="Add" />
@@ -126,8 +126,8 @@
                         </HBox>
                         <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                            <children>
-                              <Button mnemonicParsing="false" onAction="#excerciseAdd" text="Add" />
-                              <Button mnemonicParsing="false" onAction="#excerciseSearch" text="Search" />
+                              <Button mnemonicParsing="false" onAction="#exerciseAdd" text="Add" />
+                              <Button mnemonicParsing="false" onAction="#exerciseSearch" text="Search" />
                            </children>
                         </HBox>
                      </children>

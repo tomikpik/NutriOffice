@@ -2,6 +2,7 @@ package cz.fel.ds.database.dao;
 
 import cz.fel.ds.database.model.Patient;
 import cz.fel.ds.util.HibernateUtil;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.hibernate.Query;
 
@@ -72,6 +73,11 @@ public class PatientDAO
             case "lastName":
                 q =  HibernateUtil.getSession().createQuery("SELECT c from Patient c where c.lastName=:lastName");
                 break;
+
+            case "nameStartsWith":
+                q =  HibernateUtil.getSession().createQuery("SELECT c from Patient c where c.lastName like concat(:nameStartsWith, '%') ");
+                break;
+
             case "gender":
                 q =  HibernateUtil.getSession().createQuery("SELECT c from Patient c where c.gender=:gender");
                 break;
@@ -95,12 +101,12 @@ public class PatientDAO
                 break;
             default:
                 q =  HibernateUtil.getSession().createQuery("SELECT c from Patient c");
-                ObservableList<Patient> listOfPatients = (ObservableList<Patient>) q.list();
+                ObservableList<Patient> listOfPatients = FXCollections.observableList(q.list());
                 HibernateUtil.getSession().getTransaction().commit();
                 return listOfPatients;
         }
         q.setParameter(type, value);
-        ObservableList<Patient> listOfPatients = (ObservableList<Patient>) q.list();
+        ObservableList<Patient> listOfPatients = FXCollections.observableList(q.list());
         HibernateUtil.getSession().getTransaction().commit();
         return listOfPatients;
     }

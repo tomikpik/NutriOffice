@@ -2,6 +2,7 @@ package cz.fel.ds.database.dao;
 
 import cz.fel.ds.database.model.Exercise;
 import cz.fel.ds.util.HibernateUtil;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.hibernate.Query;
 
@@ -58,7 +59,7 @@ public class ExerciseDAO
     }
 
     public ObservableList<Exercise> selectObjectsTo(String type, Object value)
-    {
+    {//"from Entity e where e.name like 'e%'");
         HibernateUtil.getSession().beginTransaction();
         Query q = null;
         switch(type)
@@ -70,17 +71,22 @@ public class ExerciseDAO
             case "name":
                 q =  HibernateUtil.getSession().createQuery("SELECT c from Exercise c where c.name=:name");
                 break;
+
+            case "nameStartsWith":
+                q =  HibernateUtil.getSession().createQuery("SELECT c from Exercise c where c.name like concat(:nameStartsWith, '%') ");
+                break;
+
             case "kjkgmin":
                 q =  HibernateUtil.getSession().createQuery("SELECT c from Exercise c where c.kjkgmin=:kjkgmin");
                 break;
             default:
                 q =  HibernateUtil.getSession().createQuery("SELECT c from Exercise c");
-                ObservableList<Exercise> listOfExercises = (ObservableList<Exercise>) q.list();
+                ObservableList<Exercise> listOfExercises = FXCollections.observableList(q.list());
                 HibernateUtil.getSession().getTransaction().commit();
                 return listOfExercises;
         }
         q.setParameter(type, value);
-        ObservableList<Exercise> listOfExercises = (ObservableList<Exercise>) q.list();
+        ObservableList<Exercise> listOfExercises = FXCollections.observableList(q.list());
         HibernateUtil.getSession().getTransaction().commit();
         return listOfExercises;
     }

@@ -2,6 +2,7 @@ package cz.fel.ds.database.dao;
 
 import cz.fel.ds.database.model.Food;
 import cz.fel.ds.util.HibernateUtil;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.hibernate.Query;
 
@@ -69,17 +70,22 @@ public class FoodDAO
             case "foodName":
                 q =  HibernateUtil.getSession().createQuery("SELECT c from Food c where c.foodName=:foodName");
                 break;
+
+            case "nameStartsWith":
+                q =  HibernateUtil.getSession().createQuery("SELECT c from Food c where c.foodName like concat(:nameStartsWith, '%') ");
+                break;
+
             case "energyValue":
                 q =  HibernateUtil.getSession().createQuery("SELECT c from Food c where c.energyValue=:energyValue");
                 break;
             default:
                 q =  HibernateUtil.getSession().createQuery("SELECT c from Food c");
-                ObservableList<Food> listOfFoods = (ObservableList<Food>) q.list();
+                ObservableList<Food> listOfFoods = FXCollections.observableList(q.list());
                 HibernateUtil.getSession().getTransaction().commit();
                 return listOfFoods;
         }
         q.setParameter(type, value);
-        ObservableList<Food> listOfFoods = (ObservableList<Food>) q.list();
+        ObservableList<Food> listOfFoods = FXCollections.observableList(q.list());
         HibernateUtil.getSession().getTransaction().commit();
         return listOfFoods;
     }

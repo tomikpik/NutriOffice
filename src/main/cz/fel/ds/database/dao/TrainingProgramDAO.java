@@ -2,6 +2,7 @@ package cz.fel.ds.database.dao;
 
 import cz.fel.ds.database.model.TrainingProgram;
 import cz.fel.ds.util.HibernateUtil;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.hibernate.Query;
 
@@ -69,17 +70,21 @@ public class TrainingProgramDAO
             case "name":
                 q =  HibernateUtil.getSession().createQuery("SELECT c from TrainingProgram c where c.name=:name");
                 break;
+
+            case "nameStartsWith":
+                q =  HibernateUtil.getSession().createQuery("SELECT c from TrainingProgram c where c.name like concat(:nameStartsWith, '%') ");
+                break;
+
             case "type":
                 q =  HibernateUtil.getSession().createQuery("SELECT c from TrainingProgram c where c.type=:type");
                 break;
             default:
                 q =  HibernateUtil.getSession().createQuery("SELECT c from TrainingProgram c");
-                ObservableList<TrainingProgram> listOfTrainingPrograms = (ObservableList<TrainingProgram>) q.list();
-                HibernateUtil.getSession().getTransaction().commit();
+                ObservableList<TrainingProgram> listOfTrainingPrograms = FXCollections.observableList(q.list());
                 return listOfTrainingPrograms;
         }
         q.setParameter(type, value);
-        ObservableList<TrainingProgram> listOfTrainingPrograms = (ObservableList<TrainingProgram>) q.list();
+        ObservableList<TrainingProgram> listOfTrainingPrograms = FXCollections.observableList(q.list());
         HibernateUtil.getSession().getTransaction().commit();
         return listOfTrainingPrograms;
     }

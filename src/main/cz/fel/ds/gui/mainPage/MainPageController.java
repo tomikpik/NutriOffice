@@ -1,6 +1,7 @@
 package cz.fel.ds.gui.mainPage;
 
-import cz.fel.ds.database.model.Patient;
+import cz.fel.ds.database.model.*;
+import cz.fel.ds.database.services.SearchService;
 import cz.fel.ds.gui.DialogFactory;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -12,13 +13,12 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-import java.io.IOException;
-
 /**
  * Created by Tom on 14. 5. 2015.
  */
 public class MainPageController {
     private DialogFactory dialogFactory = new DialogFactory();
+    private SearchService searchService = new SearchService();
 
 
     @FXML
@@ -34,7 +34,7 @@ public class MainPageController {
     @FXML
     private TextField trainingSearch;
     @FXML
-    private TextField excerciseSearch;
+    private TextField exerciseSearch;
     @FXML
     private TableView<Patient> patientsTable;
     @FXML
@@ -48,64 +48,53 @@ public class MainPageController {
     @FXML
     private TableView<Patient> exerciseTable;
 
-/*
-    private ObservableList<Patient> data = FXCollections.observableArrayList(
-            new Patient(1, "Tomas", "Pikous"),
-            new Patient(2, "Happy", "Empeor"),
-            new Patient(3, "Barush", "Plagiatorka :D")
-    );
-*/
-
-    private ObservableList<Patient> data;
+    private ObservableList<Patient> dataPacients;
+    private ObservableList<Diet> dataDiets;
+    private ObservableList<Meal> dataMeals;
+    private ObservableList<TrainingProgram> dataTrainingPrograms;
+    private ObservableList<Exercise> dataExercises;
+    private ObservableList<Food> dataFood;
 
     @FXML
-    public void patientsSearch(ActionEvent event1) {
-        System.out.println(pacientSearch.getText());
-        Patient p = new Patient();
-        p.setFirstName("Tomáš");
-        p.setLastName("Pikous");
-        data.add(p);
+    public void patientsSearch(ActionEvent event1)
+    {
+        dataPacients.clear();
+        dataPacients.addAll(searchService.patientsSearch(pacientSearch.getText()));
     }
 
 
     @FXML
     public void dietSearch(ActionEvent event) {
-        //send cz.fel.ds.database request and return matches to given string
-        System.out.println("search diet "+dietSearch.getText());
+        dataDiets.addAll(searchService.dietSearch(dietSearch.getText().toLowerCase()));
     }
 
     @FXML
     public void mealSearch(ActionEvent event) {
-        //send cz.fel.ds.database request and return matches to given string
-        System.out.println("search meal "+mealSearch.getText());
+        dataMeals.addAll(searchService.mealSearch(mealSearch.getText().toLowerCase()));
     }
 
     @FXML
     public void trainingSearch(ActionEvent event) {
-        //send cz.fel.ds.database request and return matches to given string
-        System.out.println("search training "+trainingSearch.getText());
+        dataTrainingPrograms.addAll(searchService.trainingSearch(trainingSearch.getText().toLowerCase()));
     }
 
     @FXML
-    public void excerciseSearch(ActionEvent event) {
-        //send cz.fel.ds.database request and return matches to given string
-        System.out.println("search excercise "+excerciseSearch.getText());
+    public void exerciseSearch(ActionEvent event) {
+        dataExercises.addAll(searchService.exerciseSearch(exerciseSearch.getText().toLowerCase()));
     }
 
     @FXML
     public void foodSearch(ActionEvent event) {
-        //send cz.fel.ds.database request and return matches to given string
-        System.out.println("search food "+foodSearch.getText());
+        dataFood.addAll(searchService.foodSearch(foodSearch.getText().toLowerCase()));
     }
 
     @FXML
     public void trainingAdd(ActionEvent event) {
-        //open new training dialog
-        System.out.println("add training");
+        dialogFactory.showTrainingProgramDialog(null);
     }
 
     @FXML
-    public void excerciseAdd(ActionEvent event) {
+    public void exerciseAdd(ActionEvent event) {
         //open new excercise dialog
         dialogFactory.showExerciseDialog(null);
     }
@@ -133,7 +122,6 @@ public class MainPageController {
         patientsTable.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("firstName"));
         patientsTable.getColumns().get(2).setCellValueFactory(new PropertyValueFactory<>("lastName"));
 
-        //patientsTable.setItems(data);
         patientsTable.setRowFactory(tv -> {
             TableRow<Patient> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
@@ -144,9 +132,9 @@ public class MainPageController {
             return row;
         });
 
-        data = FXCollections.observableArrayList();
+        dataPacients = FXCollections.observableArrayList();
 
-        patientsTable.setItems(data);
+        patientsTable.setItems(dataPacients);
 
 
 
