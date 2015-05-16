@@ -1,5 +1,7 @@
 package cz.fel.ds.database.dao;
 
+import cz.fel.ds.database.model.Patient;
+import cz.fel.ds.database.model.TrainingProgram;
 import cz.fel.ds.database.model.TrainingProgramToPatient;
 import cz.fel.ds.util.HibernateUtil;
 import javafx.collections.ObservableList;
@@ -18,11 +20,14 @@ public class TrainingProgramToPatientDAO
         return 1;
     }
 
-    public TrainingProgramToPatient read(int id)
+    public TrainingProgramToPatient read(TrainingProgram trainingProgram, Patient patient)
     {
         HibernateUtil.getSession().beginTransaction();
-        TrainingProgramToPatient trainingProgramToPatient;
-        trainingProgramToPatient = (TrainingProgramToPatient) HibernateUtil.getSession().get(TrainingProgramToPatient.class, id);
+        TrainingProgramToPatient trainingProgramToPatient = new TrainingProgramToPatient();
+        trainingProgramToPatient.setPatient(patient);
+        trainingProgramToPatient.setTrainingProgram(trainingProgram);
+
+        trainingProgramToPatient = (TrainingProgramToPatient) HibernateUtil.getSession().get(TrainingProgramToPatient.class, trainingProgramToPatient);
         HibernateUtil.getSession().getTransaction().commit();
         return trainingProgramToPatient;
     }

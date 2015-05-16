@@ -1,38 +1,43 @@
 package cz.fel.ds.database.dao;
 
 import cz.fel.ds.database.model.MedicalRecord;
+import cz.fel.ds.database.model.Patient;
 import cz.fel.ds.util.HibernateUtil;
 import javafx.collections.ObservableList;
 import org.hibernate.Query;
+import java.util.Date;
 
 /**
  * Created by Tom on 15. 5. 2015.
  */
 public class MedicalRecordDAO
 {
-    public int create(MedicalRecord fat)
+    public int create(MedicalRecord medicalRecord)
     {
         HibernateUtil.getSession().beginTransaction();
-        HibernateUtil.getSession().save(fat);
+        HibernateUtil.getSession().save(medicalRecord);
         HibernateUtil.getSession().getTransaction().commit();
         return 1;
     }
 
-    public MedicalRecord read(int id)
+    public MedicalRecord read(Date date, Patient patient)
     {
         HibernateUtil.getSession().beginTransaction();
-        MedicalRecord fat;
-        fat = (MedicalRecord) HibernateUtil.getSession().get(MedicalRecord.class, id);
+        MedicalRecord medicalRecord = new MedicalRecord();
+        medicalRecord.setDate(date);
+        medicalRecord.setPatient(patient);
+
+        medicalRecord = (MedicalRecord) HibernateUtil.getSession().get(MedicalRecord.class, medicalRecord);
         HibernateUtil.getSession().getTransaction().commit();
-        return fat;
+        return medicalRecord;
     }
 
-    public boolean update(MedicalRecord fat)
+    public boolean update(MedicalRecord medicalRecord)
     {
         HibernateUtil.getSession().beginTransaction();
         try
         {
-            HibernateUtil.getSession().update(fat);
+            HibernateUtil.getSession().update(medicalRecord);
             HibernateUtil.getSession().getTransaction().commit();
         }
         catch (Exception ex)
@@ -42,12 +47,12 @@ public class MedicalRecordDAO
         return true;
     }
 
-    public boolean delete(MedicalRecord fat)
+    public boolean delete(MedicalRecord medicalRecord)
     {
         HibernateUtil.getSession().beginTransaction();
         try
         {
-            HibernateUtil.getSession().delete(fat);
+            HibernateUtil.getSession().delete(medicalRecord);
             HibernateUtil.getSession().getTransaction().commit();
         }
         catch (Exception ex)

@@ -21,6 +21,7 @@ public class ExerciseToTrainingProgramDAOTest
     Exercise ex1;
     ExerciseToTrainingProgram et;
     ExerciseToTrainingProgram et1;
+    ExerciseToTrainingProgram et2;
 
     @Before
     public void setUp() throws Exception
@@ -57,11 +58,15 @@ public class ExerciseToTrainingProgramDAOTest
         et1.setDuration(60);
         et1.setExercise(ex);
         et1.setTrainingProgram(tp);
+
+        et2 = new ExerciseToTrainingProgram();
+        et2.setDuration(600);
+        et2.setExercise(ex1);
+        et2.setTrainingProgram(tp);
         //CREATE ExerciseToTrainingProgram
         etDAO.create(et);
         etDAO.create(et1);
-
-        //ale vytvori to dva spinningy a dve posilky
+        etDAO.create(et2);
     }
 
     @Test
@@ -69,12 +74,6 @@ public class ExerciseToTrainingProgramDAOTest
     {
         ExerciseToTrainingProgram etREAD = etDAO.read(ex1, tp1);
         assertEquals(etREAD,et);
-        assertNotEquals(etREAD,et1);
-    }
-
-    @Test
-    public void testSelectObjectsTo() throws Exception
-    {
-
+        assertNotEquals(etREAD,et2);
     }
 }

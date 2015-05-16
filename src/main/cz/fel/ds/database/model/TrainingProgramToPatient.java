@@ -9,7 +9,7 @@ import java.io.Serializable;
  * Created by Tom on 15. 5. 2015.
  */
 @Entity
-@Table(name = "TrainingToPatientProgram")
+@Table(name = "TrainingProgramToPatient")
 public class TrainingProgramToPatient implements Serializable
 {
     private SimpleIntegerProperty day = new SimpleIntegerProperty();
