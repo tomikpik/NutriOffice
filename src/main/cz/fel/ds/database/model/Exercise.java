@@ -18,11 +18,11 @@ public class Exercise implements Serializable
     private SimpleDoubleProperty kjkgmin = new SimpleDoubleProperty();
 
     public Exercise() {
-        excerciseId = -1;
+        exerciseId = -1;
     }
 
     public Exercise(String name, Double kjkgmin) {
-        excerciseId = -1;
+        exerciseId = -1;
         this.setName(name);
         this.setKjkgmin(kjkgmin);
     }
@@ -66,7 +66,7 @@ public class Exercise implements Serializable
     @Override
     public String toString() {
         return "Excercise{" +
-                "excerciseId=" + excerciseId +
+                "excerciseId=" + exerciseId +
                 ", name=" + name +
                 ", kjkgmin=" + kjkgmin +
                 '}';
