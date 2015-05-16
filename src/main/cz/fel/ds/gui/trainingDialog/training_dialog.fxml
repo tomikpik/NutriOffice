@@ -70,14 +70,14 @@
             </GridPane>
             <TableView fx:id="trainingProgramExercisesTable" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="4">
               <columns>
-                <TableColumn prefWidth="75.0" text="C1" />
-                <TableColumn prefWidth="75.0" text="C2" />
+                <TableColumn prefWidth="127.0" text="Name" />
+                <TableColumn prefWidth="121.0" text="Duration" />
               </columns>
             </TableView>
             <TableView fx:id="exerciseTable" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
               <columns>
-                <TableColumn prefWidth="75.0" text="C1" />
-                <TableColumn prefWidth="75.0" text="C2" />
+                <TableColumn prefWidth="166.0" text="Name" />
+                <TableColumn prefWidth="84.0" text="kJ/kg/min" />
               </columns>
             </TableView>
          </children>

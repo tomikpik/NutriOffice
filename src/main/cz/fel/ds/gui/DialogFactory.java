@@ -5,6 +5,7 @@ import cz.fel.ds.gui.exerciseDialog.ExerciseDialogController;
 import cz.fel.ds.gui.foodDialog.FoodDialogController;
 import cz.fel.ds.gui.medicalRecord.MedicalRecordController;
 import cz.fel.ds.gui.patientDialog.PatientDialogController;
+import cz.fel.ds.gui.trainingDialog.TrainingDialogController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -96,7 +97,8 @@ public class DialogFactory {
             stage.setResizable(false);
             stage.setScene(new Scene(root,600,600));
             stage.show();
-            //PatientDialogController controller = loader.getController();
+            TrainingDialogController controller = loader.getController();
+            controller.init(trainingProgram);
 
         }catch (IOException e){
             System.out.println("oops");

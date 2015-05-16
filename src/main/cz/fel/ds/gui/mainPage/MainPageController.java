@@ -75,6 +75,7 @@ public class MainPageController {
 
     @FXML
     public void trainingSearch(ActionEvent event) {
+        dataTrainingPrograms.clear();
         dataTrainingPrograms.addAll(searchService.trainingSearch(trainingSearch.getText().toLowerCase()));
     }
 
@@ -138,9 +139,7 @@ public class MainPageController {
 
 
         //exercise
-
         exerciseTable.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("name"));
-
         exerciseTable.setRowFactory(tv -> {
             TableRow<Exercise> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
@@ -154,6 +153,20 @@ public class MainPageController {
         dataExercises = FXCollections.observableArrayList();
         exerciseTable.setItems(dataExercises);
 
+        //training program
+        trainingProgramTable.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("name"));
+        trainingProgramTable.setRowFactory(tv -> {
+            TableRow<TrainingProgram> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2 && (!row.isEmpty())) {
+                    dialogFactory.showTrainingProgramDialog(row.getItem());
+                }
+            });
+            return row;
+        });
+
+        dataTrainingPrograms = FXCollections.observableArrayList();
+        trainingProgramTable.setItems(dataTrainingPrograms);
 
     }
 }
