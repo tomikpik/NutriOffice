@@ -75,9 +75,6 @@ public class TrainingProgramDAO
                 q =  HibernateUtil.getSession().createQuery("SELECT c from TrainingProgram c where c.name like concat(:nameStartsWith, '%') ");
                 break;
 
-            case "type":
-                q =  HibernateUtil.getSession().createQuery("SELECT c from TrainingProgram c where c.type=:type");
-                break;
             default:
                 q =  HibernateUtil.getSession().createQuery("SELECT c from TrainingProgram c");
                 ObservableList<TrainingProgram> listOfTrainingPrograms = FXCollections.observableList(q.list());

@@ -8,7 +8,7 @@
     <property name="hibernate.connection.url">jdbc:postgresql://krizik.felk.cvut.cz:5434/student_db15_16</property>
     <property name="hibernate.connection.username">student_db15_16</property>
     <property name="hibernate.connection.password">nutri</property>
-    <property name="hibernate.hbm2ddl.auto">validate</property> <!--validate update create-drop-->
+    <property name="hibernate.hbm2ddl.auto">create</property> <!--validate update create-drop-->
     <property name="show_sql">true</property>
     <property name="hibernate.format_sql">false</property>
     <property name="hibernate.generate_statistics">false</property>
