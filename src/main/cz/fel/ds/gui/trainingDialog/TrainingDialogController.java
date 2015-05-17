@@ -11,6 +11,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
@@ -50,13 +51,13 @@ public class TrainingDialogController {
     private MainPageController mpc;
 
     @FXML
-    public void exerciseSearch(ActionEvent event) {
+    public void exerciseSearch(Event event) {
         dataExercises.clear();
         dataExercises.addAll(searchService.exerciseSearch(searchExercise.getText().toLowerCase()));
     }
 
     @FXML
-    public void addExercise(ActionEvent event) {
+    public void addExercise(Event event) {
         try{
             Exercise exercise = exerciseTable.getSelectionModel().getSelectedItem();
             if(exercise==null)throw new Exception();
@@ -83,18 +84,19 @@ public class TrainingDialogController {
     }
 
     @FXML
-    public void removeExercise(ActionEvent event) {
+    public void removeExercise(Event event) {
         try{
             ExerciseToTrainingProgram ettp = trainingProgramExercisesTable.getSelectionModel().getSelectedItem();
             if(ettp==null)throw new Exception();
             basicService.deleteExerciseToTrainingProgram(ettp);
+            refreshTables();
         }catch(Exception e){
             System.out.println("chyba training");
         }
     }
 
     @FXML
-    public void saveTrainingProgram(ActionEvent event) {
+    public void saveTrainingProgram(Event event) {
         try {
             TrainingProgram f = (tp==null)?new TrainingProgram():tp;
             if(trainingProgramName.getText().equals(""))throw new Exception();
@@ -112,7 +114,7 @@ public class TrainingDialogController {
     }
 
     @FXML
-    public void deleteTrainingProgram(ActionEvent event) {
+    public void deleteTrainingProgram(Event event) {
         if(tp!=null){
             basicService.deleteTrainingProgram(tp);
             mpc.refreshAllTables();

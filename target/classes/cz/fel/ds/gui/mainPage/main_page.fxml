@@ -50,8 +50,7 @@
                         </TableView>
                         <TableView fx:id="mealTable" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                           <columns>
-                            <TableColumn editable="false" prefWidth="187.0" resizable="false" sortable="false" text="name" />
-                              <TableColumn editable="false" prefWidth="66.0" resizable="false" sortable="false" text="kJ" />
+                            <TableColumn editable="false" prefWidth="246.0" resizable="false" sortable="false" text="name" />
                           </columns>
                         </TableView>
                         <TableView fx:id="foodTable" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
