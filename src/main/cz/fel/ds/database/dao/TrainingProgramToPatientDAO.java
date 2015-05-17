@@ -4,6 +4,7 @@ import cz.fel.ds.database.model.Patient;
 import cz.fel.ds.database.model.TrainingProgram;
 import cz.fel.ds.database.model.TrainingProgramToPatient;
 import cz.fel.ds.util.HibernateUtil;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.hibernate.Query;
 
@@ -12,6 +13,7 @@ import org.hibernate.Query;
  */
 public class TrainingProgramToPatientDAO
 {
+
     public int create(TrainingProgramToPatient trainingProgramToPatient)
     {
         HibernateUtil.getSession().beginTransaction();
@@ -23,9 +25,7 @@ public class TrainingProgramToPatientDAO
     public TrainingProgramToPatient read(TrainingProgram trainingProgram, Patient patient)
     {
         HibernateUtil.getSession().beginTransaction();
-        TrainingProgramToPatient trainingProgramToPatient = new TrainingProgramToPatient();
-        trainingProgramToPatient.setPatient(patient);
-        trainingProgramToPatient.setTrainingProgram(trainingProgram);
+        TrainingProgramToPatient trainingProgramToPatient = new TrainingProgramToPatient(patient,trainingProgram);
 
         trainingProgramToPatient = (TrainingProgramToPatient) HibernateUtil.getSession().get(TrainingProgramToPatient.class, trainingProgramToPatient);
         HibernateUtil.getSession().getTransaction().commit();
@@ -80,13 +80,38 @@ public class TrainingProgramToPatientDAO
                 break;
             default:
                 q =  HibernateUtil.getSession().createQuery("SELECT c from TrainingProgramToPatient c");
-                ObservableList<TrainingProgramToPatient> listOfTrainingProgramToPatients = (ObservableList<TrainingProgramToPatient>) q.list();
+                ObservableList<TrainingProgramToPatient> listOfTrainingProgramToPatients = FXCollections.observableList(q.list());
                 HibernateUtil.getSession().getTransaction().commit();
                 return listOfTrainingProgramToPatients;
         }
         q.setParameter(type, value);
-        ObservableList<TrainingProgramToPatient> listOfTrainingProgramToPatients = (ObservableList<TrainingProgramToPatient>) q.list();
+        ObservableList<TrainingProgramToPatient> listOfTrainingProgramToPatients = FXCollections.observableList(q.list());
         HibernateUtil.getSession().getTransaction().commit();
         return listOfTrainingProgramToPatients;
+    }
+
+    public void updateOrInsertIfNotExists(TrainingProgramToPatient tp)
+    {
+        try
+        {
+            TrainingProgramToPatient trainingProgramToPatient;
+            if ((trainingProgramToPatient = this.read(tp.getTrainingProgram(), tp.getPatient())) != null)
+            {
+                HibernateUtil.getSession().getTransaction().begin();
+                HibernateUtil.getSession().merge(tp);
+                HibernateUtil.getSession().getTransaction().commit();
+                //needs to update
+            }
+            else
+            {
+                HibernateUtil.getSession().getTransaction().begin();
+                this.create(tp);
+                HibernateUtil.getSession().getTransaction().commit();
+            }
+        }
+        catch(Exception e)
+        {
+
+        }
     }
 }

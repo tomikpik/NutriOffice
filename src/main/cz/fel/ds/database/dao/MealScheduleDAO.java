@@ -2,6 +2,7 @@ package cz.fel.ds.database.dao;
 
 import cz.fel.ds.database.model.MealSchedule;
 import cz.fel.ds.util.HibernateUtil;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.hibernate.Query;
 
@@ -80,12 +81,12 @@ public class MealScheduleDAO
                 break;
             default:
                 q =  HibernateUtil.getSession().createQuery("SELECT c from MealSchedule c");
-                ObservableList<MealSchedule> listOfMealSchedules = (ObservableList<MealSchedule>) q.list();
+                ObservableList<MealSchedule> listOfMealSchedules = FXCollections.observableList(q.list());
                 HibernateUtil.getSession().getTransaction().commit();
                 return listOfMealSchedules;
         }
         q.setParameter(type, value);
-        ObservableList<MealSchedule> listOfMealSchedules = (ObservableList<MealSchedule>) q.list();
+        ObservableList<MealSchedule> listOfMealSchedules = FXCollections.observableList(q.list());
         HibernateUtil.getSession().getTransaction().commit();
         return listOfMealSchedules;
     }

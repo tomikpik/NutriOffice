@@ -28,8 +28,8 @@
             <DatePicker fx:id="birthdate" prefHeight="25.0" prefWidth="350.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <DatePicker fx:id="dietStarted" prefHeight="25.0" prefWidth="350.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
             <Button mnemonicParsing="false" onAction="#showMedicalRecords" prefHeight="25.0" prefWidth="371.0" text="Show" GridPane.columnIndex="1" GridPane.rowIndex="10" />
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="369.0" text="Show" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-            <Button mnemonicParsing="false" onAction="#test" prefHeight="25.0" prefWidth="355.0" text="Show" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <Button mnemonicParsing="false" onAction="#showTrainingProgram" prefHeight="25.0" prefWidth="369.0" text="Show" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+            <Button mnemonicParsing="false" onAction="#showDiet" prefHeight="25.0" prefWidth="355.0" text="Show" GridPane.columnIndex="1" GridPane.rowIndex="7" />
             <GridPane GridPane.columnIndex="1" GridPane.rowIndex="11">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

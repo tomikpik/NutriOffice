@@ -16,6 +16,16 @@ public class TrainingProgramToPatient implements Serializable
     private TrainingProgram trainingProgram;
     private Patient patient;
 
+    public TrainingProgramToPatient()
+    {
+    }
+
+    public TrainingProgramToPatient(Patient p, TrainingProgram trainingProgram)
+    {
+        this.patient = p;
+        this.trainingProgram = trainingProgram;
+    }
+
     @Column(name = "day", length = 100)
     public int getDay()
     {

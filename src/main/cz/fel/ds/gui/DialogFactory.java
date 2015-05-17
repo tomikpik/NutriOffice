@@ -8,6 +8,7 @@ import cz.fel.ds.gui.mealDialog.MealDialogController;
 import cz.fel.ds.gui.medicalRecord.MedicalRecordController;
 import cz.fel.ds.gui.patientDialog.PatientDialogController;
 import cz.fel.ds.gui.trainingDialog.TrainingDialogController;
+import cz.fel.ds.gui.trainingToPacientDialog.TrainingToPatientController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -131,4 +132,45 @@ public class DialogFactory {
         }
     }
 
+    public void showTrainingProgramToPatientDialog(Patient p)
+    {
+        if(p==null)return;
+        try
+        {
+            Stage stage = new Stage();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("trainingToPacientDialog/trainingToPacient_dialog.fxml"));
+            Parent root = loader.load();
+            stage.setTitle("Training program of  "+p.getFirstName()+" "+p.getLastName());
+            stage.setResizable(false);
+            stage.setScene(new Scene(root, 700,600));
+            stage.show();
+            TrainingToPatientController controller = loader.getController();
+            controller.init(p);
+        }
+        catch (IOException e)
+        {
+            System.out.println("oops");
+        }
+    }
+
+    public void showDiet(Patient p)
+    {
+        if(p==null)return;
+        try
+        {
+            Stage stage = new Stage();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("dietToPacientDialog/dietToPacient_dialog.fxml"));
+            Parent root = loader.load();
+            stage.setTitle("Diet of "+p.getFirstName()+" "+p.getLastName());
+            stage.setResizable(false);
+            stage.setScene(new Scene(root, 700,600));
+            stage.show();
+            TrainingToPatientController controller = loader.getController();
+            controller.init(p);
+        }
+        catch (IOException e)
+        {
+            System.out.println("oops");
+        }
+    }
 }

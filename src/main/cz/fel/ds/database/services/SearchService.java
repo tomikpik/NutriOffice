@@ -14,8 +14,10 @@ public class SearchService
     ExerciseDAO exerciseDAO = new ExerciseDAO();
     TrainingProgramDAO trainingProgramDAO = new TrainingProgramDAO();
     ExerciseToTrainingProgramDAO exerciseToTrainingProgramDAO = new ExerciseToTrainingProgramDAO();
+    TrainingProgramToPatientDAO trainingProgramToPatientDAO = new TrainingProgramToPatientDAO();
     DietDAO dietDAO = new DietDAO();
     MealDAO mealDAO = new MealDAO();
+    MealTypeDAO mealTypeDAO = new MealTypeDAO();
     MealToFoodDAO mealToFoodDAO = new MealToFoodDAO();
     MedicalRecordDAO medicalRecordDAO = new MedicalRecordDAO();
 
@@ -38,6 +40,11 @@ public class SearchService
     public ObservableList<TrainingProgram> trainingSearch(String input)
     {
         return trainingProgramDAO.selectObjectsTo("nameStartsWith",input);
+    }
+
+    public ObservableList<TrainingProgram> trainingProgramsAll()
+    {
+        return trainingProgramDAO.selectObjectsTo("all","");
     }
 
     public ObservableList<Exercise> exerciseSearch(String input)
@@ -65,6 +72,10 @@ public class SearchService
         return mealToFoodDAO.selectObjectsTo("meal",meal);
     }
 
+    public ObservableList<MealType> mealTypesAll()
+    {
+        return mealTypeDAO.selectObjectsTo("all","");
+    }
 
     public ObservableList<MealToFood> mealToFoodSearch(String input)
     {
@@ -73,5 +84,10 @@ public class SearchService
 
     public ObservableList<MedicalRecord> medicalRecordsByPatient(Patient p) {
         return medicalRecordDAO.selectObjectsTo("patient",p);
+    }
+
+    public ObservableList<TrainingProgramToPatient> trainingProgramToPatientsSearch(Patient p)
+    {
+        return trainingProgramToPatientDAO.selectObjectsTo("patient",p);
     }
 }

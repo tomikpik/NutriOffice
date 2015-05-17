@@ -1,6 +1,5 @@
 package cz.fel.ds.gui.patientDialog;
 
-import cz.fel.ds.database.model.MedicalRecord;
 import cz.fel.ds.database.model.Patient;
 import cz.fel.ds.database.services.BasicService;
 import cz.fel.ds.gui.DialogFactory;
@@ -97,6 +96,17 @@ public class PatientDialogController {
     @FXML
     public void showMedicalRecords(ActionEvent event){
         new DialogFactory(null).showMedicalRecordDialog(p);
+    }
+
+    @FXML
+    public void showTrainingProgram(ActionEvent event){
+        new DialogFactory(null).showTrainingProgramToPatientDialog(p);
+    }
+
+    @FXML
+    public void showDiet(ActionEvent event)
+    {
+        new DialogFactory(null).showDiet(p);
     }
 
     public void init(Patient p, MainPageController mpc){

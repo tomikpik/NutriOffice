@@ -2,28 +2,23 @@ package cz.fel.ds.gui.trainingDialog;
 
 import cz.fel.ds.database.model.Exercise;
 import cz.fel.ds.database.model.ExerciseToTrainingProgram;
-import cz.fel.ds.database.model.Patient;
 import cz.fel.ds.database.model.TrainingProgram;
 import cz.fel.ds.database.services.BasicService;
 import cz.fel.ds.database.services.SearchService;
 import cz.fel.ds.gui.GuiTool;
 import cz.fel.ds.gui.mainPage.MainPageController;
-import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.text.Text;
-import javafx.util.Callback;
 
 import java.text.DecimalFormat;
-import java.text.NumberFormat;
-import java.util.Locale;
 
 /**
  * Created by Tom on 14. 5. 2015.
@@ -137,8 +132,9 @@ public class TrainingDialogController {
 
         //load exercises
         //load exerciseToTrainingProgram
-        exerciseTable.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("name"));
-        exerciseTable.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("kjkgmin"));
+
+       // exerciseTable.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("name"));
+        //exerciseTable.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("kjkgmin"));
         dataExercises = FXCollections.observableArrayList();
         exerciseTable.setItems(dataExercises);
 

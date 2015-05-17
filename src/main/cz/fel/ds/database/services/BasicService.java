@@ -12,6 +12,7 @@ public class BasicService {
     ExerciseDAO exerciseDAO = new ExerciseDAO();
     TrainingProgramDAO trainingProgramDAO = new TrainingProgramDAO();
     ExerciseToTrainingProgramDAO exerciseToTrainingProgramDAO = new ExerciseToTrainingProgramDAO();
+    TrainingProgramToPatientDAO trainingProgramToPatientDAO = new TrainingProgramToPatientDAO();
     MealToFoodDAO mealToFoodDAO = new MealToFoodDAO();
     DietDAO dietDAO = new DietDAO();
     MealDAO mealDAO = new MealDAO();
@@ -112,8 +113,17 @@ public class BasicService {
     public void saveMedicalRecord(MedicalRecord mr) {
         medicalRecordDAO.updateOrInsertIfNotExists(mr);
     }
-
     public void deleteMedicalRecord(MedicalRecord mr) {
         medicalRecordDAO.delete(mr);
+    }
+
+    public void deleteTrainingProgramToPatient(TrainingProgramToPatient tp)
+    {
+        trainingProgramToPatientDAO.delete(tp);
+    }
+
+    public void saveTrainingProgramToPatient(TrainingProgramToPatient tp)
+    {
+        trainingProgramToPatientDAO.updateOrInsertIfNotExists(tp);
     }
 }

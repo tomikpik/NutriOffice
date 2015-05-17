@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
@@ -31,7 +30,7 @@
                </children></HBox>
             <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Available training programs" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Available meals for specific meal type" />
                </children>
             </HBox>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Day order" />
@@ -69,15 +68,17 @@
             <TableView fx:id="trainingProgramPatientTable" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="4">
               <columns>
                 <TableColumn fx:id="tpptOrder" prefWidth="40.0" text="Day" />
-                <TableColumn fx:id="tpptName" prefWidth="208.0" text="Training program" />
+                <TableColumn fx:id="tpptName" prefWidth="208.0" text="Meal" />
               </columns>
             </TableView>
             <TableView fx:id="trainingProgramsTable" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
               <columns>
-                <TableColumn prefWidth="140.0" text="Training program" />
-                <TableColumn prefWidth="110.0" text="Duration totally" />
+                <TableColumn prefWidth="140.0" text="Meal" />
+                <TableColumn prefWidth="110.0" text="Kj/100 g" />
               </columns>
             </TableView>
+            <ComboBox prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Meal type" GridPane.columnIndex="2" />
          </children>
       </GridPane>
    </children>

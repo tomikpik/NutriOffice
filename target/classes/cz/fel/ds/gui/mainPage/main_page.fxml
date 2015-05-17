@@ -138,9 +138,7 @@
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Exercise" GridPane.columnIndex="1" />
                         <TableView fx:id="trainingProgramTable" prefHeight="192.0" prefWidth="295.0" GridPane.rowIndex="2">
                           <columns>
-                            <TableColumn editable="false" prefWidth="216.0" resizable="false" sortable="false" text="name" />
-                              <TableColumn editable="false" resizable="false" sortable="false" text="min" />
-                              <TableColumn editable="false" resizable="false" sortable="false" text="kJ/kg" />
+                            <TableColumn editable="false" prefWidth="380.0" resizable="false" sortable="false" text="name" />
                           </columns>
                         </TableView>
                         <TableView fx:id="exerciseTable" prefHeight="197.0" prefWidth="253.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
