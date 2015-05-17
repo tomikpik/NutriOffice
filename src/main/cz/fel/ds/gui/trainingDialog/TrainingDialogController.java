@@ -21,6 +21,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 import javafx.util.Callback;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.util.Locale;
+
 /**
  * Created by Tom on 14. 5. 2015.
  */
@@ -41,6 +45,8 @@ public class TrainingDialogController {
     @FXML
     private TableColumn<ExerciseToTrainingProgram,String> ettpTableName;
     @FXML
+    private TableColumn<ExerciseToTrainingProgram,String> ettpTableKjKg;
+    @FXML
     private Button delete;
 
     private ObservableList<Exercise> dataExercises;
@@ -52,8 +58,6 @@ public class TrainingDialogController {
     public void exerciseSearch(ActionEvent event) {
         dataExercises.clear();
         dataExercises.addAll(searchService.exerciseSearch(searchExercise.getText().toLowerCase()));
-        dataExerciseToTrainingProgram.clear();
-        dataExerciseToTrainingProgram.addAll(searchService.exerciseToTrainingSearchByTraining(tp));
     }
 
     @FXML
@@ -77,7 +81,7 @@ public class TrainingDialogController {
             ettp.setDuration(dur);
 
             basicService.saveExerciseToTrainingProgram(ettp);
-
+            refreshTables();
         }catch(Exception e){
             System.out.println("chyba training");
         }
@@ -89,7 +93,6 @@ public class TrainingDialogController {
             ExerciseToTrainingProgram ettp = trainingProgramExercisesTable.getSelectionModel().getSelectedItem();
             if(ettp==null)throw new Exception();
             basicService.deleteExerciseToTrainingProgram(ettp);
-
         }catch(Exception e){
             System.out.println("chyba training");
         }
@@ -135,18 +138,30 @@ public class TrainingDialogController {
         //load exercises
         //load exerciseToTrainingProgram
         exerciseTable.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("name"));
+        exerciseTable.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("kjkgmin"));
         dataExercises = FXCollections.observableArrayList();
         exerciseTable.setItems(dataExercises);
-        dataExercises.clear();
-        dataExercises.addAll(searchService.exerciseSearch(searchExercise.getText().toLowerCase()));
+
 
         //table with assigned exercises
         ettpTableName.setCellValueFactory(cellValue -> new SimpleStringProperty(cellValue.getValue().getExercise().getName()));
         trainingProgramExercisesTable.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("duration"));
+        ettpTableKjKg.setCellValueFactory(cellValue -> {
+            Double kjkg = cellValue.getValue().getDuration()*cellValue.getValue().getExercise().getKjkgmin();
+            DecimalFormat df = new DecimalFormat("#.0");
+            return new SimpleStringProperty(df.format(kjkg));
+        });
+
         dataExerciseToTrainingProgram = FXCollections.observableArrayList();
         trainingProgramExercisesTable.setItems(dataExerciseToTrainingProgram);
+
+        refreshTables();
+    }
+
+    private void refreshTables(){
+        dataExercises.clear();
+        dataExercises.addAll(searchService.exerciseSearch(searchExercise.getText()));
         dataExerciseToTrainingProgram.clear();
         dataExerciseToTrainingProgram.addAll(searchService.exerciseToTrainingSearchByTraining(tp));
-
     }
 }
