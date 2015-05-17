@@ -11,7 +11,6 @@
          <children>
             <TextField fx:id="firstName" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="lastName" prefHeight="25.0" prefWidth="180.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <TextField fx:id="email" GridPane.columnIndex="1" GridPane.rowIndex="6" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="First name" GridPane.rowIndex="1" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Last name" GridPane.rowIndex="2" />
@@ -44,6 +43,7 @@
                   <Button mnemonicParsing="false" onAction="#savePatient" prefHeight="25.0" prefWidth="212.0" text="Save" />
                </children>
             </GridPane>
+            <ComboBox fx:id="gender" prefHeight="25.0" prefWidth="193.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="149.0" minWidth="10.0" prefWidth="101.0" />

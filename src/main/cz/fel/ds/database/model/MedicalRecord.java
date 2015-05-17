@@ -20,9 +20,15 @@ public class MedicalRecord implements Serializable
     private SimpleDoubleProperty waist = new SimpleDoubleProperty();
     private SimpleDoubleProperty hip = new SimpleDoubleProperty();
     private SimpleDoubleProperty chest = new SimpleDoubleProperty();
-    private Date date;
+    private Date date = new Date();
     private Patient patient;
 
+    public MedicalRecord(){}
+
+    public MedicalRecord(Patient p,Date d){
+        this.patient=p;
+        this.date=d;
+    }
 
     @Column(name = "height", length = 100)
 
@@ -100,7 +106,7 @@ public class MedicalRecord implements Serializable
 
     public void setDate(Date date)
     {
-        this.date = date;
+        this.date.setTime(date.getTime());
     }
 
     @Id

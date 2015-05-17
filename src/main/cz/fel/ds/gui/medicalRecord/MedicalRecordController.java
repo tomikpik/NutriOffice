@@ -1,5 +1,6 @@
 package cz.fel.ds.gui.medicalRecord;
 
+import cz.fel.ds.database.model.ExerciseToTrainingProgram;
 import cz.fel.ds.database.model.MedicalRecord;
 import cz.fel.ds.database.model.Patient;
 import cz.fel.ds.database.model.TrainingProgram;
@@ -7,6 +8,7 @@ import cz.fel.ds.database.services.BasicService;
 import cz.fel.ds.database.services.SearchService;
 import cz.fel.ds.gui.DialogFactory;
 import cz.fel.ds.gui.GuiTool;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -14,7 +16,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.Calendar;
+import java.util.Date;
 
 /**
  * Created by Tom on 15. 5. 2015.
@@ -43,6 +49,8 @@ public class MedicalRecordController {
     private TableView<MedicalRecord> medicalRecordTable;
     @FXML
     private Button delete;
+    @FXML
+    private TableColumn<MedicalRecord,String> mrDateColumn;
 
     private ObservableList<MedicalRecord> dataMedicalRecords;
 
@@ -51,22 +59,19 @@ public class MedicalRecordController {
         System.out.println("add");
 
         try {
-            MedicalRecord mr = new MedicalRecord();
-            mr.setDate(GuiTool.localDateToDate(date.getValue()));
+            MedicalRecord mr = new MedicalRecord(p,GuiTool.localDateToDate(date.getValue()));
             mr.setHeight(GuiTool.stringToDouble(height.getText()));
             mr.setWeight(GuiTool.stringToDouble(weight.getText()));
             mr.setFat(GuiTool.stringToDouble(fatPercentage.getText()));
             mr.setWaist(GuiTool.stringToDouble(waistPerimeter.getText()));
             mr.setHip(GuiTool.stringToDouble(hipPerimeter.getText()));
             mr.setChest(GuiTool.stringToDouble(chestPerimeter.getText()));
-            mr.setPatient(p);
-
             basicService.saveMedicalRecord(mr);
 
-            refreshTable();
         }catch (Exception e){
-            e.printStackTrace();
+            System.out.println("error input parameters");
         }
+        refreshTable();
     }
 
     @FXML
@@ -77,7 +82,7 @@ public class MedicalRecordController {
             basicService.deleteMedicalRecord(mr);
             refreshTable();
         }catch(Exception e){
-            System.out.println("chyba training");
+            System.out.println("chyba medical record");
         }
     }
 
@@ -86,7 +91,11 @@ public class MedicalRecordController {
         date.setValue(LocalDate.now());
 
 
-        medicalRecordTable.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("date"));
+       // medicalRecordTable.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("date"));
+        mrDateColumn.setCellValueFactory(cellValue -> {
+            DateFormat df = new SimpleDateFormat("dd.MM.yyyy");
+            return new SimpleStringProperty(df.format(new Date(cellValue.getValue().getDate().getTime())));
+        });
         medicalRecordTable.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("height"));
         medicalRecordTable.getColumns().get(2).setCellValueFactory(new PropertyValueFactory<>("weight"));
         medicalRecordTable.getColumns().get(3).setCellValueFactory(new PropertyValueFactory<>("fat"));

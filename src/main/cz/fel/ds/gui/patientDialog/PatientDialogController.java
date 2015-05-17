@@ -1,13 +1,17 @@
 package cz.fel.ds.gui.patientDialog;
 
+import cz.fel.ds.database.model.MedicalRecord;
 import cz.fel.ds.database.model.Patient;
 import cz.fel.ds.database.services.BasicService;
 import cz.fel.ds.gui.DialogFactory;
 import cz.fel.ds.gui.GuiTool;
 import cz.fel.ds.gui.mainPage.MainPageController;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
@@ -38,6 +42,9 @@ public class PatientDialogController {
     private DatePicker dietStarted;
     @FXML
     private Button delete;
+    @FXML
+    private ComboBox<String> gender;
+
 
     private Patient p;
     private MainPageController mpc;
@@ -59,6 +66,10 @@ public class PatientDialogController {
             p.setEmail(email.getText());
             p.setBirthdate(GuiTool.localDateToDate(birthdate.getValue()));
             p.setDietStarted(GuiTool.localDateToDate(dietStarted.getValue()));
+
+            p.setGender((gender.getValue().equalsIgnoreCase("Female"))?"F":"M");
+
+
 
             if(basicService.savePatient(patient)){
                 mpc.refreshAllTables();
@@ -88,6 +99,12 @@ public class PatientDialogController {
 
     public void init(Patient p, MainPageController mpc){
         this.mpc=mpc;
+        ObservableList<String> g = FXCollections.observableArrayList();
+        g.add("Male");
+        g.add("Female");
+        gender.setItems(g);
+
+
         if(p!=null) {
             System.out.println(p);
             this.p = p;
@@ -96,13 +113,16 @@ public class PatientDialogController {
             lastName.setText(p.getLastName());
             phone.setText(p.getPhone());
             email.setText(p.getEmail());
+            gender.setValue((p.getGender().equalsIgnoreCase("M")) ?"Male":"Female");
 
             birthdate.setValue(GuiTool.dateToLocalDate(p.getBirthdate()));
             dietStarted.setValue(GuiTool.dateToLocalDate(p.getDietStarted()));
 
         } else {
+            gender.setValue("Male");
             delete.setDisable(true);
         }
+
     }
 
 

@@ -85,7 +85,7 @@ public class DialogFactory {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("patientDialog/patient_dialog.fxml"));
 
             Parent root=loader.load();
-            stage.setTitle((patient==null)?"New Patient":"Patient detail");
+            stage.setTitle((patient==null)?"New Patient":patient.getFirstName()+" "+patient.getLastName());
             stage.setResizable(false);
             stage.setScene(new Scene(root,300,470));
             stage.show();

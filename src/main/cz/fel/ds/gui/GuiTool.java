@@ -59,6 +59,7 @@ public class GuiTool extends Application {
     }
 
     public static Double stringToDouble(String s) throws Exception{
+        if(s.equalsIgnoreCase(""))throw new Exception();
         return Double.valueOf(s);
     }
 }

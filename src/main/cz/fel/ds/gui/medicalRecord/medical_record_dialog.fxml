@@ -17,7 +17,7 @@
                <children>
                   <TableView fx:id="medicalRecordTable" layoutX="14.0" layoutY="14.0" prefHeight="388.0" prefWidth="666.0">
                     <columns>
-                      <TableColumn prefWidth="117.0" text="Date" />
+                      <TableColumn fx:id="mrDateColumn" prefWidth="117.0" text="Date" />
                         <TableColumn prefWidth="63.0" text="Height" />
                         <TableColumn prefWidth="77.0" text="Weight" />
                         <TableColumn prefWidth="126.0" text="Fat percentage" />
