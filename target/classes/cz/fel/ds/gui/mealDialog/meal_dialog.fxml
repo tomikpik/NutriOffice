@@ -27,8 +27,7 @@
             <HBox GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
             <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
                <children>
-                  <TextField fx:id="searchFood" prefHeight="25.0" prefWidth="213.0" />
-                  <Button mnemonicParsing="false" onAction="#foodSearch" prefHeight="25.0" prefWidth="54.0" text="Search" />
+                  <TextField fx:id="searchFood" onKeyReleased="#foodSearch" prefHeight="25.0" prefWidth="314.0" promptText="Type in meal name" />
                </children>
             </HBox>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Meal ingredients" GridPane.rowIndex="2" />
@@ -69,14 +68,15 @@
             </GridPane>
             <TableView fx:id="mealFoodsTable" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="4">
               <columns>
-                <TableColumn fx:id="mtfTableName" prefWidth="75.0" text="C1" />
-                <TableColumn prefWidth="75.0" text="C2" />
+                <TableColumn fx:id="mtfTableName" prefWidth="135.0" text="name" />
+                <TableColumn prefWidth="60.0" text="quantity" />
+                  <TableColumn fx:id="mtfTableNameTotalKj" prefWidth="58.0" text="total kJ" />
               </columns>
             </TableView>
             <TableView fx:id="foodTable" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
               <columns>
-                <TableColumn prefWidth="75.0" text="C1" />
-                <TableColumn prefWidth="75.0" text="C2" />
+                <TableColumn prefWidth="201.0" text="name" />
+                <TableColumn prefWidth="57.0" text="kJ" />
               </columns>
             </TableView>
          </children>

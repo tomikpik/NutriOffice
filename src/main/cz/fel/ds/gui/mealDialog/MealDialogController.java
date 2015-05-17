@@ -9,12 +9,15 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+
+import java.text.DecimalFormat;
 
 /**
  * Created by Tom on 14. 5. 2015.
@@ -37,6 +40,8 @@ public class MealDialogController {
     private Button delete;
     @FXML
     private TableColumn<MealToFood,String> mtfTableName;
+    @FXML
+    private TableColumn<MealToFood,String> mtfTableNameTotalKj;
 
     private ObservableList<Food> dataFood;
     private ObservableList<MealToFood> dataMealToFood;
@@ -44,15 +49,13 @@ public class MealDialogController {
     private MainPageController mpc;
 
     @FXML
-    public void foodSearch(ActionEvent event) {
+    public void foodSearch(Event event) {
         dataFood.clear();
         dataFood.addAll(searchService.foodSearch(searchFood.getText().toLowerCase()));
-        dataMealToFood.clear();
-        dataMealToFood.addAll(searchService.mealToFoodSearchByMeal(meal));
     }
 
     @FXML
-    public void addFood(ActionEvent event) {
+    public void addFood(Event event) {
         try{
             Food food = foodTable.getSelectionModel().getSelectedItem();
             if(food==null)throw new Exception();
@@ -72,26 +75,26 @@ public class MealDialogController {
             mtf.setQuantity(q);
 
             basicService.saveMealToFood(mtf);
-
+            refreshTables();
         }catch(Exception e){
             System.out.println("chyba training");
         }
     }
 
     @FXML
-    public void removeFood(ActionEvent event) {
+    public void removeFood(Event event) {
         try{
             MealToFood mtf = mealFoodsTable.getSelectionModel().getSelectedItem();
             if(mtf==null)throw new Exception();
             basicService.deleteMealToFood(mtf);
-
+            refreshTables();
         }catch(Exception e){
             System.out.println("chyba meal");
         }
     }
 
     @FXML
-    public void saveMeal(ActionEvent event) {
+    public void saveMeal(Event event) {
         try {
             Meal m = (meal==null)?new Meal():meal;
             if(mealName.getText().equals(""))throw new Exception();
@@ -108,7 +111,7 @@ public class MealDialogController {
     }
 
     @FXML
-    public void deleteMeal(ActionEvent event) {
+    public void deleteMeal(Event event) {
         if(meal!=null){
             basicService.deleteMeal(meal);
             mpc.refreshAllTables();
@@ -130,16 +133,27 @@ public class MealDialogController {
         //load exercises
         //load exerciseToTrainingProgram
         foodTable.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("foodName"));
+        foodTable.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("energyValue"));
         dataFood = FXCollections.observableArrayList();
         foodTable.setItems(dataFood);
-        dataFood.clear();
-        dataFood.addAll(searchService.foodSearch(searchFood.getText().toLowerCase()));
+
 
         //table with assigned exercises
         mtfTableName.setCellValueFactory(cellValue -> new SimpleStringProperty(cellValue.getValue().getFood().getFoodName()));
         mealFoodsTable.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("quantity"));
+        mtfTableNameTotalKj.setCellValueFactory(cellValue -> {
+            Double kjkg = cellValue.getValue().getQuantity()*cellValue.getValue().getFood().getEnergyValue();
+            DecimalFormat df = new DecimalFormat("#.0");
+            return new SimpleStringProperty(df.format(kjkg));
+        });
         dataMealToFood = FXCollections.observableArrayList();
         mealFoodsTable.setItems(dataMealToFood);
+        refreshTables();
+    }
+
+    private void refreshTables(){
+        dataFood.clear();
+        dataFood.addAll(searchService.foodSearch(searchFood.getText().toLowerCase()));
         dataMealToFood.clear();
         dataMealToFood.addAll(searchService.mealToFoodSearchByMeal(meal));
     }

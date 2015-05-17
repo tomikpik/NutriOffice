@@ -16,7 +16,7 @@
                             <columns>
                                 <TableColumn editable="false" minWidth="0.0" prefWidth="91.0" resizable="false" sortable="false" text="ID" />
                                 <TableColumn editable="false" prefWidth="326.0" resizable="false" sortable="false" text="first name" />
-                                <TableColumn editable="false" prefWidth="354.0" resizable="false" sortable="false" text="last name" />
+                                <TableColumn editable="false" prefWidth="346.0" resizable="false" sortable="false" text="last name" />
                             </columns>
                             <columnResizePolicy>
                                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -50,8 +50,7 @@
                         </TableView>
                         <TableView fx:id="mealTable" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                           <columns>
-                            <TableColumn editable="false" prefWidth="187.0" resizable="false" sortable="false" text="name" />
-                              <TableColumn editable="false" prefWidth="66.0" resizable="false" sortable="false" text="kJ" />
+                            <TableColumn editable="false" prefWidth="246.0" resizable="false" sortable="false" text="name" />
                           </columns>
                         </TableView>
                         <TableView fx:id="foodTable" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2">

@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.fel.ds.gui.mealDialog.MealDialogController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.fel.ds.gui.trainingDialog.TrainingDialogController">
    <children>
       <GridPane layoutX="14.0" layoutY="14.0" prefHeight="549.0" prefWidth="570.0">
         <columnConstraints>
@@ -27,13 +28,14 @@
             <HBox GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
             <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
                <children>
-                  <TextField fx:id="searchFood" onKeyReleased="#foodSearch" prefHeight="25.0" prefWidth="314.0" promptText="Type in meal name" />
+                  <TextField fx:id="searchExercise" prefHeight="25.0" prefWidth="213.0" />
+                  <Button mnemonicParsing="false" onAction="#exerciseSearch" prefHeight="25.0" prefWidth="54.0" text="Search" />
                </children>
             </HBox>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Meal ingredients" GridPane.rowIndex="2" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Available ingredients" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Meal name" />
-            <TextField fx:id="mealName" GridPane.rowIndex="1" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Training program exercises" GridPane.rowIndex="2" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Available exercises" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Training program name" />
+            <TextField fx:id="trainingProgramName" GridPane.rowIndex="1" />
             <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                <children>
                   <GridPane prefHeight="357.0" prefWidth="51.0">
@@ -45,14 +47,14 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Button mnemonicParsing="false" onAction="#addFood" text="&lt;&lt;" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
-                        <Button mnemonicParsing="false" onAction="#removeFood" text="&gt;&gt;" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+                        <Button mnemonicParsing="false" onAction="#addExercise" text="&lt;&lt;" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
+                        <Button mnemonicParsing="false" onAction="#removeExercise" text="&gt;&gt;" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP" />
                      </children>
                   </GridPane>
                </children>
             </VBox>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Quantity" GridPane.rowIndex="5" />
-            <TextField fx:id="quantity" GridPane.rowIndex="6" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Duration" GridPane.rowIndex="5" />
+            <TextField fx:id="duration" GridPane.rowIndex="6" />
             <GridPane GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="6">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="203.0" minWidth="10.0" prefWidth="201.0" />
@@ -62,21 +64,20 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button fx:id="delete" mnemonicParsing="false" onAction="#deleteMeal" text="Delete" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                  <Button mnemonicParsing="false" onAction="#saveMeal" text="Save" GridPane.halignment="RIGHT" />
+                  <Button fx:id="delete" mnemonicParsing="false" onAction="#deleteTrainingProgram" text="Delete" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                  <Button mnemonicParsing="false" onAction="#saveTrainingProgram" text="Save" GridPane.halignment="RIGHT" />
                </children>
             </GridPane>
-            <TableView fx:id="mealFoodsTable" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="4">
+            <TableView fx:id="trainingProgramExercisesTable" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="4">
               <columns>
-                <TableColumn fx:id="mtfTableName" prefWidth="135.0" text="name" />
-                <TableColumn prefWidth="60.0" text="quantity" />
-                  <TableColumn fx:id="mtfTableNameTotalKj" prefWidth="58.0" text="total kJ" />
+                <TableColumn fx:id="ettpTableName" prefWidth="127.0" text="Name" />
+                <TableColumn fx:id="ettpTableDuration" prefWidth="121.0" text="Duration" />
               </columns>
             </TableView>
-            <TableView fx:id="foodTable" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
+            <TableView fx:id="exerciseTable" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
               <columns>
-                <TableColumn prefWidth="201.0" text="name" />
-                <TableColumn prefWidth="57.0" text="kJ" />
+                <TableColumn prefWidth="166.0" text="Name" />
+                <TableColumn prefWidth="84.0" text="kJ/kg/min" />
               </columns>
             </TableView>
          </children>
