@@ -119,8 +119,7 @@ public class MainPageController {
 
     @FXML
     public void dietAdd(ActionEvent event) {
-        //open new diet dialog
-        System.out.println("add diet");
+        dialogFactory.showDiet(null);
     }
 
     @FXML
@@ -208,6 +207,23 @@ public class MainPageController {
 
         dataMeals = FXCollections.observableArrayList();
         mealTable.setItems(dataMeals);
+
+        //DIETS
+        dietTable.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("name"));
+        dietTable.setRowFactory(tv -> {
+            TableRow<Diet> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2 && (!row.isEmpty()))
+                {
+                    dialogFactory.showDiet(row.getItem());
+                }
+            });
+            return row;
+        });
+
+        dataDiets = FXCollections.observableArrayList();
+        dietTable.setItems(dataDiets);
+
         refreshAllTables();
     }
 
@@ -226,5 +242,8 @@ public class MainPageController {
 
         dataFood.clear();
         dataFood.addAll(searchService.foodSearch(foodSearch.getText()));
+
+        dataDiets.clear();
+        dataDiets.addAll(searchService.dietSearch(dietSearch.getText()));
     }
 }

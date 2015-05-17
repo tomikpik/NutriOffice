@@ -17,6 +17,7 @@ public class SearchService
     TrainingProgramToPatientDAO trainingProgramToPatientDAO = new TrainingProgramToPatientDAO();
     DietDAO dietDAO = new DietDAO();
     MealDAO mealDAO = new MealDAO();
+    MealScheduleDAO mealScheduleDAO = new MealScheduleDAO();
     MealTypeDAO mealTypeDAO = new MealTypeDAO();
     MealToFoodDAO mealToFoodDAO = new MealToFoodDAO();
     MedicalRecordDAO medicalRecordDAO = new MedicalRecordDAO();
@@ -74,7 +75,17 @@ public class SearchService
 
     public ObservableList<MealType> mealTypesAll()
     {
-        return mealTypeDAO.selectObjectsTo("all","");
+        return mealTypeDAO.selectObjectsTo("all", "");
+    }
+
+    public ObservableList<Meal> mealsAll()
+    {
+        return mealDAO.selectObjectsTo("all", "");
+    }
+
+    public ObservableList<MealSchedule> mealSchedulesToDiet(Diet d)
+    {
+        return mealScheduleDAO.selectObjectsTo("diet",d);
     }
 
     public ObservableList<MealToFood> mealToFoodSearch(String input)

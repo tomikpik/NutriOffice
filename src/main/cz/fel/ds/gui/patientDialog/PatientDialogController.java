@@ -106,7 +106,7 @@ public class PatientDialogController {
     @FXML
     public void showDiet(ActionEvent event)
     {
-        new DialogFactory(null).showDiet(p);
+        new DialogFactory(null).showDietToPatient(p);
     }
 
     public void init(Patient p, MainPageController mpc){

@@ -21,6 +21,14 @@ public class MealSchedule implements Serializable
         mealScheduleId.set(-1);
     }
 
+    public MealSchedule(int order, MealType mealType, Meal meal, Diet diet)
+    {
+        this.order = new SimpleIntegerProperty(order);
+        this.mealType = mealType;
+        this.meal = meal;
+        this.diet = diet;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "meal_schedule_id", unique = true, precision = 5, scale = 0)

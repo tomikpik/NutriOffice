@@ -21,6 +21,8 @@ public class Diet implements Serializable
         setDietId(-1);
     }
 
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "diet_id", unique = true, precision = 5, scale = 0)
