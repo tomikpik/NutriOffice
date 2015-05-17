@@ -7,6 +7,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
 /**
@@ -84,14 +85,12 @@ public class PatientDAO
                     int i = Integer.parseInt((String)value);
                     crit = HibernateUtil.getSession().createCriteria(Patient.class);
                     crit.add(Restrictions.or(Restrictions.or(Restrictions.ilike("lastName", value + "%"), Restrictions.ilike("firstName", value + "%")), Restrictions.eq("patientId", i)));
-                    System.out.println(i);
                 } catch(Exception e){
-                    e.printStackTrace();
                     crit = HibernateUtil.getSession().createCriteria(Patient.class);
                     crit.add(Restrictions.or(Restrictions.ilike("lastName", value + "%"), Restrictions.ilike("firstName", value + "%")));
                 }
-
-
+                //sort podle patient id
+                crit.addOrder(Order.asc("patientId"));
 
 
                 listOfPatients = FXCollections.observableList(crit.list());

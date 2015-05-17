@@ -3,6 +3,7 @@ package cz.fel.ds.gui.foodDialog;
 import cz.fel.ds.database.model.Food;
 import cz.fel.ds.gui.GuiTool;
 import cz.fel.ds.database.services.BasicService;
+import cz.fel.ds.gui.mainPage.MainPageController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -14,6 +15,7 @@ import javafx.scene.control.TextField;
 public class FoodDialogController {
     private Food food;
     private BasicService basicService =new BasicService();
+    private MainPageController mpc;
 
 
     @FXML
@@ -23,7 +25,8 @@ public class FoodDialogController {
     @FXML
     private Button delete;
 
-    public void setFood(Food food){
+    public void init(Food food, MainPageController mpc){
+        this.mpc=mpc;
         this.food=food;
         if(food!=null){
             name.setText(food.getFoodName());
@@ -41,6 +44,7 @@ public class FoodDialogController {
             Float ev = Float.parseFloat(energy.getText());
             f.setEnergyValue(ev);
             if(basicService.saveFood(f)){
+                mpc.refreshAllTables();
                 GuiTool.closeDialog(delete);
             }else{
                 System.out.println("food save failed - service");
@@ -55,6 +59,7 @@ public class FoodDialogController {
     public void deleteFood(ActionEvent event){
         if(food!=null){
             basicService.deleteFood(food);
+            mpc.refreshAllTables();
             GuiTool.closeDialog(delete);
         }
     }

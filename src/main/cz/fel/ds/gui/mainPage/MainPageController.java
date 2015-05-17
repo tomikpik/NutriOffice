@@ -19,7 +19,7 @@ import javafx.scene.input.KeyEvent;
  * Created by Tom on 14. 5. 2015.
  */
 public class MainPageController {
-    private DialogFactory dialogFactory = new DialogFactory();
+    private DialogFactory dialogFactory = new DialogFactory(this);
     private SearchService searchService = new SearchService();
 
 
@@ -202,7 +202,10 @@ public class MainPageController {
 
         dataMeals = FXCollections.observableArrayList();
         mealTable.setItems(dataMeals);
+        refreshAllTables();
+    }
 
+    public void refreshAllTables(){
         dataPacients.clear();
         dataPacients.addAll(searchService.patientsSearch(pacientSearch.getText()));
 
@@ -217,7 +220,5 @@ public class MainPageController {
 
         dataFood.clear();
         dataFood.addAll(searchService.foodSearch(foodSearch.getText()));
-
-
     }
 }

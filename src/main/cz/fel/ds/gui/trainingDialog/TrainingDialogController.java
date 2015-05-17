@@ -7,6 +7,7 @@ import cz.fel.ds.database.model.TrainingProgram;
 import cz.fel.ds.database.services.BasicService;
 import cz.fel.ds.database.services.SearchService;
 import cz.fel.ds.gui.GuiTool;
+import cz.fel.ds.gui.mainPage.MainPageController;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -45,6 +46,7 @@ public class TrainingDialogController {
     private ObservableList<Exercise> dataExercises;
     private ObservableList<ExerciseToTrainingProgram> dataExerciseToTrainingProgram;
     private TrainingProgram tp;
+    private MainPageController mpc;
 
     @FXML
     public void exerciseSearch(ActionEvent event) {
@@ -100,6 +102,7 @@ public class TrainingDialogController {
             if(trainingProgramName.getText().equals(""))throw new Exception();
             f.setName(trainingProgramName.getText());
             if(basicService.saveTrainingProgram(f)){
+                mpc.refreshAllTables();
                 GuiTool.closeDialog(duration);
             }else{
                 System.out.println("training program save failed - service");
@@ -114,11 +117,13 @@ public class TrainingDialogController {
     public void deleteTrainingProgram(ActionEvent event) {
         if(tp!=null){
             basicService.deleteTrainingProgram(tp);
+            mpc.refreshAllTables();
             GuiTool.closeDialog(delete);
         }
     }
 
-    public void init(TrainingProgram trainingProgram) {
+    public void init(TrainingProgram trainingProgram, MainPageController mpc) {
+        this.mpc=mpc;
         if(trainingProgram!=null) {
             trainingProgramName.setText(trainingProgram.getName());
             tp=trainingProgram;

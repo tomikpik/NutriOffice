@@ -15,6 +15,8 @@ public class BasicService {
     MealToFoodDAO mealToFoodDAO = new MealToFoodDAO();
     DietDAO dietDAO = new DietDAO();
     MealDAO mealDAO = new MealDAO();
+    PatientDAO patientDAO = new PatientDAO();
+    MedicalRecordDAO medicalRecordDAO = new MedicalRecordDAO();
 
     public boolean saveFood(Food food)
     {
@@ -98,4 +100,20 @@ public class BasicService {
     }
 
 
+    public boolean savePatient(Patient patient) {
+        patientDAO.create(patient);
+        return true;
+    }
+
+    public void deletePatient(Patient patient){
+        patientDAO.delete(patient);
+    }
+
+    public void saveMedicalRecord(MedicalRecord mr) {
+        medicalRecordDAO.updateOrInsertIfNotExists(mr);
+    }
+
+    public void deleteMedicalRecord(MedicalRecord mr) {
+        medicalRecordDAO.delete(mr);
+    }
 }

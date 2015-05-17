@@ -4,6 +4,7 @@ import cz.fel.ds.database.model.*;
 import cz.fel.ds.database.services.BasicService;
 import cz.fel.ds.database.services.SearchService;
 import cz.fel.ds.gui.GuiTool;
+import cz.fel.ds.gui.mainPage.MainPageController;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -40,6 +41,7 @@ public class MealDialogController {
     private ObservableList<Food> dataFood;
     private ObservableList<MealToFood> dataMealToFood;
     private Meal meal;
+    private MainPageController mpc;
 
     @FXML
     public void foodSearch(ActionEvent event) {
@@ -95,6 +97,7 @@ public class MealDialogController {
             if(mealName.getText().equals(""))throw new Exception();
             m.setMealName(mealName.getText());
             if(basicService.saveMeal(m)){
+                mpc.refreshAllTables();
                 GuiTool.closeDialog(quantity);
             }else{
                 System.out.println("meal save failed - service");
@@ -108,12 +111,13 @@ public class MealDialogController {
     public void deleteMeal(ActionEvent event) {
         if(meal!=null){
             basicService.deleteMeal(meal);
+            mpc.refreshAllTables();
             GuiTool.closeDialog(delete);
         }
     }
 
-    public void init(Meal meal) {
-
+    public void init(Meal meal, MainPageController mpc) {
+        this.mpc=mpc;
 
         if(meal!=null) {
             mealName.setText(meal.getMealName());

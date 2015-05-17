@@ -3,6 +3,7 @@ package cz.fel.ds.gui.exerciseDialog;
 import cz.fel.ds.database.model.Exercise;
 import cz.fel.ds.gui.GuiTool;
 import cz.fel.ds.database.services.BasicService;
+import cz.fel.ds.gui.mainPage.MainPageController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -14,6 +15,7 @@ import javafx.scene.control.TextField;
 public class ExerciseDialogController {
     private Exercise exercise;
     private BasicService basicService =new BasicService();
+    private MainPageController mpc;
 
     @FXML
     private TextField name;
@@ -22,7 +24,8 @@ public class ExerciseDialogController {
     @FXML
     private Button delete;
 
-    public void setExcercise(Exercise exercise){
+    public void init(Exercise exercise, MainPageController mpc){
+        this.mpc=mpc;
         this.exercise=exercise;
         if(exercise!=null){
             name.setText(exercise.getName());
@@ -41,6 +44,7 @@ public class ExerciseDialogController {
             Float ev = Float.parseFloat(energy.getText());
             f.setKjkgmin(ev);
             if(basicService.saveExcercise(f)){
+                mpc.refreshAllTables();
                 GuiTool.closeDialog(delete);
             }else{
                 System.out.println("excercise save failed - service");
@@ -54,6 +58,7 @@ public class ExerciseDialogController {
     public void deleteExcercise(ActionEvent event){
         if(exercise!=null){
             basicService.deleteExcercise(exercise);
+            mpc.refreshAllTables();
             GuiTool.closeDialog(delete);
         }
     }

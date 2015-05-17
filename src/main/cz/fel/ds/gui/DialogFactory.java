@@ -3,6 +3,7 @@ package cz.fel.ds.gui;
 import cz.fel.ds.database.model.*;
 import cz.fel.ds.gui.exerciseDialog.ExerciseDialogController;
 import cz.fel.ds.gui.foodDialog.FoodDialogController;
+import cz.fel.ds.gui.mainPage.MainPageController;
 import cz.fel.ds.gui.mealDialog.MealDialogController;
 import cz.fel.ds.gui.medicalRecord.MedicalRecordController;
 import cz.fel.ds.gui.patientDialog.PatientDialogController;
@@ -18,6 +19,12 @@ import java.io.IOException;
  * Created by Tom on 16. 5. 2015.
  */
 public class DialogFactory {
+    private MainPageController mpc;
+
+    public DialogFactory(MainPageController mpc){
+        this.mpc=mpc;
+    }
+
     public void showExerciseDialog(Exercise exercise){
         try{
             String title = (exercise==null)?"New excercise":"Excercise";
@@ -29,7 +36,7 @@ public class DialogFactory {
             stage.setScene(new Scene(root,300,150));
             stage.show();
             ExerciseDialogController c = loader.getController();
-            c.setExcercise(exercise);
+            c.init(exercise,mpc);
         }catch(IOException e){
             e.printStackTrace();
         }
@@ -47,19 +54,20 @@ public class DialogFactory {
             stage.setScene(new Scene(root,300,150));
             stage.show();
             FoodDialogController c = loader.getController();
-            c.setFood(food);
+            c.init(food,mpc);
         }catch(IOException e){
             e.printStackTrace();
         }
     }
 
     public void showMedicalRecordDialog(Patient p){
+        if(p==null)return;
         try {
             Stage stage = new Stage();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("medicalRecord/medical_record_dialog.fxml"));
 
             Parent root = loader.load();
-            stage.setTitle("Medical records");
+            stage.setTitle("Medical records - "+p.getFirstName()+" "+p.getLastName());
             stage.setResizable(false);
             stage.setScene(new Scene(root, 700,600));
             stage.show();
@@ -79,10 +87,10 @@ public class DialogFactory {
             Parent root=loader.load();
             stage.setTitle((patient==null)?"New Patient":"Patient detail");
             stage.setResizable(false);
-            stage.setScene(new Scene(root,433,433));
+            stage.setScene(new Scene(root,300,470));
             stage.show();
             PatientDialogController controller = loader.getController();
-            controller.init(patient);
+            controller.init(patient,mpc);
         }catch (IOException e){
             e.printStackTrace();
             System.out.println("oops");
@@ -99,7 +107,7 @@ public class DialogFactory {
             stage.setScene(new Scene(root,600,600));
             stage.show();
             TrainingDialogController controller = loader.getController();
-            controller.init(trainingProgram);
+            controller.init(trainingProgram,mpc);
 
         }catch (IOException e){
             System.out.println("oops");
@@ -116,7 +124,7 @@ public class DialogFactory {
             stage.setScene(new Scene(root,600,600));
             stage.show();
             MealDialogController controller = loader.getController();
-            controller.init(meal);
+            controller.init(meal,mpc);
 
         }catch (IOException e){
             System.out.println("oops");

@@ -17,6 +17,7 @@ public class SearchService
     DietDAO dietDAO = new DietDAO();
     MealDAO mealDAO = new MealDAO();
     MealToFoodDAO mealToFoodDAO = new MealToFoodDAO();
+    MedicalRecordDAO medicalRecordDAO = new MedicalRecordDAO();
 
 
     public ObservableList<Patient> patientsSearch(String input)
@@ -70,4 +71,7 @@ public class SearchService
         return mealToFoodDAO.selectObjectsTo("all","");
     }
 
+    public ObservableList<MedicalRecord> medicalRecordsByPatient(Patient p) {
+        return medicalRecordDAO.selectObjectsTo("patient",p);
+    }
 }

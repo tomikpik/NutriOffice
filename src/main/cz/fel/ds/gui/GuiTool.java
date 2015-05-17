@@ -11,6 +11,11 @@ import javafx.scene.control.Control;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
+
 /**
  * Created by Tom on 16. 5. 2015.
  */
@@ -43,5 +48,17 @@ public class GuiTool extends Application {
     public static void closeDialog(Control c) {
         Stage stage = (Stage) c.getScene().getWindow();
         stage.close();
+    }
+
+    public static LocalDate dateToLocalDate(Date d){
+        return new Date(d.getTime()).toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+    }
+
+    public static Date localDateToDate(LocalDate d){
+        return Date.from(Instant.from(d.atStartOfDay(ZoneId.systemDefault())));
+    }
+
+    public static Double stringToDouble(String s) throws Exception{
+        return Double.valueOf(s);
     }
 }

@@ -147,4 +147,18 @@ public class MedicalRecord implements Serializable
         result = 31 * result + patient.hashCode();
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "MedicalRecord{" +
+                "height=" + height +
+                ", weight=" + weight +
+                ", fat=" + fat +
+                ", waist=" + waist +
+                ", hip=" + hip +
+                ", chest=" + chest +
+                ", date=" + date +
+                ", patient=" + patient +
+                '}';
+    }
 }
