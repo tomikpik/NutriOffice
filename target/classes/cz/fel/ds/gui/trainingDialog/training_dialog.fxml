@@ -28,8 +28,7 @@
             <HBox GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
             <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
                <children>
-                  <TextField fx:id="searchExercise" prefHeight="25.0" prefWidth="213.0" />
-                  <Button mnemonicParsing="false" onAction="#exerciseSearch" prefHeight="25.0" prefWidth="54.0" text="Search" />
+                  <TextField fx:id="searchExercise" onKeyReleased="#exerciseSearch" prefHeight="25.0" prefWidth="278.0" promptText="Type in exercise name" />
                </children>
             </HBox>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Training program exercises" GridPane.rowIndex="2" />
@@ -70,14 +69,15 @@
             </GridPane>
             <TableView fx:id="trainingProgramExercisesTable" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="4">
               <columns>
-                <TableColumn fx:id="ettpTableName" prefWidth="127.0" text="Name" />
-                <TableColumn fx:id="ettpTableDuration" prefWidth="121.0" text="Duration" />
+                <TableColumn fx:id="ettpTableName" prefWidth="147.0" text="name" />
+                <TableColumn fx:id="ettpTableDuration" prefWidth="51.0" text="min" />
+                  <TableColumn fx:id="ettpTableKjKg" prefWidth="61.0" text="kj/kg" />
               </columns>
             </TableView>
             <TableView fx:id="exerciseTable" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
               <columns>
-                <TableColumn prefWidth="166.0" text="Name" />
-                <TableColumn prefWidth="84.0" text="kJ/kg/min" />
+                <TableColumn prefWidth="179.0" text="name" />
+                <TableColumn text="kJ/kg/min" />
               </columns>
             </TableView>
          </children>

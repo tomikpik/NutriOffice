@@ -3,6 +3,7 @@ package cz.fel.ds.gui.mainPage;
 import cz.fel.ds.database.model.*;
 import cz.fel.ds.database.services.SearchService;
 import cz.fel.ds.gui.DialogFactory;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -14,6 +15,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
+
+import java.text.DecimalFormat;
 
 /**
  * Created by Tom on 14. 5. 2015.
