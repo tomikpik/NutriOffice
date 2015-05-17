@@ -26,6 +26,10 @@ public class Patient implements Serializable
     private Date dietStarted;
     private Diet diet;
 
+    public Patient(){
+        patientId=-1;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "patient_id", unique = true, precision = 5, scale = 0)

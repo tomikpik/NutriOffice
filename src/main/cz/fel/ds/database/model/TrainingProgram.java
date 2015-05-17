@@ -16,6 +16,10 @@ public class TrainingProgram implements Serializable
     private int trainingProgramId;
     private SimpleStringProperty name = new SimpleStringProperty();
 
+    public TrainingProgram(){
+        trainingProgramId=-1;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "training_program_id", unique = true, precision = 5, scale = 0)
