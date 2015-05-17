@@ -11,7 +11,7 @@
             <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                     <children>
-                        <TextField fx:id="pacientSearch" layoutX="14.0" layoutY="14.0" onKeyReleased="#patientsSearch" prefHeight="25.0" prefWidth="771.0" promptText="Start typing name or ID number to find patient" />
+                        <TextField fx:id="pacientSearch" layoutX="14.0" layoutY="14.0" onKeyReleased="#patientsSearch" prefHeight="25.0" prefWidth="660.0" promptText="Start typing name or ID number to find patient" />
                         <TableView fx:id="patientsTable" cacheShape="false" centerShape="false" depthTest="DISABLE" focusTraversable="false" layoutX="14.0" layoutY="83.0" pickOnBounds="false" prefHeight="473.0" prefWidth="772.0" scaleShape="false">
                             <columns>
                                 <TableColumn editable="false" minWidth="0.0" prefWidth="91.0" resizable="false" sortable="false" text="ID" />
@@ -23,6 +23,7 @@
                             </columnResizePolicy>
                         </TableView>
                   <Text layoutX="103.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search options" wrappingWidth="394.521484375" />
+                  <Button layoutX="680.0" layoutY="14.0" mnemonicParsing="false" onAction="#patientAdd" prefHeight="25.0" prefWidth="104.0" text="Add patient" />
                     </children></AnchorPane>
             </content>
         </Tab>
@@ -50,12 +51,14 @@
                         </TableView>
                         <TableView fx:id="mealTable" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                           <columns>
-                            <TableColumn prefWidth="253.0" text="Name" />
+                            <TableColumn editable="false" prefWidth="187.0" resizable="false" sortable="false" text="Name" />
+                              <TableColumn editable="false" prefWidth="66.0" resizable="false" sortable="false" text="kJ" />
                           </columns>
                         </TableView>
                         <TableView fx:id="foodTable" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
                           <columns>
-                            <TableColumn prefWidth="253.0" text="Name" />
+                            <TableColumn prefWidth="196.0" text="Name" />
+                              <TableColumn editable="false" minWidth="3.0" prefWidth="52.0" resizable="false" sortable="false" text="kJ" />
                           </columns>
                         </TableView>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Diet" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
@@ -104,12 +107,15 @@
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Exercise" GridPane.columnIndex="1" />
                         <TableView fx:id="trainingProgramTable" prefHeight="192.0" prefWidth="295.0" GridPane.rowIndex="3">
                           <columns>
-                            <TableColumn prefWidth="294.0" text="Name" />
+                            <TableColumn editable="false" prefWidth="216.0" resizable="false" sortable="false" text="Name" />
+                              <TableColumn editable="false" resizable="false" sortable="false" text="Duration" />
+                              <TableColumn editable="false" resizable="false" sortable="false" text="kJ/kg" />
                           </columns>
                         </TableView>
                         <TableView fx:id="exerciseTable" prefHeight="197.0" prefWidth="253.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                           <columns>
-                            <TableColumn prefWidth="252.0" text="Name" />
+                            <TableColumn editable="false" prefWidth="301.0" sortable="false" text="Name" />
+                              <TableColumn editable="false" prefWidth="79.0" resizable="false" sortable="false" text="kJ/kg/min" />
                           </columns>
                         </TableView>
                         <TextField fx:id="trainingSearch" onKeyReleased="#trainingSearch" GridPane.rowIndex="1" />

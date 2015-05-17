@@ -20,7 +20,7 @@
             <TextField fx:id="phone" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Phone" GridPane.rowIndex="5" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ID" />
-            <Text fx:id="id" strokeType="OUTSIDE" strokeWidth="0.0" text="666" GridPane.columnIndex="1" />
+            <Text fx:id="id" strokeType="OUTSIDE" strokeWidth="0.0" text="none" GridPane.columnIndex="1" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Diet" GridPane.rowIndex="7" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Diet started" GridPane.rowIndex="8" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Training program" GridPane.rowIndex="9" />

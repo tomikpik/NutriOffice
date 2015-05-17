@@ -124,6 +124,11 @@ public class MainPageController {
         System.out.println("add diet");
     }
 
+    @FXML
+    public void patientAdd(ActionEvent event) {
+        dialogFactory.showPatientDialog(null);
+    }
+
     public void init(){
         patientsTable.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("patientId"));
         patientsTable.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("firstName"));
@@ -145,6 +150,7 @@ public class MainPageController {
 
         //exercise
         exerciseTable.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("name"));
+        exerciseTable.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("kjkgmin"));
         exerciseTable.setRowFactory(tv -> {
             TableRow<Exercise> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
@@ -175,6 +181,7 @@ public class MainPageController {
 
         //food
         foodTable.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("foodName"));
+        foodTable.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("energyValue"));
         foodTable.setRowFactory(tv -> {
             TableRow<Food> row = new TableRow<>();
             row.setOnMouseClicked(event -> {

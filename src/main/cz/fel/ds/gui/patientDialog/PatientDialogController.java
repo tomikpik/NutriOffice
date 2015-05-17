@@ -60,14 +60,15 @@ public class PatientDialogController {
     public void savePatient(ActionEvent event){
         try {
             Patient patient = (p==null)?new Patient():p;
-            p.setFirstName(firstName.getText());
-            p.setLastName(lastName.getText());
-            p.setPhone(phone.getText());
-            p.setEmail(email.getText());
-            p.setBirthdate(GuiTool.localDateToDate(birthdate.getValue()));
-            p.setDietStarted(GuiTool.localDateToDate(dietStarted.getValue()));
 
-            p.setGender((gender.getValue().equalsIgnoreCase("Female"))?"F":"M");
+            patient.setFirstName(firstName.getText());
+            patient.setLastName(lastName.getText());
+            patient.setPhone(phone.getText());
+            patient.setEmail(email.getText());
+            patient.setBirthdate(GuiTool.localDateToDate(birthdate.getValue()));
+            patient.setDietStarted(GuiTool.localDateToDate(dietStarted.getValue()));
+
+            patient.setGender((gender.getValue().equalsIgnoreCase("Female"))?"F":"M");
 
 
 
@@ -78,6 +79,7 @@ public class PatientDialogController {
                 System.out.println("patient save failed - service");
             }
         } catch(Exception e){
+            e.printStackTrace();
             System.out.println("patient saving failed - exception");
         }
     }
@@ -103,8 +105,6 @@ public class PatientDialogController {
         g.add("Male");
         g.add("Female");
         gender.setItems(g);
-
-
         if(p!=null) {
             System.out.println(p);
             this.p = p;
