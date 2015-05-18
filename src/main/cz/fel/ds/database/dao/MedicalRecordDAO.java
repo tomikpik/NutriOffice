@@ -21,8 +21,10 @@ public class MedicalRecordDAO
     public int create(MedicalRecord medicalRecord)
     {
         try {
+
             HibernateUtil.getSession().beginTransaction();
             HibernateUtil.getSession().save(medicalRecord);
+            HibernateUtil.getSession().flush();
             HibernateUtil.getSession().getTransaction().commit();
             return 1;
         }catch (Exception e){
@@ -35,6 +37,7 @@ public class MedicalRecordDAO
     {
         HibernateUtil.getSession().beginTransaction();
         MedicalRecord medicalRecord = (MedicalRecord) HibernateUtil.getSession().get(MedicalRecord.class,new MedicalRecord(patient,date));
+        HibernateUtil.getSession().flush();
         HibernateUtil.getSession().getTransaction().commit();
         return medicalRecord;
     }
@@ -45,6 +48,7 @@ public class MedicalRecordDAO
         try
         {
             HibernateUtil.getSession().update(medicalRecord);
+            HibernateUtil.getSession().flush();
             HibernateUtil.getSession().getTransaction().commit();
         }
         catch (Exception ex)
@@ -61,6 +65,7 @@ public class MedicalRecordDAO
         try
         {
             HibernateUtil.getSession().delete(medicalRecord);
+            HibernateUtil.getSession().flush();
             HibernateUtil.getSession().getTransaction().commit();
         }
         catch (Exception ex)
@@ -111,6 +116,7 @@ public class MedicalRecordDAO
 
 
                 listOfMedicalRecords = FXCollections.observableList(crit.list());
+                HibernateUtil.getSession().flush();
                 HibernateUtil.getSession().getTransaction().commit();
                 return listOfMedicalRecords;
                 //q =  HibernateUtil.getSession().createQuery("SELECT c from MedicalRecord c where c.patient=:patient");
@@ -118,11 +124,13 @@ public class MedicalRecordDAO
             default:
                 q =  HibernateUtil.getSession().createQuery("SELECT c from MedicalRecord c");
                 listOfMedicalRecords = FXCollections.observableList(q.list());
+                HibernateUtil.getSession().flush();
                 HibernateUtil.getSession().getTransaction().commit();
                 return listOfMedicalRecords;
         }
         q.setParameter(type, value);
         listOfMedicalRecords = FXCollections.observableList(q.list());
+        HibernateUtil.getSession().flush();
         HibernateUtil.getSession().getTransaction().commit();
         return listOfMedicalRecords;
     }
@@ -133,6 +141,7 @@ public class MedicalRecordDAO
             if ((medicalRecord = this.read(mr.getDate(), mr.getPatient())) != null) {
                 HibernateUtil.getSession().getTransaction().begin();
                 HibernateUtil.getSession().merge(mr);
+                HibernateUtil.getSession().flush();
                 HibernateUtil.getSession().getTransaction().commit();
 
                 //needs to update
@@ -141,6 +150,7 @@ public class MedicalRecordDAO
                 //just save
                 HibernateUtil.getSession().getTransaction().begin();
                 this.create(mr);
+                HibernateUtil.getSession().flush();
                 HibernateUtil.getSession().getTransaction().commit();
             }
         }catch(Exception e){

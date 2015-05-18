@@ -17,6 +17,7 @@ public class MealToFoodDAO
     {
         HibernateUtil.getSession().beginTransaction();
         HibernateUtil.getSession().save(mealToFood);
+        HibernateUtil.getSession().flush();
         HibernateUtil.getSession().getTransaction().commit();
         return 1;
     }
@@ -29,6 +30,7 @@ public class MealToFoodDAO
         mealToFood.setFood(food);
 
         mealToFood = (MealToFood) HibernateUtil.getSession().get(MealToFood.class, mealToFood);
+        HibernateUtil.getSession().flush();
         HibernateUtil.getSession().getTransaction().commit();
         return mealToFood;
     }
@@ -39,6 +41,7 @@ public class MealToFoodDAO
         try
         {
             HibernateUtil.getSession().update(mealToFood);
+            HibernateUtil.getSession().flush();
             HibernateUtil.getSession().getTransaction().commit();
         }
         catch (Exception ex)
@@ -54,6 +57,7 @@ public class MealToFoodDAO
         try
         {
             HibernateUtil.getSession().delete(mealToFood);
+            HibernateUtil.getSession().flush();
             HibernateUtil.getSession().getTransaction().commit();
         }
         catch (Exception ex)
@@ -81,11 +85,13 @@ public class MealToFoodDAO
             default:
                 q =  HibernateUtil.getSession().createQuery("SELECT c from MealToFood c");
                 ObservableList<MealToFood> listOfMealToFoods = FXCollections.observableList(q.list());
+                HibernateUtil.getSession().flush();
                 HibernateUtil.getSession().getTransaction().commit();
                 return listOfMealToFoods;
         }
         q.setParameter(type, value);
         ObservableList<MealToFood> listOfMealToFoods = FXCollections.observableList(q.list());
+        HibernateUtil.getSession().flush();
         HibernateUtil.getSession().getTransaction().commit();
         return listOfMealToFoods;
     }

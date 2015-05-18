@@ -18,6 +18,7 @@ public class ExerciseDAO
     {
         HibernateUtil.getSession().beginTransaction();
         HibernateUtil.getSession().save(exercise);
+        HibernateUtil.getSession().flush();
         HibernateUtil.getSession().getTransaction().commit();
         return exercise.getExerciseId();
     }
@@ -27,6 +28,7 @@ public class ExerciseDAO
         HibernateUtil.getSession().beginTransaction();
         Exercise exercise;
         exercise = (Exercise) HibernateUtil.getSession().get(Exercise.class, id);
+        HibernateUtil.getSession().flush();
         HibernateUtil.getSession().getTransaction().commit();
         return exercise;
     }
@@ -37,6 +39,7 @@ public class ExerciseDAO
         try
         {
             HibernateUtil.getSession().update(exercise);
+            HibernateUtil.getSession().flush();
             HibernateUtil.getSession().getTransaction().commit();
         }
         catch (Exception ex)
@@ -56,6 +59,7 @@ public class ExerciseDAO
             q.setParameter("tpid",exercise.exerciseId);
             q.executeUpdate();
             HibernateUtil.getSession().delete(exercise);
+            HibernateUtil.getSession().flush();
             HibernateUtil.getSession().getTransaction().commit();
         }
         catch (Exception ex)
@@ -85,6 +89,7 @@ public class ExerciseDAO
                 Criteria crit = HibernateUtil.getSession().createCriteria(Exercise.class);
                 crit.add(Restrictions.ilike("name", "%" + value + "%"));
                 listOfExercises = FXCollections.observableList(crit.list());
+                HibernateUtil.getSession().flush();
                 HibernateUtil.getSession().getTransaction().commit();
                 return listOfExercises;
                 //q =  HibernateUtil.getSession().createQuery("SELECT c from Exercise c where c.name like concat(:nameStartsWith, '%') ");
@@ -101,6 +106,7 @@ public class ExerciseDAO
         }
         q.setParameter(type, value);
         listOfExercises = FXCollections.observableList(q.list());
+        HibernateUtil.getSession().flush();
         HibernateUtil.getSession().getTransaction().commit();
         return listOfExercises;
     }

@@ -15,6 +15,7 @@ public class DietDAO
     {
         HibernateUtil.getSession().beginTransaction();
         HibernateUtil.getSession().save(diet);
+        HibernateUtil.getSession().flush();
         HibernateUtil.getSession().getTransaction().commit();
         return diet.getDietId();
     }
@@ -24,6 +25,7 @@ public class DietDAO
         HibernateUtil.getSession().beginTransaction();
         Diet diet;
         diet = (Diet) HibernateUtil.getSession().get(Diet.class, id);
+        HibernateUtil.getSession().flush();
         HibernateUtil.getSession().getTransaction().commit();
         return diet;
     }
@@ -34,6 +36,7 @@ public class DietDAO
         try
         {
             HibernateUtil.getSession().update(diet);
+            HibernateUtil.getSession().flush();
             HibernateUtil.getSession().getTransaction().commit();
         }
         catch (Exception ex)
@@ -49,6 +52,7 @@ public class DietDAO
         try
         {
             HibernateUtil.getSession().delete(diet);
+            HibernateUtil.getSession().flush();
             HibernateUtil.getSession().getTransaction().commit();
         }
         catch (Exception ex)
@@ -79,11 +83,13 @@ public class DietDAO
             default:
                 q =  HibernateUtil.getSession().createQuery("SELECT c from Diet c");
                 ObservableList<Diet> listOfDiets = FXCollections.observableList(q.list());
+                HibernateUtil.getSession().flush();
                 HibernateUtil.getSession().getTransaction().commit();
                 return listOfDiets;
         }
         q.setParameter(type, value);
         ObservableList<Diet> listOfDiets = FXCollections.observableList(q.list());
+        HibernateUtil.getSession().flush();
         HibernateUtil.getSession().getTransaction().commit();
         return listOfDiets;
     }

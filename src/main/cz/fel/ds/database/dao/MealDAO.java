@@ -17,6 +17,7 @@ public class MealDAO
     {
         HibernateUtil.getSession().beginTransaction();
         HibernateUtil.getSession().save(meal);
+        HibernateUtil.getSession().flush();
         HibernateUtil.getSession().getTransaction().commit();
         return meal.getMealId();
     }
@@ -26,6 +27,7 @@ public class MealDAO
         HibernateUtil.getSession().beginTransaction();
         Meal meal;
         meal = (Meal) HibernateUtil.getSession().get(Meal.class, id);
+        HibernateUtil.getSession().flush();
         HibernateUtil.getSession().getTransaction().commit();
         return meal;
     }
@@ -37,6 +39,7 @@ public class MealDAO
         try
         {
             HibernateUtil.getSession().update(meal);
+            HibernateUtil.getSession().flush();
             HibernateUtil.getSession().getTransaction().commit();
         }
         catch (Exception ex)
@@ -52,6 +55,7 @@ public class MealDAO
         try
         {
             HibernateUtil.getSession().delete(meal);
+            HibernateUtil.getSession().flush();
             HibernateUtil.getSession().getTransaction().commit();
         }
         catch (Exception ex)
@@ -80,6 +84,7 @@ public class MealDAO
                 Criteria crit = HibernateUtil.getSession().createCriteria(Meal.class);
                 crit.add(Restrictions.ilike("mealName","%"+value+"%"));
                 listOfMeals = FXCollections.observableList(crit.list());
+                HibernateUtil.getSession().flush();
                 HibernateUtil.getSession().getTransaction().commit();
                 return listOfMeals;
                 //q =  HibernateUtil.getSession().createQuery("SELECT c from Meal c where c.mealName like concat(:nameStartsWith, '%') ");
@@ -88,11 +93,13 @@ public class MealDAO
             default:
                 q =  HibernateUtil.getSession().createQuery("SELECT c from Meal c");
                 listOfMeals = FXCollections.observableList(q.list());
+                HibernateUtil.getSession().flush();
                 HibernateUtil.getSession().getTransaction().commit();
                 return listOfMeals;
         }
         q.setParameter(type, value);
         listOfMeals = FXCollections.observableList(q.list());
+        HibernateUtil.getSession().flush();
         HibernateUtil.getSession().getTransaction().commit();
         return listOfMeals;
     }

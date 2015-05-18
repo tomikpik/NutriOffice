@@ -15,6 +15,7 @@ public class MealScheduleChangeDAO
     {
         HibernateUtil.getSession().beginTransaction();
         HibernateUtil.getSession().save(mealScheduleChange);
+        HibernateUtil.getSession().flush();
         HibernateUtil.getSession().getTransaction().commit();
         return mealScheduleChange.getMealScheduleChangeId();
     }
@@ -24,6 +25,7 @@ public class MealScheduleChangeDAO
         HibernateUtil.getSession().beginTransaction();
         MealScheduleChange mealScheduleChange;
         mealScheduleChange = (MealScheduleChange) HibernateUtil.getSession().get(MealScheduleChange.class, id);
+        HibernateUtil.getSession().flush();
         HibernateUtil.getSession().getTransaction().commit();
         return mealScheduleChange;
     }
@@ -34,6 +36,7 @@ public class MealScheduleChangeDAO
         try
         {
             HibernateUtil.getSession().update(mealScheduleChange);
+            HibernateUtil.getSession().flush();
             HibernateUtil.getSession().getTransaction().commit();
         }
         catch (Exception ex)
@@ -49,6 +52,7 @@ public class MealScheduleChangeDAO
         try
         {
             HibernateUtil.getSession().delete(mealScheduleChange);
+            HibernateUtil.getSession().flush();
             HibernateUtil.getSession().getTransaction().commit();
         }
         catch (Exception ex)
@@ -79,11 +83,13 @@ public class MealScheduleChangeDAO
             default:
                 q =  HibernateUtil.getSession().createQuery("SELECT c from MealScheduleChange c");
                 ObservableList<MealScheduleChange> listOfMealScheduleChanges = FXCollections.observableList(q.list());
+                HibernateUtil.getSession().flush();
                 HibernateUtil.getSession().getTransaction().commit();
                 return listOfMealScheduleChanges;
         }
         q.setParameter(type, value);
         ObservableList<MealScheduleChange> listOfMealScheduleChanges = FXCollections.observableList(q.list());
+        HibernateUtil.getSession().flush();
         HibernateUtil.getSession().getTransaction().commit();
         return listOfMealScheduleChanges;
     }
