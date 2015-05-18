@@ -7,6 +7,7 @@ import cz.fel.ds.database.model.MealType;
 import cz.fel.ds.database.services.BasicService;
 import cz.fel.ds.database.services.SearchService;
 import cz.fel.ds.gui.GuiTool;
+import cz.fel.ds.gui.mainPage.MainPageController;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,6 +21,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
  */
 public class DietController
 {
+    private MainPageController mpc;
     private SearchService searchService = new SearchService();
     private BasicService basicService =new BasicService();
     private Diet d;
@@ -34,6 +36,8 @@ public class DietController
     private TableView<Meal> mealsTable;
     @FXML
     private TableColumn<MealSchedule,String> mstName;
+    @FXML
+    private TableColumn<MealSchedule,String> mstMealTypeName;
     @FXML
     private Button delete;
     @FXML
@@ -99,10 +103,13 @@ public class DietController
                 d.setName(nameOfDietField.getText());
                 basicService.updateDiet(d);
             }
+            mpc.refreshAllTables();
             GuiTool.closeDialog(save);
+
         }
         catch (Exception e)
         {
+            e.printStackTrace();
             System.out.println("error input parameters");
         }
     }
@@ -112,7 +119,9 @@ public class DietController
         try
         {
             if(d != null)basicService.deleteDiet(d);
+            mpc.refreshAllTables();
             GuiTool.closeDialog(delete);
+
         }
         catch (Exception e)
         {
@@ -120,8 +129,9 @@ public class DietController
         }
     }
 
-    public void init(Diet d)
+    public void init(Diet d,MainPageController mpc)
     {
+        this.mpc=mpc;
         this.d=d;
         //FILL COMBOBOX
         if(d != null)nameOfDietField.setText(d.getName());
@@ -144,7 +154,10 @@ public class DietController
         mealsTable.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("mealName"));
         ///kj/100g
         mealScheduleTable.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("order"));
-        mealScheduleTable.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("mealType"));
+        mstMealTypeName.setCellValueFactory(cellValue->{
+            return new SimpleStringProperty(cellValue.getValue().getMealType().getMealTypeName());
+        });
+        //mealScheduleTable.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("mealType"));
         mstName.setCellValueFactory(cellValue -> new SimpleStringProperty(cellValue.getValue().getMeal().getMealName()));
         refreshTable();
     }

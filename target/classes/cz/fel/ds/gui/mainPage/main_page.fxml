@@ -108,7 +108,7 @@
                                 </rowConstraints>
                                  <children>
                                     <Button mnemonicParsing="false" onAction="#dietAdd" text="Add" GridPane.columnIndex="1" />
-                                    <TextField fx:id="dietSearch" prefHeight="25.0" prefWidth="181.0" promptText="Start typing name to search..." />
+                                    <TextField fx:id="dietSearch" onKeyReleased="#dietSearch" prefHeight="25.0" prefWidth="181.0" promptText="Start typing name to search..." />
                                  </children>
                               </GridPane>
                            </children>

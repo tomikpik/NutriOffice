@@ -6,6 +6,7 @@ import cz.fel.ds.util.HibernateUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.hibernate.Criteria;
+import org.hibernate.Hibernate;
 import org.hibernate.Query;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
@@ -35,6 +36,7 @@ public class MedicalRecordDAO
 
     public MedicalRecord read(Date date, Patient patient)
     {
+        HibernateUtil.getSession().clear();
         HibernateUtil.getSession().beginTransaction();
         MedicalRecord medicalRecord = (MedicalRecord) HibernateUtil.getSession().get(MedicalRecord.class,new MedicalRecord(patient,date));
         HibernateUtil.getSession().flush();
@@ -77,6 +79,7 @@ public class MedicalRecordDAO
 
     public ObservableList<MedicalRecord> selectObjectsTo(String type, Object value)
     {
+        HibernateUtil.getSession().clear();
         HibernateUtil.getSession().beginTransaction();
         Query q = null;
         ObservableList<MedicalRecord> listOfMedicalRecords;
@@ -137,6 +140,7 @@ public class MedicalRecordDAO
 
     public void updateOrInsertIfNotExists(MedicalRecord mr) {
         try {
+
             MedicalRecord medicalRecord;
             if ((medicalRecord = this.read(mr.getDate(), mr.getPatient())) != null) {
                 HibernateUtil.getSession().getTransaction().begin();
@@ -153,6 +157,7 @@ public class MedicalRecordDAO
                 HibernateUtil.getSession().flush();
                 HibernateUtil.getSession().getTransaction().commit();
             }
+            HibernateUtil.getSession().refresh(mr);
         }catch(Exception e){
 
         }

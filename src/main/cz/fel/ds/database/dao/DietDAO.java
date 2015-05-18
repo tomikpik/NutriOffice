@@ -51,12 +51,17 @@ public class DietDAO
         HibernateUtil.getSession().beginTransaction();
         try
         {
+            Query q = null;
+            q =  HibernateUtil.getSession().createQuery("DELETE from MealSchedule ms where ms.diet.dietId=:tpid");
+            q.setParameter("tpid",diet.getDietId());
+            q.executeUpdate();
             HibernateUtil.getSession().delete(diet);
             HibernateUtil.getSession().flush();
             HibernateUtil.getSession().getTransaction().commit();
         }
         catch (Exception ex)
         {
+            ex.printStackTrace();
             return false;
         }
         return true;

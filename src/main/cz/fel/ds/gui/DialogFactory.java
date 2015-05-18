@@ -188,7 +188,7 @@ public class DialogFactory {
             stage.setScene(new Scene(root, 700,600));
             stage.show();
             DietController controller = loader.getController();
-            controller.init(d);
+            controller.init(d,mpc);
         }
         catch (IOException e)
         {

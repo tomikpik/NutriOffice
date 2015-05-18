@@ -135,8 +135,8 @@ public class TrainingDialogController {
         //load exercises
         //load exerciseToTrainingProgram
 
-       // exerciseTable.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("name"));
-        //exerciseTable.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("kjkgmin"));
+        exerciseTable.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("name"));
+        exerciseTable.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("kjkgmin"));
         dataExercises = FXCollections.observableArrayList();
         exerciseTable.setItems(dataExercises);
 

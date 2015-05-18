@@ -66,15 +66,15 @@
             </GridPane>
             <TableView fx:id="mealScheduleTable" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="4">
               <columns>
-                <TableColumn prefWidth="40.0" text="Day" />
-                  <TableColumn prefWidth="63.0" text="MealType" />
-                <TableColumn fx:id="mstName" prefWidth="185.0" text="Meal" />
+                <TableColumn editable="false" prefWidth="28.0" resizable="false" sortable="false" text="Day" />
+                  <TableColumn fx:id="mstMealTypeName" editable="false" prefWidth="84.0" resizable="false" sortable="false" text="MealType" />
+                <TableColumn fx:id="mstName" editable="false" prefWidth="151.0" resizable="false" sortable="false" text="Meal" />
               </columns>
             </TableView>
             <TableView fx:id="mealsTable" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
               <columns>
-                <TableColumn prefWidth="176.0" text="Meal" />
-                <TableColumn prefWidth="74.0" text="Kj/100 g" />
+                <TableColumn editable="false" prefWidth="176.0" resizable="false" sortable="false" text="Meal" />
+                <TableColumn editable="false" prefWidth="74.0" resizable="false" sortable="false" text="Kj/100 g" />
               </columns>
             </TableView>
             <ComboBox fx:id="mealTypes" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />

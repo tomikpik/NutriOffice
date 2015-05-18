@@ -1,17 +1,20 @@
 package cz.fel.ds.util;
 
+import org.hibernate.CacheMode;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.StatelessSession;
 import org.hibernate.cfg.Configuration;
 
 public class HibernateUtil {
     private static final SessionFactory sessionFactory = buildSessionFactory();
     private static final Session session = sessionFactory.openSession();
+    private static final StatelessSession statelessSession = sessionFactory.openStatelessSession();
 
     private static SessionFactory buildSessionFactory() {
         try {
-            return new Configuration().
-                    configure().buildSessionFactory();
+
+            return new Configuration().configure().buildSessionFactory();
 
         } catch (Throwable ex) {
             throw new ExceptionInInitializerError(ex);

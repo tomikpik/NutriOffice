@@ -52,8 +52,8 @@ public class MealSchedule implements Serializable
     {
         this.order.set(order);
     }
-
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne
+    //@ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "meal_id")
     public Meal getMeal()
     {
@@ -64,8 +64,8 @@ public class MealSchedule implements Serializable
     {
         this.meal = meal;
     }
-
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne
+    //@ManyToOne(cascade = CascadeType.)
     @JoinColumn(name = "meal_type_id")
     public MealType getMealType()
     {
@@ -77,7 +77,8 @@ public class MealSchedule implements Serializable
         this.mealType = mealType;
     }
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
+    //@ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "diet_id")
     public Diet getDiet()
     {
@@ -87,5 +88,30 @@ public class MealSchedule implements Serializable
     public void setDiet(Diet diet)
     {
         this.diet = diet;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof MealSchedule)) return false;
+
+        MealSchedule that = (MealSchedule) o;
+
+        if (!mealScheduleId.equals(that.mealScheduleId)) return false;
+        if (!order.equals(that.order)) return false;
+        if (!mealType.equals(that.mealType)) return false;
+        if (!meal.equals(that.meal)) return false;
+        return diet.equals(that.diet);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = mealScheduleId.hashCode();
+        result = 31 * result + order.hashCode();
+        result = 31 * result + mealType.hashCode();
+        result = 31 * result + meal.hashCode();
+        result = 31 * result + diet.hashCode();
+        return result;
     }
 }

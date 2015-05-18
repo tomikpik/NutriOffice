@@ -48,6 +48,7 @@ public class MealScheduleDAO
 
     public boolean delete(MealSchedule mealSchedule)
     {
+        System.out.println(mealSchedule);
         HibernateUtil.getSession().beginTransaction();
         try
         {
@@ -57,6 +58,8 @@ public class MealScheduleDAO
         }
         catch (Exception ex)
         {
+            System.out.println("ahבבב");
+            ex.printStackTrace();
             return false;
         }
         return true;

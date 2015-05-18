@@ -27,7 +27,7 @@ public class MealToFood implements Serializable
     }
 
     @Id
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "food_id")
     public Food getFood()
     {
@@ -40,7 +40,7 @@ public class MealToFood implements Serializable
     }
 
     @Id
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "meal_id")
     public Meal getMeal()
     {
