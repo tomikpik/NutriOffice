@@ -18,6 +18,7 @@ public class TrainingProgramToPatient implements Serializable
 
     public TrainingProgramToPatient()
     {
+
     }
 
     public TrainingProgramToPatient(Patient p, TrainingProgram trainingProgram)

@@ -14,6 +14,7 @@ public class BasicService {
     ExerciseToTrainingProgramDAO exerciseToTrainingProgramDAO = new ExerciseToTrainingProgramDAO();
     TrainingProgramToPatientDAO trainingProgramToPatientDAO = new TrainingProgramToPatientDAO();
     MealToFoodDAO mealToFoodDAO = new MealToFoodDAO();
+    MealScheduleDAO mealScheduleDAO = new MealScheduleDAO();
     DietDAO dietDAO = new DietDAO();
     MealDAO mealDAO = new MealDAO();
     PatientDAO patientDAO = new PatientDAO();
@@ -90,6 +91,11 @@ public class BasicService {
         return true;
     }
 
+    public void deleteDiet(Diet diet)
+    {
+        dietDAO.delete(diet);
+    }
+
     public boolean saveMealToFood(MealToFood mtf) {
         mealToFoodDAO.create(mtf);
         return true;
@@ -125,5 +131,20 @@ public class BasicService {
     public void saveTrainingProgramToPatient(TrainingProgramToPatient tp)
     {
         trainingProgramToPatientDAO.updateOrInsertIfNotExists(tp);
+    }
+
+    public void saveMealSchedule(MealSchedule ms)
+    {
+        mealScheduleDAO.create(ms);
+    }
+
+    public void deleteMealSchedule(MealSchedule ms)
+    {
+        mealScheduleDAO.delete(ms);
+    }
+
+    public void updateDiet(Diet d)
+    {
+        dietDAO.update(d);
     }
 }

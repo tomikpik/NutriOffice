@@ -1,6 +1,8 @@
 package cz.fel.ds.gui;
 
 import cz.fel.ds.database.model.*;
+import cz.fel.ds.gui.dietDialog.DietController;
+import cz.fel.ds.gui.dietToPacientDialog.DietToPatientController;
 import cz.fel.ds.gui.exerciseDialog.ExerciseDialogController;
 import cz.fel.ds.gui.foodDialog.FoodDialogController;
 import cz.fel.ds.gui.mainPage.MainPageController;
@@ -153,7 +155,7 @@ public class DialogFactory {
         }
     }
 
-    public void showDiet(Patient p)
+    public void showDietToPatient(Patient p)
     {
         if(p==null)return;
         try
@@ -165,8 +167,28 @@ public class DialogFactory {
             stage.setResizable(false);
             stage.setScene(new Scene(root, 700,600));
             stage.show();
-            TrainingToPatientController controller = loader.getController();
+            DietToPatientController controller = loader.getController();
             controller.init(p);
+        }
+        catch (IOException e)
+        {
+            System.out.println("oops");
+        }
+    }
+
+    public void showDiet(Diet d)
+    {
+        try
+        {
+            Stage stage = new Stage();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("dietDialog/diet_dialog.fxml"));
+            Parent root = loader.load();
+            stage.setTitle("New diet");
+            stage.setResizable(false);
+            stage.setScene(new Scene(root, 700,600));
+            stage.show();
+            DietController controller = loader.getController();
+            controller.init(d);
         }
         catch (IOException e)
         {

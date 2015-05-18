@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.fel.ds.gui.trainingToPacientDialog.TrainingToPatientController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.fel.ds.gui.dietToPacientDialog.DietToPatientController">
    <children>
       <GridPane layoutX="14.0" layoutY="14.0" prefHeight="549.0" prefWidth="570.0">
         <columnConstraints>
@@ -61,23 +61,23 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button fx:id="delete" mnemonicParsing="false" onAction="#deleteTrainingProgramToPatient" text="Delete" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                  <Button fx:id="save" mnemonicParsing="false" onAction="#saveTrainingProgramToPatient" text="Save" GridPane.halignment="RIGHT" />
+                  <Button fx:id="delete" mnemonicParsing="false" onAction="#deleteMealSchedule" text="Delete" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                  <Button fx:id="save" mnemonicParsing="false" onAction="#saveMealSchedule" text="Save" GridPane.halignment="RIGHT" />
                </children>
             </GridPane>
-            <TableView fx:id="trainingProgramPatientTable" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="4">
+            <TableView prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="4">
               <columns>
                 <TableColumn fx:id="tpptOrder" prefWidth="40.0" text="Day" />
-                <TableColumn fx:id="tpptName" prefWidth="208.0" text="Meal" />
+                <TableColumn prefWidth="208.0" text="Meal" />
               </columns>
             </TableView>
-            <TableView fx:id="trainingProgramsTable" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
+            <TableView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
               <columns>
                 <TableColumn prefWidth="140.0" text="Meal" />
                 <TableColumn prefWidth="110.0" text="Kj/100 g" />
               </columns>
             </TableView>
-            <ComboBox prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <ComboBox fx:id="mealTypes" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Meal type" GridPane.columnIndex="2" />
          </children>
       </GridPane>
