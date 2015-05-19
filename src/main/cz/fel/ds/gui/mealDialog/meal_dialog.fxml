@@ -15,26 +15,19 @@
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="275.0" minWidth="10.0" prefWidth="266.0" />
         </columnConstraints>
         <rowConstraints>
-            <RowConstraints maxHeight="105.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="105.0" minHeight="0.0" prefHeight="27.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="325.0" minHeight="0.0" prefHeight="34.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="389.0" minHeight="0.0" prefHeight="37.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="443.0" minHeight="10.0" prefHeight="361.0" valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="105.0" minHeight="10.0" prefHeight="22.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="105.0" minHeight="0.0" prefHeight="36.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="325.0" minHeight="0.0" prefHeight="33.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="443.0" minHeight="10.0" prefHeight="368.0" valignment="CENTER" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="181.0" minHeight="10.0" prefHeight="34.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="181.0" minHeight="10.0" prefHeight="54.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <HBox GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
-            <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
-               <children>
-                  <TextField fx:id="searchFood" onKeyReleased="#foodSearch" prefHeight="25.0" prefWidth="314.0" promptText="Type in meal name" />
-               </children>
-            </HBox>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Meal ingredients" GridPane.rowIndex="2" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Available ingredients" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Available ingredients" GridPane.columnIndex="2" GridPane.rowIndex="1" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Meal name" />
             <TextField fx:id="mealName" GridPane.rowIndex="1" />
-            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                <children>
                   <GridPane prefHeight="357.0" prefWidth="51.0">
                     <columnConstraints>
@@ -51,9 +44,9 @@
                   </GridPane>
                </children>
             </VBox>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Quantity" GridPane.rowIndex="5" />
-            <TextField fx:id="quantity" GridPane.rowIndex="6" />
-            <GridPane GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="6">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Quantity" GridPane.rowIndex="4" />
+            <TextField fx:id="quantity" GridPane.rowIndex="5" />
+            <GridPane GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="5">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="203.0" minWidth="10.0" prefWidth="201.0" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="128.0" minWidth="10.0" prefWidth="65.0" />
@@ -66,19 +59,20 @@
                   <Button mnemonicParsing="false" onAction="#saveMeal" text="Save" GridPane.halignment="RIGHT" />
                </children>
             </GridPane>
-            <TableView fx:id="mealFoodsTable" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="4">
+            <TableView fx:id="mealFoodsTable" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3">
               <columns>
-                <TableColumn fx:id="mtfTableName" prefWidth="135.0" text="name" />
-                <TableColumn prefWidth="60.0" text="quantity" />
-                  <TableColumn fx:id="mtfTableNameTotalKj" prefWidth="58.0" text="total kJ" />
+                <TableColumn fx:id="mtfTableName" editable="false" prefWidth="135.0" resizable="false" sortable="false" text="name" />
+                <TableColumn editable="false" prefWidth="60.0" resizable="false" sortable="false" text="quantity" />
+                  <TableColumn fx:id="mtfTableNameTotalKj" editable="false" prefWidth="58.0" resizable="false" sortable="false" text="total kJ" />
               </columns>
             </TableView>
-            <TableView fx:id="foodTable" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
+            <TableView fx:id="foodTable" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
               <columns>
-                <TableColumn prefWidth="201.0" text="name" />
-                <TableColumn prefWidth="57.0" text="kJ" />
+                <TableColumn editable="false" prefWidth="201.0" resizable="false" sortable="false" text="name" />
+                <TableColumn editable="false" prefWidth="57.0" resizable="false" sortable="false" text="kJ" />
               </columns>
             </TableView>
+            <TextField fx:id="searchFood" onKeyReleased="#foodSearch" prefHeight="25.0" prefWidth="314.0" promptText="Type in meal name" GridPane.columnIndex="2" GridPane.rowIndex="2" />
          </children>
       </GridPane>
    </children>

@@ -1,10 +1,13 @@
 package cz.fel.ds.database.dao;
 
 import cz.fel.ds.database.model.Diet;
+import cz.fel.ds.database.model.Exercise;
 import cz.fel.ds.util.HibernateUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import org.hibernate.Criteria;
 import org.hibernate.Query;
+import org.hibernate.criterion.Restrictions;
 
 /**
  * Created by Barush on 15. 5. 2015.
@@ -71,6 +74,7 @@ public class DietDAO
     {
         HibernateUtil.getSession().beginTransaction();
         Query q = null;
+        ObservableList<Diet> listOfDiets;
         switch(type)
         {
             case "dietId":
@@ -82,18 +86,25 @@ public class DietDAO
                 break;
 
             case "nameStartsWith":
-                q =  HibernateUtil.getSession().createQuery("SELECT c from Diet c where c.name like concat(:nameStartsWith, '%') ");
-                break;
+                Criteria crit = HibernateUtil.getSession().createCriteria(Diet.class);
+                crit.add(Restrictions.ilike("name", "%" + value + "%"));
+                listOfDiets = FXCollections.observableList(crit.list());
+                HibernateUtil.getSession().flush();
+                HibernateUtil.getSession().getTransaction().commit();
+                return listOfDiets;
+
+                //q =  HibernateUtil.getSession().createQuery("SELECT c from Diet c where c.name like concat(:nameStartsWith, '%') ");
+                //break;
 
             default:
                 q =  HibernateUtil.getSession().createQuery("SELECT c from Diet c");
-                ObservableList<Diet> listOfDiets = FXCollections.observableList(q.list());
+                listOfDiets = FXCollections.observableList(q.list());
                 HibernateUtil.getSession().flush();
                 HibernateUtil.getSession().getTransaction().commit();
                 return listOfDiets;
         }
         q.setParameter(type, value);
-        ObservableList<Diet> listOfDiets = FXCollections.observableList(q.list());
+        listOfDiets = FXCollections.observableList(q.list());
         HibernateUtil.getSession().flush();
         HibernateUtil.getSession().getTransaction().commit();
         return listOfDiets;

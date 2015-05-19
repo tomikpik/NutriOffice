@@ -9,33 +9,26 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.fel.ds.gui.trainingDialog.TrainingDialogController">
    <children>
-      <GridPane layoutX="14.0" layoutY="14.0" prefHeight="549.0" prefWidth="570.0">
+      <GridPane layoutX="14.0" layoutY="14.0" prefHeight="518.0" prefWidth="570.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="270.0" minWidth="10.0" prefWidth="264.0" />
           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="172.0" minWidth="10.0" prefWidth="40.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="275.0" minWidth="10.0" prefWidth="266.0" />
         </columnConstraints>
         <rowConstraints>
-            <RowConstraints maxHeight="105.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="105.0" minHeight="0.0" prefHeight="27.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="325.0" minHeight="0.0" prefHeight="34.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="389.0" minHeight="0.0" prefHeight="37.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="443.0" minHeight="10.0" prefHeight="361.0" valignment="CENTER" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="181.0" minHeight="10.0" prefHeight="34.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="181.0" minHeight="10.0" prefHeight="54.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="105.0" minHeight="10.0" prefHeight="23.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="105.0" minHeight="0.0" prefHeight="35.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="325.0" minHeight="0.0" prefHeight="31.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="443.0" minHeight="10.0" prefHeight="380.0" valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="181.0" minHeight="10.0" prefHeight="23.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="181.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <HBox GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
-            <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
-               <children>
-                  <TextField fx:id="searchExercise" onKeyReleased="#exerciseSearch" prefHeight="25.0" prefWidth="278.0" promptText="Type in exercise name" />
-               </children>
-            </HBox>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Training program exercises" GridPane.rowIndex="2" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Available exercises" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Available exercises" GridPane.columnIndex="2" GridPane.rowIndex="1" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Training program name" />
             <TextField fx:id="trainingProgramName" GridPane.rowIndex="1" />
-            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                <children>
                   <GridPane prefHeight="357.0" prefWidth="51.0">
                     <columnConstraints>
@@ -52,9 +45,9 @@
                   </GridPane>
                </children>
             </VBox>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Duration" GridPane.rowIndex="5" />
-            <TextField fx:id="duration" GridPane.rowIndex="6" />
-            <GridPane GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="6">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Duration" GridPane.rowIndex="4" />
+            <TextField fx:id="duration" GridPane.rowIndex="5" />
+            <GridPane GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="5">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="203.0" minWidth="10.0" prefWidth="201.0" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="128.0" minWidth="10.0" prefWidth="65.0" />
@@ -67,19 +60,20 @@
                   <Button mnemonicParsing="false" onAction="#saveTrainingProgram" text="Save" GridPane.halignment="RIGHT" />
                </children>
             </GridPane>
-            <TableView fx:id="trainingProgramExercisesTable" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="4">
+            <TableView fx:id="trainingProgramExercisesTable" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3">
               <columns>
-                <TableColumn fx:id="ettpTableName" prefWidth="147.0" text="name" />
-                <TableColumn fx:id="ettpTableDuration" prefWidth="51.0" text="min" />
-                  <TableColumn fx:id="ettpTableKjKg" prefWidth="61.0" text="kj/kg" />
+                <TableColumn fx:id="ettpTableName" editable="false" prefWidth="147.0" resizable="false" sortable="false" text="name" />
+                <TableColumn fx:id="ettpTableDuration" editable="false" prefWidth="51.0" resizable="false" sortable="false" text="min" />
+                  <TableColumn fx:id="ettpTableKjKg" editable="false" prefWidth="61.0" resizable="false" sortable="false" text="kj/kg" />
               </columns>
             </TableView>
-            <TableView fx:id="exerciseTable" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
+            <TableView fx:id="exerciseTable" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
               <columns>
-                <TableColumn prefWidth="179.0" text="name" />
-                <TableColumn text="kJ/kg/min" />
+                <TableColumn editable="false" prefWidth="179.0" resizable="false" sortable="false" text="name" />
+                <TableColumn editable="false" resizable="false" sortable="false" text="kJ/kg/min" />
               </columns>
             </TableView>
+            <TextField fx:id="searchExercise" onKeyReleased="#exerciseSearch" prefHeight="25.0" prefWidth="278.0" promptText="Type in exercise name" GridPane.columnIndex="2" GridPane.rowIndex="2" />
          </children>
       </GridPane>
    </children>

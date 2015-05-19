@@ -45,7 +45,7 @@
                      <children>
                         <TableView fx:id="dietTable" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
                           <columns>
-                            <TableColumn prefWidth="254.0" text="name" />
+                            <TableColumn editable="false" prefWidth="248.0" resizable="false" sortable="false" text="name" />
                           </columns>
                         </TableView>
                         <TableView fx:id="mealTable" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
@@ -55,13 +55,13 @@
                         </TableView>
                         <TableView fx:id="foodTable" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
                           <columns>
-                            <TableColumn prefWidth="196.0" text="name" />
+                            <TableColumn editable="false" prefWidth="196.0" resizable="false" sortable="false" text="name" />
                               <TableColumn editable="false" minWidth="3.0" prefWidth="52.0" resizable="false" sortable="false" text="kJ" />
                           </columns>
                         </TableView>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Diet" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Meal" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Food" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Diets" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Meals" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Foods" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                         <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                            <children>
                               <GridPane prefHeight="37.0" prefWidth="315.0">
@@ -133,8 +133,8 @@
                       <RowConstraints maxHeight="485.0" minHeight="10.0" prefHeight="485.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Training program" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Exercise" GridPane.columnIndex="1" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Training programs" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Exercises" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                         <TableView fx:id="trainingProgramTable" prefHeight="192.0" prefWidth="295.0" GridPane.rowIndex="2">
                           <columns>
                             <TableColumn editable="false" prefWidth="380.0" resizable="false" sortable="false" text="name" />
@@ -142,7 +142,7 @@
                         </TableView>
                         <TableView fx:id="exerciseTable" prefHeight="197.0" prefWidth="253.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                           <columns>
-                            <TableColumn editable="false" prefWidth="301.0" sortable="false" text="name" />
+                            <TableColumn editable="false" prefWidth="301.0" resizable="false" sortable="false" text="name" />
                               <TableColumn editable="false" prefWidth="79.0" resizable="false" sortable="false" text="kJ/kg/min" />
                           </columns>
                         </TableView>
