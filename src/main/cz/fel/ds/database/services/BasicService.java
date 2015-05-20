@@ -133,8 +133,7 @@ public class BasicService {
         trainingProgramToPatientDAO.updateOrInsertIfNotExists(tp);
     }
 
-    public void saveMealSchedule(MealSchedule ms)
-    {
+    public void saveMealSchedule(MealSchedule ms) {
         mealScheduleDAO.create(ms);
     }
 

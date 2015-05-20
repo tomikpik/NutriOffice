@@ -19,11 +19,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 /**
  * Created by Barush on 17. 5. 2015.
  */
-public class DietController
-{
+public class DietController {
     private MainPageController mpc;
     private SearchService searchService = new SearchService();
-    private BasicService basicService =new BasicService();
+    private BasicService basicService = new BasicService();
     private Diet d;
 
     @FXML
@@ -35,9 +34,9 @@ public class DietController
     @FXML
     private TableView<Meal> mealsTable;
     @FXML
-    private TableColumn<MealSchedule,String> mstName;
+    private TableColumn<MealSchedule, String> mstName;
     @FXML
-    private TableColumn<MealSchedule,String> mstMealTypeName;
+    private TableColumn<MealSchedule, String> mstMealTypeName;
     @FXML
     private Button delete;
     @FXML
@@ -53,19 +52,16 @@ public class DietController
     @FXML
     public void addMealToMealSchedule(ActionEvent event) //SIPKA DOLEVA
     {
-        try
-        {
-            if(mealsTable.getSelectionModel().getSelectedItem() == null ||
-                    mealTypes.getValue() == null ||
-                    dayField == null)throw new Exception();
+        try {
+            if (mealsTable.getSelectionModel().getSelectedItem() == null || mealTypes.getValue() == null ||
+                    dayField == null) throw new Exception();
+
 
             MealType mt = g.parallelStream().filter(x -> x.getMealTypeName() == mealTypes.getValue()).findFirst().get();
-            MealSchedule ms = new MealSchedule(Integer.parseInt(dayField.getText()), mt, mealsTable.getSelectionModel().getSelectedItem(),d);
+            MealSchedule ms = new MealSchedule(Integer.parseInt(dayField.getText()), mt, mealsTable.getSelectionModel().getSelectedItem(), d);
             basicService.saveMealSchedule(ms);
             refreshTable();
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             System.out.println("neni zvoleny training program");
         }
         refreshTable();
@@ -74,76 +70,54 @@ public class DietController
     @FXML
     public void deleteMealFromMealSchedule(ActionEvent event)  //SIPKA DOPRAVA
     {
-        try
-        {
+        try {
             MealSchedule ms = mealScheduleTable.getSelectionModel().getSelectedItem();
-            if(ms==null)throw new Exception();
+            if (ms == null) throw new Exception();
             basicService.deleteMealSchedule(ms);
             refreshTable();
-        }
-        catch(Exception e)
-        {
+        } catch (Exception e) {
             System.out.println("neni zvoleny training program to patient");
         }
     }
 
     @FXML
-    public void saveDiet(ActionEvent event)
-    {
-        try
-        {
-            if(d == null)
-            {
-                d = new Diet();
-                d.setName(nameOfDietField.getText());
-                basicService.dietAdd(d);
-            }
-            else
-            {
-                d.setName(nameOfDietField.getText());
-                basicService.updateDiet(d);
-            }
+    public void saveDiet(ActionEvent event) {
+        try {
+            d=(d==null)?new Diet():d;
+            d.setName(nameOfDietField.getText());
+            basicService.dietAdd(d);
             mpc.refreshAllTables();
             GuiTool.closeDialog(save);
 
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
             System.out.println("error input parameters");
         }
     }
+
     @FXML
-    public void deleteDiet(ActionEvent event)
-    {
-        try
-        {
-            if(d != null)basicService.deleteDiet(d);
+    public void deleteDiet(ActionEvent event) {
+        try {
+            if (d != null) basicService.deleteDiet(d);
             mpc.refreshAllTables();
             GuiTool.closeDialog(delete);
 
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             System.out.println("error input parameters");
         }
     }
 
-    public void init(Diet d,MainPageController mpc)
-    {
-        this.mpc=mpc;
-        this.d=d;
+    public void init(Diet d, MainPageController mpc) {
+        this.mpc = mpc;
+        this.d = d;
         //FILL COMBOBOX
-        if(d != null)nameOfDietField.setText(d.getName());
-        else
-        {
-            d = new Diet();
-            basicService.dietAdd(d);
+        if (d != null) {
+            nameOfDietField.setText(d.getName());
         }
 
         g = searchService.mealTypesAll();
         ObservableList<String> temp = FXCollections.observableArrayList();
-        for (int i = 0; i < g.size(); i++)temp.add(g.get(i).getMealTypeName());
+        for (int i = 0; i < g.size(); i++) temp.add(g.get(i).getMealTypeName());
         mealTypes.setItems(temp);
 
         dataMeals = FXCollections.observableArrayList();
@@ -154,7 +128,7 @@ public class DietController
         mealsTable.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("mealName"));
         ///kj/100g
         mealScheduleTable.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("order"));
-        mstMealTypeName.setCellValueFactory(cellValue->{
+        mstMealTypeName.setCellValueFactory(cellValue -> {
             return new SimpleStringProperty(cellValue.getValue().getMealType().getMealTypeName());
         });
         //mealScheduleTable.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("mealType"));
@@ -162,8 +136,7 @@ public class DietController
         refreshTable();
     }
 
-    public void refreshTable()
-    {
+    public void refreshTable() {
         dataMealSchedules.clear();
         dataMealSchedules.addAll(searchService.mealSchedulesToDiet(d));
         dataMeals.clear();

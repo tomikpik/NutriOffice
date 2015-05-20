@@ -7,6 +7,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
@@ -17,6 +18,7 @@ public class PatientDAO
 {
     public int create(Patient patient)
     {
+
         HibernateUtil.getSession().beginTransaction();
         HibernateUtil.getSession().save(patient);
         HibernateUtil.getSession().getTransaction().commit();

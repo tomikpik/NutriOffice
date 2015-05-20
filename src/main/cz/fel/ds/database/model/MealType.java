@@ -57,4 +57,12 @@ public class MealType implements Serializable
         this.mealType.set(mealType);
     }
 
+    @Override
+    public String toString() {
+        return "MealType{" +
+                "mealTypeId=" + mealTypeId +
+                ", mealType=" + mealType +
+                ", mealTypeName=" + mealTypeName +
+                '}';
+    }
 }

@@ -6,6 +6,7 @@ import cz.fel.ds.util.HibernateUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.hibernate.Criteria;
+import org.hibernate.Hibernate;
 import org.hibernate.Query;
 import org.hibernate.criterion.Restrictions;
 
@@ -14,6 +15,11 @@ import org.hibernate.criterion.Restrictions;
  */
 public class DietDAO
 {
+
+    public void ahoj(){
+        HibernateUtil.getSession().createSQLQuery("select * from patients");
+    }
+
     public int create(Diet diet)
     {
         HibernateUtil.getSession().beginTransaction();
@@ -72,6 +78,8 @@ public class DietDAO
 
     public ObservableList<Diet> selectObjectsTo(String type, Object value)
     {
+
+
         HibernateUtil.getSession().beginTransaction();
         Query q = null;
         ObservableList<Diet> listOfDiets;

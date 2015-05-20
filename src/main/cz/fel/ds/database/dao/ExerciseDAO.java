@@ -9,6 +9,8 @@ import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.criterion.Restrictions;
 
+import java.util.Collections;
+
 /**
  * Created by Tom on 15. 5. 2015.
  */
