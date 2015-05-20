@@ -17,6 +17,14 @@ public class TrainingProgramToPatientDAO
     public int create(TrainingProgramToPatient trainingProgramToPatient)
     {
         HibernateUtil.getSession().beginTransaction();
+
+
+        Query q = null;
+        q = HibernateUtil.getSession().createQuery("DELETE from TrainingProgramToPatient tptp where tptp.day=:a and tptp.patient.patientId=:b");
+        q.setParameter("a", trainingProgramToPatient.getDay());
+        q.setParameter("b", trainingProgramToPatient.getPatient().getPatientId());
+        q.executeUpdate();
+
         HibernateUtil.getSession().save(trainingProgramToPatient);
         HibernateUtil.getSession().getTransaction().commit();
         return 1;

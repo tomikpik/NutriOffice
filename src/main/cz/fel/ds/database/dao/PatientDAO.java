@@ -59,6 +59,9 @@ public class PatientDAO
             q = HibernateUtil.getSession().createQuery("DELETE from MedicalRecord mr where mr.patient.patientId=:a ");
             q.setParameter("a", patient.getPatientId());
             q.executeUpdate();
+            q = HibernateUtil.getSession().createQuery("DELETE from TrainingProgramToPatient tptp where tptp.patient.patientId=:a");
+            q.setParameter("a", patient.getPatientId());
+            q.executeUpdate();
 
             HibernateUtil.getSession().delete(patient);
             HibernateUtil.getSession().getTransaction().commit();
