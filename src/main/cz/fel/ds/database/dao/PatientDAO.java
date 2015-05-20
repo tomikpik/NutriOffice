@@ -26,7 +26,8 @@ public class PatientDAO
                 "\n" +
                 "where passed.pid=patients.patient_id;";
         SQLQuery query = HibernateUtil.getSession().createSQLQuery(sql);
-        Java.util.List<Patient> result = query.list();
+        java.util.List<Patient> result = query.list();
+        System.out.println(result.size());
     }
     public int create(Patient patient)
     {
