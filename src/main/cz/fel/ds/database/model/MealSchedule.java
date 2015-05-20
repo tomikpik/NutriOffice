@@ -114,4 +114,15 @@ public class MealSchedule implements Serializable
         result = 31 * result + diet.hashCode();
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "MealSchedule{" +
+                "mealScheduleId=" + mealScheduleId +
+                ", order=" + order +
+                ", mealType=" + mealType +
+                ", meal=" + meal +
+                ", diet=" + diet +
+                '}';
+    }
 }

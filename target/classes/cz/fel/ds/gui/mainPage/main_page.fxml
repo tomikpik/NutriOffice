@@ -185,5 +185,20 @@
                </children></AnchorPane>
             </content>
         </Tab>
+      <Tab text="SqL fUn">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <TableView fx:id="patientsLastTab" layoutX="49.0" layoutY="60.0" prefHeight="481.0" prefWidth="714.0">
+                    <columns>
+                      <TableColumn prefWidth="315.0" text="first name" />
+                      <TableColumn minWidth="0.0" prefWidth="362.0" text="last name" />
+                    </columns>
+                  </TableView>
+                  <Button layoutX="197.0" layoutY="14.0" mnemonicParsing="false" onAction="#lastTab" text="občerstvit" />
+               </children>
+            </AnchorPane>
+        </content>
+      </Tab>
     </tabs>
 </TabPane>

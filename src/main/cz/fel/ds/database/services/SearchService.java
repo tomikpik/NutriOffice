@@ -112,4 +112,8 @@ public class SearchService
     {
         return mealScheduleChangeDAO.selectObjectsTo("patient",p);
     }
+
+    public ObservableList<Patient> getLastTabPatients(){
+        return patientDAO.getWeightLossPeople();
+    }
 }

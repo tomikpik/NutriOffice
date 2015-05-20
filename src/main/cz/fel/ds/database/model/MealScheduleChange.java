@@ -32,7 +32,7 @@ public class MealScheduleChange implements Serializable
         this.mealScheduleChangeId = mealScheduleChangeId;
     }
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "meal_id")
     public Meal getMeal()
     {
@@ -44,7 +44,7 @@ public class MealScheduleChange implements Serializable
         this.meal = meal;
     }
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "patient_id")
     public Patient getPatient()
     {
@@ -56,7 +56,7 @@ public class MealScheduleChange implements Serializable
         this.patient = patient;
     }
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "meal_schedule_id")
     public MealSchedule getMealSchedule()
     {
@@ -68,5 +68,13 @@ public class MealScheduleChange implements Serializable
         this.mealSchedule = mealSchedule;
     }
 
-
+    @Override
+    public String toString() {
+        return "MealScheduleChange{" +
+                "meal=" + meal +
+                ", patient=" + patient +
+                ", mealSchedule=" + mealSchedule +
+                ", mealScheduleChangeId=" + mealScheduleChangeId +
+                '}';
+    }
 }

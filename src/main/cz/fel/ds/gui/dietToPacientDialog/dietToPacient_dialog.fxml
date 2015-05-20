@@ -6,36 +6,35 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.fel.ds.gui.dietToPacientDialog.DietToPatientController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="622.0" prefWidth="979.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.fel.ds.gui.dietToPacientDialog.DietToPatientController">
    <children>
-      <GridPane layoutX="14.0" layoutY="14.0" prefHeight="549.0" prefWidth="570.0">
+      <GridPane layoutX="14.0" layoutY="24.0" prefHeight="539.0" prefWidth="947.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="270.0" minWidth="10.0" prefWidth="264.0" />
-          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="172.0" minWidth="10.0" prefWidth="40.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="344.0" minWidth="10.0" prefWidth="344.0" />
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="172.0" minWidth="0.0" prefWidth="0.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="275.0" minWidth="10.0" prefWidth="266.0" />
         </columnConstraints>
         <rowConstraints>
             <RowConstraints maxHeight="105.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="105.0" minHeight="0.0" prefHeight="27.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="325.0" minHeight="0.0" prefHeight="34.0" vgrow="SOMETIMES" />
           <RowConstraints maxHeight="389.0" minHeight="0.0" prefHeight="37.0" vgrow="SOMETIMES" />
           <RowConstraints maxHeight="443.0" minHeight="10.0" prefHeight="361.0" valignment="CENTER" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="181.0" minHeight="10.0" prefHeight="34.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="181.0" minHeight="10.0" prefHeight="54.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <HBox GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+            <HBox GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Meal schedule for selected diet" />
                </children></HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
+            <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Available meals for specific meal type" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Available meals" />
                </children>
             </HBox>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Diet" />
-            <TextField fx:id="dayField" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                <children>
                   <GridPane prefHeight="357.0" prefWidth="51.0">
                     <columnConstraints>
@@ -52,7 +51,7 @@
                   </GridPane>
                </children>
             </VBox>
-            <GridPane GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="6">
+            <GridPane GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="5">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="203.0" minWidth="10.0" prefWidth="201.0" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="128.0" minWidth="10.0" prefWidth="65.0" />
@@ -65,22 +64,28 @@
                   <Button fx:id="save" mnemonicParsing="false" onAction="#saveMealScheduleChanges" text="Save" GridPane.halignment="RIGHT" />
                </children>
             </GridPane>
-            <TableView fx:id="mealScheduleTable" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="4">
+            <TableView fx:id="mealScheduleTable" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3">
               <columns>
                 <TableColumn fx:id="mtOrder" editable="false" prefWidth="40.0" resizable="false" sortable="false" text="Day" />
                 <TableColumn fx:id="mtMealTypeName" editable="false" minWidth="0.0" prefWidth="68.0" resizable="false" sortable="false" text="Meal type" />
                   <TableColumn fx:id="mtName" editable="false" prefWidth="146.0" resizable="false" sortable="false" text="Meal" />
               </columns>
             </TableView>
-            <TableView fx:id="mealsTable" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
+            <TableView fx:id="mealsTable" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="3">
               <columns>
                 <TableColumn editable="false" prefWidth="140.0" resizable="false" sortable="false" text="Meal" />
                 <TableColumn editable="false" prefWidth="110.0" resizable="false" sortable="false" text="Kj" />
               </columns>
             </TableView>
             <ComboBox fx:id="diets" onMouseReleased="#refreshList" prefWidth="150.0" GridPane.rowIndex="1" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Change in day" GridPane.columnIndex="2" />
-            <ComboBox fx:id="mealTypes" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <TableView fx:id="changesTable" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+              <columns>
+                <TableColumn fx:id="col1" prefWidth="75.0" text="Day" />
+                <TableColumn fx:id="col2" prefWidth="75.0" text="MeAl tYpE" />
+                  <TableColumn fx:id="col3" prefWidth="174.0" text="meal" />
+              </columns>
+            </TableView>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Changes" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
    </children>

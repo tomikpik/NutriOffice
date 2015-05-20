@@ -166,7 +166,7 @@ public class DialogFactory {
             Parent root = loader.load();
             stage.setTitle("Diet of "+p.getFirstName()+" "+p.getLastName());
             stage.setResizable(false);
-            stage.setScene(new Scene(root, 700,600));
+            stage.setScene(new Scene(root, 1200,600));
             stage.show();
             DietToPatientController controller = loader.getController();
             controller.init(p);

@@ -2,6 +2,7 @@ package cz.fel.ds.database.dao;
 
 import cz.fel.ds.database.model.Meal;
 import cz.fel.ds.database.model.Patient;
+import cz.fel.ds.database.model.TrainingProgram;
 import cz.fel.ds.util.HibernateUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,7 +18,7 @@ import java.util.List;
  * Created by Tom on 15. 5. 2015.
  */
 public class PatientDAO {
-    public void getWeightLossPeople() {
+    public ObservableList<Patient> getWeightLossPeople() {
         String sql = " select * from patients,\n" +
                 "(\n" +
                 " select pid from (select patient_id as pid,count(*) as count from medicalrecords mr group by mr.patient_id) as table1 where table1.count>1 AND\n" +
@@ -27,7 +28,10 @@ public class PatientDAO {
                 "\n" +
                 "where passed.pid=patients.patient_id;";
         SQLQuery query = HibernateUtil.getSession().createSQLQuery(sql);
-        List<Patient> result = query.list();
+        query.addEntity(Patient.class);
+        List<Patient> l= query.list();
+        ObservableList<Patient> list = FXCollections.observableList(l);
+        return list;
 
     }
 

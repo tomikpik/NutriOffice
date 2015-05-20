@@ -167,4 +167,11 @@ public class BasicService {
 
 
     }
+
+    public void deleteMealScheduleChanges(Patient p, Diet d) {
+        mealScheduleChangeDAO.delete(p,d);
+
+
+
+    }
 }

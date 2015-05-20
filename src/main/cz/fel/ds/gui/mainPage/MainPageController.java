@@ -8,10 +8,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TableRow;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 /**
@@ -48,6 +45,10 @@ public class MainPageController {
     private TableView<TrainingProgram> trainingProgramTable;
     @FXML
     private TableView<Exercise> exerciseTable;
+
+    @FXML
+    private TableView<Patient> patientsLastTab;
+
 
     private ObservableList<Patient> dataPacients;
     private ObservableList<Diet> dataDiets;
@@ -245,5 +246,19 @@ public class MainPageController {
 
         dataDiets.clear();
         dataDiets.addAll(searchService.dietSearch(dietSearch.getText()));
+    }
+
+
+    public void lastTab(){
+
+
+        patientsLastTab.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        patientsLastTab.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("lastName"));
+
+        ObservableList<Patient> list = FXCollections.observableArrayList();
+        list.addAll(searchService.getLastTabPatients());
+
+        patientsLastTab.setItems(list);
+
     }
 }
