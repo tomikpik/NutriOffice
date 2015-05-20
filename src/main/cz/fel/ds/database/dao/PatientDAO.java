@@ -16,6 +16,18 @@ import org.hibernate.criterion.Restrictions;
  */
 public class PatientDAO
 {
+    public void getWeightLossPeople(){
+        String sql =" select * from patients,\n" +
+                "(\n" +
+                " select pid from (select patient_id as pid,count(*) as count from medicalrecords mr group by mr.patient_id) as table1 where table1.count>1 AND\n" +
+                "(select weight from medicalrecords mr where  mr.patient_id=pid order by medical_record_date desc limit 1) <\n" +
+                "(select weight from medicalrecords mr2 where mr2.patient_id=pid order by medical_record_date desc offset 1 limit 1 )\n" +
+                ") as passed\n" +
+                "\n" +
+                "where passed.pid=patients.patient_id;";
+        SQLQuery query = HibernateUtil.getSession().createSQLQuery(sql);
+        Java.util.List<Patient> result = query.list();
+    }
     public int create(Patient patient)
     {
 
