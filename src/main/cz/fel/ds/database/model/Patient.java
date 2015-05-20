@@ -148,14 +148,14 @@ public class Patient implements Serializable
     @Override
     public String toString() {
         return "Patient{" +
-                "patientId=" + patientId +
-                ", firstName=" + firstName +
-                ", lastName=" + lastName +
-                ", gender=" + gender +
+                "Id=" + patientId +
+                ", FN=" + firstName +
+                ", LN=" + lastName.getValue() +
+                ", G=" + gender.getValue() +
                 ", birthdate=" + birthdate +
-                ", nationalId=" + nationalId +
-                ", email=" + email +
-                ", phone=" + phone +
+                ", NID=" + nationalId.getValue() +
+                ", email=" + email.getValue() +
+                ", phone=" + phone.getValue() +
                 ", dietStarted=" + dietStarted +
                 ", diet=" + diet +
                 '}';

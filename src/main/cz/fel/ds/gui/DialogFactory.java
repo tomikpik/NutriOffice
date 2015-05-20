@@ -75,6 +75,7 @@ public class DialogFactory {
             stage.setScene(new Scene(root, 700,600));
             stage.show();
             MedicalRecordController controller = loader.getController();
+            System.err.println(p);
             controller.init(p);
         }catch (IOException e){
             e.printStackTrace();

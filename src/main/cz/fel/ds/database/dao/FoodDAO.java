@@ -54,6 +54,13 @@ public class FoodDAO
         HibernateUtil.getSession().beginTransaction();
         try
         {
+
+            Query q = null;
+            q = HibernateUtil.getSession().createQuery("DELETE from MealToFood mtf where mtf.food.foodId=:a ");
+            q.setParameter("a", food.getFoodId());
+            q.executeUpdate();
+
+
             HibernateUtil.getSession().delete(food);
             HibernateUtil.getSession().flush();
             HibernateUtil.getSession().getTransaction().commit();

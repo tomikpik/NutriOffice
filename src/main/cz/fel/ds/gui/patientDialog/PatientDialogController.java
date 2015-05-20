@@ -58,17 +58,18 @@ public class PatientDialogController {
     @FXML
     public void savePatient(ActionEvent event){
         try {
-            Patient patient = (p==null)?new Patient():p;
+            System.err.println("\n"+p+"\n");
 
+            Patient patient = (p==null)?new Patient():p;
             patient.setFirstName(firstName.getText());
             patient.setLastName(lastName.getText());
             patient.setPhone(phone.getText());
             patient.setEmail(email.getText());
             patient.setBirthdate(GuiTool.localDateToDate(birthdate.getValue()));
             patient.setDietStarted(GuiTool.localDateToDate(dietStarted.getValue()));
-
             patient.setGender((gender.getValue().equalsIgnoreCase("Female"))?"F":"M");
 
+            System.err.println("\n"+p+"\n");
 
 
             if(basicService.savePatient(patient)){
@@ -78,7 +79,7 @@ public class PatientDialogController {
                 System.out.println("patient save failed - service");
             }
         } catch(Exception e){
-            e.printStackTrace();
+            //e.printStackTrace();
             System.out.println("patient saving failed - exception");
         }
     }
