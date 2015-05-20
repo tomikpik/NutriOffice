@@ -155,4 +155,16 @@ public class BasicService {
     {
         mealScheduleChangeDAO.create(mealScheduleChange);
     }
+
+    public void addDietToPatient(Patient p, Diet diet) {
+        if(diet.getDietId()!=-666 || !diet.getName().equalsIgnoreCase("No diet assigned")){
+            p.setDiet(diet);
+        } else {
+            p.setDiet(null);
+        }
+
+        this.savePatient(p);
+
+
+    }
 }

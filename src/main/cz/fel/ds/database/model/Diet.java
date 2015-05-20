@@ -21,6 +21,10 @@ public class Diet implements Serializable
         setDietId(-1);
     }
 
+    public Diet(String name){
+        this.setName(name);
+        setDietId(-1);
+    }
 
 
     @Id
@@ -45,5 +49,10 @@ public class Diet implements Serializable
     public void setName(String name)
     {
         this.name.set(name);
+    }
+
+    @Override
+    public String toString() {
+        return name.getValue();
     }
 }

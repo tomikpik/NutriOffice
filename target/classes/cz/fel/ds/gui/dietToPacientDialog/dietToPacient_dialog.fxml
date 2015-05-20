@@ -26,15 +26,15 @@
          <children>
             <HBox GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Schedule of training programs" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Meal schedule for selected diet" />
                </children></HBox>
             <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Available meals for specific meal type" />
                </children>
             </HBox>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Day order" />
-            <TextField fx:id="dayField" GridPane.rowIndex="1" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Diet" />
+            <TextField fx:id="dayField" GridPane.columnIndex="2" GridPane.rowIndex="1" />
             <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                <children>
                   <GridPane prefHeight="357.0" prefWidth="51.0">
@@ -46,8 +46,8 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Button mnemonicParsing="false" onAction="#addTPToPatient" text="&lt;&lt;" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
-                        <Button mnemonicParsing="false" onAction="#deleteTPFromPatient" text="&gt;&gt;" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+                        <Button mnemonicParsing="false" onAction="#addMealChange" text="&lt;&lt;" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
+                        <Button mnemonicParsing="false" onAction="#deleteMealChange" text="&gt;&gt;" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP" />
                      </children>
                   </GridPane>
                </children>
@@ -61,24 +61,26 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button fx:id="delete" mnemonicParsing="false" onAction="#deleteMealSchedule" text="Delete" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                  <Button fx:id="save" mnemonicParsing="false" onAction="#saveMealSchedule" text="Save" GridPane.halignment="RIGHT" />
+                  <Button fx:id="delete" mnemonicParsing="false" onAction="#deleteMealScheduleChanges" text="Delete" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                  <Button fx:id="save" mnemonicParsing="false" onAction="#saveMealScheduleChanges" text="Save" GridPane.halignment="RIGHT" />
                </children>
             </GridPane>
-            <TableView prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="4">
+            <TableView fx:id="mealScheduleTable" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="4">
               <columns>
-                <TableColumn fx:id="tpptOrder" prefWidth="40.0" text="Day" />
-                <TableColumn prefWidth="208.0" text="Meal" />
+                <TableColumn fx:id="mtOrder" editable="false" prefWidth="40.0" resizable="false" sortable="false" text="Day" />
+                <TableColumn fx:id="mtMealTypeName" editable="false" minWidth="0.0" prefWidth="68.0" resizable="false" sortable="false" text="Meal type" />
+                  <TableColumn fx:id="mtName" editable="false" prefWidth="146.0" resizable="false" sortable="false" text="Meal" />
               </columns>
             </TableView>
-            <TableView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
+            <TableView fx:id="mealsTable" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
               <columns>
-                <TableColumn prefWidth="140.0" text="Meal" />
-                <TableColumn prefWidth="110.0" text="Kj/100 g" />
+                <TableColumn editable="false" prefWidth="140.0" resizable="false" sortable="false" text="Meal" />
+                <TableColumn editable="false" prefWidth="110.0" resizable="false" sortable="false" text="Kj" />
               </columns>
             </TableView>
-            <ComboBox fx:id="mealTypes" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Meal type" GridPane.columnIndex="2" />
+            <ComboBox fx:id="diets" onMouseReleased="#refreshList" prefWidth="150.0" GridPane.rowIndex="1" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Change in day" GridPane.columnIndex="2" />
+            <ComboBox fx:id="mealTypes" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
          </children>
       </GridPane>
    </children>
