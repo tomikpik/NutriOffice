@@ -15,6 +15,7 @@ public class BasicService {
     TrainingProgramToPatientDAO trainingProgramToPatientDAO = new TrainingProgramToPatientDAO();
     MealToFoodDAO mealToFoodDAO = new MealToFoodDAO();
     MealScheduleDAO mealScheduleDAO = new MealScheduleDAO();
+    MealScheduleChangeDAO mealScheduleChangeDAO = new MealScheduleChangeDAO();
     DietDAO dietDAO = new DietDAO();
     MealDAO mealDAO = new MealDAO();
     PatientDAO patientDAO = new PatientDAO();
@@ -143,5 +144,15 @@ public class BasicService {
 
     public void updateDiet(Diet d) {
         dietDAO.update(d);
+    }
+
+    public void deleteMealScheduleChanges(MealScheduleChange mealScheduleChange)
+    {
+        mealScheduleChangeDAO.delete(mealScheduleChange);
+    }
+
+    public void addMealScheduleChanges(MealScheduleChange mealScheduleChange)
+    {
+        mealScheduleChangeDAO.create(mealScheduleChange);
     }
 }
